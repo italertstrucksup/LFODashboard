@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "VN+SQanLh0Q=",
+  "success": true,
+  "projectFilePath": "D:\\GIT Code\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sachin Sharma\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
+    "C:\\Users\\Sachin Sharma\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\Sachin Sharma\\.nuget\\packages\\microsoft.extensions.configuration.binder\\10.0.5\\microsoft.extensions.configuration.binder.10.0.5.nupkg.sha512",
+    "C:\\Users\\Sachin Sharma\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.5\\microsoft.extensions.primitives.10.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

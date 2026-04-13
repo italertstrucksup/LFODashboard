@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="VendorService.BL/VendorService.BL.csproj" />
+  <Project Path="VendorService.DAL/VendorService.DAL.csproj" />
+  <Project Path="VendorService.Models/VendorService.Models.csproj" />
+  <Project Path="VendorService/VendorService.csproj" />
+</Solution>

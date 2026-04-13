@@ -1,12 +1,8 @@
 <Solution>
-  <Folder Name="/AuthService/" />
-  <Folder Name="/LFOAPIGateway/">
-    <Project Path="APIGateway/APIGateway.csproj" />
-  </Folder>
   <Folder Name="/VendorService/">
-    <Project Path="C:/Users/Sachin Sharma/source/repos/VendorService/VendorService.BL/VendorService.BL.csproj" />
-    <Project Path="C:/Users/Sachin Sharma/source/repos/VendorService/VendorService.DAL/VendorService.DAL.csproj" />
-    <Project Path="C:/Users/Sachin Sharma/source/repos/VendorService/VendorService.Models/VendorService.Models.csproj" />
-    <Project Path="C:/Users/Sachin Sharma/source/repos/VendorService/VendorService/VendorService.csproj" />
+    <Project Path="VendorService/VendorService.BL/VendorService.BL.csproj" />
+    <Project Path="VendorService/VendorService.DAL/VendorService.DAL.csproj" />
+    <Project Path="VendorService/VendorService.Models/VendorService.Models.csproj" />
+    <Project Path="VendorService/VendorService/VendorService.csproj" />
   </Folder>
 </Solution>

@@ -1,4 +1,13 @@
 <Solution>
+  <Folder Name="/API_Gateway/">
+    <Project Path="Api_Getway/Api_Getway.csproj" />
+  </Folder>
+  <Folder Name="/AuthService/">
+    <Project Path="AuthServices/AuthServices_LFO.BL/AuthServices_LFO.BL.csproj" />
+    <Project Path="AuthServices/AuthServices_LFO.DAL/AuthServices_LFO.DAL.csproj" />
+    <Project Path="AuthServices/AuthServices_LFO.Model/AuthServices_LFO.Model.csproj" />
+    <Project Path="AuthServices/AuthServices_LFO/AuthServices_LFO.csproj" />
+  </Folder>
   <Folder Name="/VendorService/">
     <Project Path="VendorService/VendorService.BL/VendorService.BL.csproj" />
     <Project Path="VendorService/VendorService.DAL/VendorService.DAL.csproj" />

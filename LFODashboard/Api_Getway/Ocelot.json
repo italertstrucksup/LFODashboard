@@ -1,0 +1,61 @@
+{
+  "Routes": [
+    //Authentication Web API
+    {
+      "DownstreamPathTemplate": "/api/Account",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7224
+        }
+      ],
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/api/Account"
+    },
+
+    //CataLoge Service APIs
+    {
+      "DownstreamPathTemplate": "/catalogs/items",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7069
+        }
+      ],
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/catalogs/items"
+    },
+    {
+      "DownstreamPathTemplate": "/WeatherForecast/demo/products",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7069
+        }
+      ],
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/demo/products"
+    },
+
+    //Order Service APIs
+    {
+      "DownstreamPathTemplate": "/orders",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7216
+        }
+      ],
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/orders"
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7235"
+  }
+}

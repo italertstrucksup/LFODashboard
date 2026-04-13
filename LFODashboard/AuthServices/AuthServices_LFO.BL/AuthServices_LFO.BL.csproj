@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.17.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthServices_LFO.DAL\AuthServices_LFO.DAL.csproj" />
+    <ProjectReference Include="..\AuthServices_LFO.Model\AuthServices_LFO.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DataAccessInterface">
+      <HintPath>D:\Office\ProjectDLL\DataAccessInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="JwtAuthenticationManager">
+      <HintPath>D:\Office\ProjectDLL\JwtAuthenticationManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

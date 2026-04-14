@@ -205,7 +205,7 @@ namespace AuthServices_LFO.BL.Implemetation
                 if (signupResult.Rows.Count > 0 )
                     return new SignupResponse
                     {
-                        IsSuccess = false,
+                        IsSuccess = true,
                         Message = signupResult.Rows[0]["result"].ToString()
                     };
                 else
@@ -242,7 +242,7 @@ namespace AuthServices_LFO.BL.Implemetation
                     
                     return new SignupResponse
                     {
-                        IsSuccess = false,
+                        IsSuccess = true,
                         Message = "OTP verified successfully, please login"
                     };
 

@@ -398,3 +398,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+LFODashboard/VendorService/VendorService.BL/obj/Debug/net10.0/VendorService.BL.AssemblyInfo.cs
+LFODashboard/VendorService/VendorService.BL/obj/Debug/net10.0/VendorService.BL.AssemblyInfoInputs.cache
+*.cache
+*.props
+*.json
+*.editorconfig

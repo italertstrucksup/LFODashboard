@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Office\\Shivam\\Office Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {}
+    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {}
   },
   "projects": {
-    "D:\\Office\\Shivam\\Office Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
+    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Office\\Shivam\\Office Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+        "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
         "projectName": "VendorService.Models",
-        "projectPath": "D:\\Office\\Shivam\\Office Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
-        "packagesPath": "C:\\Users\\shiva\\.nuget\\packages\\",
-        "outputPath": "D:\\Office\\Shivam\\Office Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
+        "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+        "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
+        "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shiva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Neha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

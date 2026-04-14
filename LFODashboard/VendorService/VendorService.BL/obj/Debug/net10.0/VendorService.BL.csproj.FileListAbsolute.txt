@@ -33,3 +33,21 @@ D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\n
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\refint\VendorService.BL.dll
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.pdb
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\ref\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.BL.deps.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.BL.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.DAL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.DAL.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\VendorService.Models.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.csproj.AssemblyReference.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.GeneratedMSBuildEditorConfig.editorconfig
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.AssemblyInfoInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.AssemblyInfo.cs
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.csproj.CoreCompileInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.sourcelink.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorSe.AA47B326.Up2Date
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\refint\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\ref\VendorService.BL.dll

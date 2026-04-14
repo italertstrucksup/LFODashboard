@@ -12,9 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="JwtAuthenticationManager">
-      <HintPath>..\..\..\..\..\ProjectDLL\JwtAuthenticationManager.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\HelperDLL\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
   </ItemGroup>
 
 </Project>

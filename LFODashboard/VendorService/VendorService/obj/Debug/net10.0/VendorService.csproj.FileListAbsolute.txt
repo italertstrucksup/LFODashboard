@@ -83,3 +83,46 @@ D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net1
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.pdb
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.genruntimeconfig.cache
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\ref\VendorService.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\appsettings.Development.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\appsettings.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.staticwebassets.endpoints.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.exe
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.deps.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.runtimeconfig.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.OpenApi.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Scalar.AspNetCore.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Scalar.AspNetCore.Microsoft.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.DAL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.BL.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.DAL.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\VendorService.Models.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.csproj.AssemblyReference.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.GeneratedMSBuildEditorConfig.editorconfig
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.AssemblyInfoInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.AssemblyInfo.cs
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.csproj.CoreCompileInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.MvcApplicationPartsAssemblyInfo.cs
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.MvcApplicationPartsAssemblyInfo.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.sourcelink.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\rjimswa.dswa.cache.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\scopedcss\bundle\VendorService.styles.css
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\staticwebassets.build.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\staticwebassets.build.json.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\staticwebassets.development.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\swae.build.ex.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorSe.7EB2B70D.Up2Date
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\refint\VendorService.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.genruntimeconfig.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\ref\VendorService.dll

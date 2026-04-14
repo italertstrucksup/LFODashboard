@@ -21,3 +21,15 @@ D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Deb
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\refint\VendorService.Models.dll
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.pdb
 D:\GIT Code\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\ref\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\bin\Debug\net10.0\VendorService.Models.deps.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\bin\Debug\net10.0\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\bin\Debug\net10.0\VendorService.Models.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.AssemblyInfoInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.AssemblyInfo.cs
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.csproj.CoreCompileInputs.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.sourcelink.json
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\refint\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\ref\VendorService.Models.dll

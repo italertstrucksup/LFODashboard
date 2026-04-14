@@ -18,16 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
     <ProjectReference Include="..\AuthServices_LFO.BL\AuthServices_LFO.BL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="DataAccessInterface">
-      <HintPath>D:\Office\ProjectDLL\DataAccessInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="JwtAuthenticationManager">
-      <HintPath>D:\Office\ProjectDLL\JwtAuthenticationManager.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

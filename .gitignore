@@ -404,3 +404,5 @@ LFODashboard/VendorService/VendorService.BL/obj/Debug/net10.0/VendorService.BL.A
 *.props
 *.json
 *.editorconfig
+LFODashboard/.vs/LFODashboard.slnx/v18/.suo
+*.cache

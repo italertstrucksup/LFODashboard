@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VendorService.BL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c7a1c777cf86d1e4910d330f18ac5989c80f5d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+578c5e16231eee11d5a1150767f67c90af1c7c4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("VendorService.BL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VendorService.BL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

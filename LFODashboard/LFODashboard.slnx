@@ -12,11 +12,6 @@
     <Project Path="HelperDLL/DataAccessInterface/DataAccessInterface.csproj" />
     <Project Path="HelperDLL/JwtAuthenticationManager/JwtAuthenticationManager.csproj" />
   </Folder>
-  <Folder Name="/MediaService/">
-    <Project Path="MediaService/MediaService.BL/MediaService.BL.csproj" />
-    <Project Path="MediaService/MediaService.Model/MediaService.Model.csproj" />
-    <Project Path="MediaService/MediaService/MediaService.csproj" />
-  </Folder>
   <Folder Name="/VendorService/">
     <Project Path="VendorService/VendorService.BL/VendorService.BL.csproj" />
     <Project Path="VendorService/VendorService.DAL/VendorService.DAL.csproj" />

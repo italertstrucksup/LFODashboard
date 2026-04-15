@@ -16,9 +16,9 @@ namespace VendorService.Controllers
         }
 
         [HttpPost("OTPService")]
-        public async Task<IActionResult> OTPService(string mobile, string otp,string otptype)
+        public async Task<IActionResult> OTPService([FromBody] OtpRequest request)
         {
-            var result = await _wocom.SendOTP(mobile, otp,otptype);
+            var result = await _wocom.SendOTP(request.mobile, request.otp,request.otptype);
             return Ok(result);
         }
     }

@@ -1,4 +1,10 @@
+using HttpClientLib;
 using Scalar.AspNetCore;
+using VendorService.BL.Implementation;
+using VendorService.BL.Interface;
+using VendorService.DAL.Interface;
+using VendorService.DAL.Repository;
+using Common.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +15,17 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Register Wocom Services
-builder.Services.AddScoped<VendorService.BL.Interface.IWocomBL, VendorService.BL.Implementation.WocomBL>();
-builder.Services.AddScoped<VendorService.DAL.Interface.IWocomDAL, VendorService.DAL.Repository.WocomDAL>();
+builder.Services.AddScoped<IWocomBL,WocomBL>();
+builder.Services.AddScoped<IWocomDAL,WocomDAL>();
+builder.Services.AddScoped<IAadharService,AadharService>();
+builder.Services.AddScoped<IAadhaarDAL,AadhaarDAL>();
+builder.Services.AddScoped<CL_JWTtokenGeneration>();
+builder.Services.AddHttpClient<IHttpService, HttpService>();
+
+
 
 var app = builder.Build();
-
+app.UseMiddleware<Common.Core.AppException>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

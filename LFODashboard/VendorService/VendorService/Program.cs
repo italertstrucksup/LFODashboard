@@ -25,7 +25,7 @@ builder.Services.AddHttpClient<IHttpService, HttpService>();
 
 
 var app = builder.Build();
-app.UseMiddleware<Common.Core.AppException>();
+app.UseMiddleware<Common.Core.ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

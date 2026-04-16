@@ -2,73 +2,78 @@
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-public class ExceptionMiddleware
-{
-    private readonly RequestDelegate _next;
+namespace Common.Core {
 
-    public ExceptionMiddleware(RequestDelegate next)
+    public class ExceptionMiddleware
     {
-        _next = next;
-    }
+        private readonly RequestDelegate _next;
 
-    public async Task InvokeAsync(HttpContext context)
-    {
-        try
+        public ExceptionMiddleware(RequestDelegate next)
         {
-            await _next(context);
-        }
-        catch (Exception ex)
-        {
-            await HandleExceptionAsync(context, ex);
-        }
-    }
-
-    private static Task HandleExceptionAsync(HttpContext context, Exception ex)
-    {
-        int statusCode;
-        string message;
-
-        switch (ex)
-        {
-            case BadRequestException badRequest:
-                statusCode = StatusCodes.Status400BadRequest;
-                message = badRequest.Message;
-                break;
-
-            case UnauthorizedException unauthorized:
-                statusCode = StatusCodes.Status401Unauthorized;
-                message = unauthorized.Message;
-                break;
-
-            case NotFoundException notFound:
-                statusCode = StatusCodes.Status404NotFound;
-                message = notFound.Message;
-                break;
-
-            case AppException appEx:
-                statusCode = appEx.StatusCode;
-                message = appEx.Message;
-                break;
-
-            default:
-                statusCode = StatusCodes.Status500InternalServerError;
-                message = "Internal Server Error";
-                break;
+            _next = next;
         }
 
-        var response = new ApiResponse<object>
+        public async Task InvokeAsync(HttpContext context)
         {
-            Success = false,
-            Message = message,
-            StatusCode = statusCode,
-            Data = null
-        };
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                await HandleExceptionAsync(context, ex);
+            }
+        }
 
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = statusCode;
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex)
+        {
+            int statusCode;
+            string message;
 
-        var json = JsonSerializer.Serialize(response);
+            switch (ex)
+            {
+                case BadRequestException badRequest:
+                    statusCode = StatusCodes.Status400BadRequest;
+                    message = badRequest.Message;
+                    break;
 
-        return context.Response.WriteAsync(json);
+                case UnauthorizedException unauthorized:
+                    statusCode = StatusCodes.Status401Unauthorized;
+                    message = unauthorized.Message;
+                    break;
+
+                case NotFoundException notFound:
+                    statusCode = StatusCodes.Status404NotFound;
+                    message = notFound.Message;
+                    break;
+
+                case AppException appEx:
+                    statusCode = appEx.StatusCode;
+                    message = appEx.Message;
+                    break;
+
+                default:
+                    statusCode = StatusCodes.Status500InternalServerError;
+                    message = "Internal Server Error";
+                    break;
+            }
+
+            var response = new ApiResponse<object>
+            {
+                Success = false,
+                Message = message,
+                StatusCode = statusCode,
+                Data = null
+            };
+
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = statusCode;
+
+            var json = JsonSerializer.Serialize(response);
+
+            return context.Response.WriteAsync(json);
+        }
     }
+
+
 }

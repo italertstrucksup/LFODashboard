@@ -33,11 +33,11 @@ public class CL_JWTtokenGeneration
 
         // ✅ Better way using claims (cleaner)
         var claims = new List<System.Security.Claims.Claim>
-    {
-        new("timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString()),
-        new("partnerId", partnerId),
-        new("reqid", reqId.ToString())
-    };
+        {
+            new("timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString()),
+            new("partnerId", partnerId),
+            new("reqid", reqId.ToString())
+        };
 
         var token = new JwtSecurityToken(
             claims: claims,

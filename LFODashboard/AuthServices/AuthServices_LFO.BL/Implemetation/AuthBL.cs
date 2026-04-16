@@ -1,6 +1,7 @@
 ﻿using AuthServices_LFO.BL.Interface;
 using AuthServices_LFO.DAL.Interface;
 using AuthServices_LFO.Model.Models;
+using HttpClientLib;
 using DataAccessInterface;
 using JwtAuthenticationManager;
 using JwtAuthenticationManager.Models;
@@ -14,16 +15,15 @@ namespace AuthServices_LFO.BL.Implemetation
         private readonly IConfiguration _config;
         private readonly IAuthDAL _authDAL;
         private readonly IDataAccess _dataAccess;
+        private readonly IHttpService _httpService;
         private readonly JwtTokenHandler _jwtTokenHandler;
-        private readonly string _connStr;
-
-        public AuthBL(IConfiguration config, IDataAccess dataAccess, JwtTokenHandler jwtTokenHandler, IAuthDAL authDAL)
+        public AuthBL(IConfiguration config, IDataAccess dataAccess, JwtTokenHandler jwtTokenHandler, IAuthDAL authDAL, IHttpService httpService)
         {
             _config = config;
             _dataAccess = dataAccess;
             _jwtTokenHandler = jwtTokenHandler;
-            _connStr = config.GetConnectionString("DefaultConnection");
             _authDAL = authDAL;
+            _httpService = httpService;
         }
         public async Task<TokenResponse> LoginAsync(LoginRequest request)
         {
@@ -175,17 +175,23 @@ namespace AuthServices_LFO.BL.Implemetation
                     };
 
 
-                // 4. OTP generate karo
+                //  OTP generate karo
                 var otp = GenerateOTP();
                 var expiry = DateTime.Now.AddSeconds(60);
 
                 await _authDAL.SaveOTPAsync(request.MobileNo, otp, "SIGNUPOTP", expiry);
 
+                var apiResponse = await CallOtpApi(request.MobileNo, otp, "signup");
+
+                if (!apiResponse.IsSuccess)
+                    return apiResponse;
+
                 return new SignupResponse
                 {
                     IsSuccess = true,
                     Message = "OTP sent successfully",
-                    OTP = otp
+                    //OTP = otp
+                    OTP = apiResponse.OTP
                 };
             }
             catch (Exception ex)
@@ -205,7 +211,7 @@ namespace AuthServices_LFO.BL.Implemetation
                 if (signupResult.Rows.Count > 0 )
                     return new SignupResponse
                     {
-                        IsSuccess = false,
+                        IsSuccess = true,
                         Message = signupResult.Rows[0]["result"].ToString()
                     };
                 else
@@ -242,7 +248,7 @@ namespace AuthServices_LFO.BL.Implemetation
                     
                     return new SignupResponse
                     {
-                        IsSuccess = false,
+                        IsSuccess = true,
                         Message = "OTP verified successfully, please login"
                     };
 
@@ -266,6 +272,35 @@ namespace AuthServices_LFO.BL.Implemetation
         {
             var random = new Random();
             return random.Next(1000, 9999).ToString();
+        }
+
+        //------------------------VENDOR OTP API CALL-----------------------------
+        
+        private async Task<SignupResponse> CallOtpApi(string mobile, string otp, string otpType)
+        {
+            try
+            {
+                var url = _config["WocomSettings:OtpApiUrl"];
+
+                var request = new OtpVendorRequest
+                {
+                    mobile = mobile,
+                    otp = otp,
+                    otptype = otpType
+                };
+
+                var response = await _httpService.PostAsync<OtpVendorRequest, SignupResponse>(url, request);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new SignupResponse
+                {
+                    IsSuccess = false,
+                    Message = "OTP API failed: " + ex.Message
+                };
+            }
         }
 
 

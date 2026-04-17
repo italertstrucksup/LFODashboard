@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
     <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
     <ProjectReference Include="..\..\HelperDLL\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
     <ProjectReference Include="..\AuthServices_LFO.DAL\AuthServices_LFO.DAL.csproj" />
     <ProjectReference Include="..\AuthServices_LFO.Model\AuthServices_LFO.Model.csproj" />

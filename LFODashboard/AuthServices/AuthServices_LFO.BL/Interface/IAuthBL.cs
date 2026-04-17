@@ -1,16 +1,25 @@
 ﻿
 using AuthServices_LFO.Model.Models;
+using Common.Core;
 
 namespace AuthServices_LFO.BL.Interface
 {
     public interface IAuthBL
     {
-        Task<TokenResponse> LoginAsync(LoginRequest request);
-        Task<TokenResponse> RefreshTokenAsync(LoginRequest request);
-        Task<bool> RevokeTokenAsync(int userId);
+        Task<ApiResponse<TokenResponse>> LoginAsync(LoginRequest request);
+        Task<ApiResponse<TokenResponse>> RefreshTokenAsync(LoginRequest request);
+        Task<ApiResponse<object>> RevokeTokenAsync(int userId);
 
-        Task<SignupResponse> SendSignupOtpAsync(SignupRequest request);
-        Task<SignupResponse> SignupAsync(SignupRequest request);
-        Task<SignupResponse> VerifyOTPAsync(OTPVerifyRequest request);
-    }
+        Task<ApiResponse<SignupResponse>> SendLoginOtpAsync(LoginOtpRequest request);
+        Task<ApiResponse<TokenResponse>> LoginWithOtpAsync(LoginOtpRequest request);
+
+
+        Task<ApiResponse<SignupResponse>> SendSignupOtpAsync(SignupRequest request);
+
+        Task<ApiResponse<SignupResponse>> SignupAsync(SignupRequest request);
+        Task<ApiResponse<SignupResponse>> VerifyOTPAsync(OTPVerifyRequest request);
+        
+
+
+        }
 }

@@ -57,6 +57,49 @@ namespace VendorService.DAL.Repository
             }
         }
 
-      
+        public async Task<ApiResponse<AadharVerifyResponse>> VerifyAadharAsync(AadhaarVerifyRequest request)
+        {
+            var response = new AadharVerifyResponse();
+            //string apiUrl = "";
+            ApiResponse<AadharVerifyResponse> apiResponse1 = new ApiResponse<AadharVerifyResponse>();
+            try
+            {
+                //var config = _config.GetSection("Sprintverify");
+                var token = _cL_JWTtoken.GenerateToken();
+
+                // apiUrl = $"{config["AadhaarService:ApiBaseUrl"]}{config["AadhaarService:VerifyOtp"]}";
+                string apiUrl = _config["AadhaarService:ApiBaseUrl"] + _config["AadhaarService:VerifyOtp"];
+                var headers = new Dictionary<string, string>
+        {
+            { "Token", token },
+            { "User-Agent", _config["AadhaarService:User-Agent"] },
+            { "AuthorisedKey", _config["AadhaarService:authKey"] }
+        };
+
+                var body = new
+                {
+                    otp = request.otp,
+                    client_id = request.TransactionId
+                };
+
+                var apiResponse = await _httpService.PostAsync<object, AadharVerifyResponse>(apiUrl, body, headers);
+                if (apiResponse.statuscode == 200)
+                {
+                    apiResponse1.StatusCode = 200;
+                    apiResponse1.Success = true;
+                    apiResponse1.Data = response;
+                    apiResponse1.Message = "Aadhar Verification Successfull";
+                    return apiResponse1;
+                }
+                return apiResponse1;
+            }
+            catch (Exception Ex)
+            {
+                throw new NotImplementedException();
+            }
+
+        }
+
+
     }
 }

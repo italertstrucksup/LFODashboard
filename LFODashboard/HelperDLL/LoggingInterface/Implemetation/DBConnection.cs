@@ -30,22 +30,22 @@ public class DBConnection : IDBConnection
                 : log.ResponseBody;
 
             var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@Path", log.Path ?? (object)DBNull.Value),
-            new SqlParameter("@Method", log.Method ?? (object)DBNull.Value),
-            new SqlParameter("@RequestBody", requestBody ?? (object)DBNull.Value),
-            new SqlParameter("@ResponseBody", responseBody ?? (object)DBNull.Value),
-            new SqlParameter("@StatusCode", log.StatusCode),
+            {
+                new SqlParameter("@Path", log.Path ?? (object)DBNull.Value),
+                new SqlParameter("@Method", log.Method ?? (object)DBNull.Value),
+                new SqlParameter("@RequestBody", requestBody ?? (object)DBNull.Value),
+                new SqlParameter("@ResponseBody", responseBody ?? (object)DBNull.Value),
+                new SqlParameter("@StatusCode", log.StatusCode),
 
-            // ✅ Optional but recommended
-            new SqlParameter("@IPAddress", log.IPAddress ?? (object)DBNull.Value),
-            new SqlParameter("@UserId", log.UserId ?? (object)DBNull.Value),
-            new SqlParameter("@ExecutionTimeMs", log.ExecutionTimeMs),
+                // ✅ Optional but recommended
+                new SqlParameter("@IPAddress", log.IPAddress ?? (object)DBNull.Value),
+                new SqlParameter("@UserId", log.UserId ?? (object)DBNull.Value),
+                new SqlParameter("@ExecutionTimeMs", log.ExecutionTimeMs),
 
-            new SqlParameter("@CreatedAt", log.CreatedAt == default
-                ? DateTime.Now
-                : log.CreatedAt)
-        };
+                new SqlParameter("@CreatedAt", log.CreatedAt == default
+                    ? DateTime.Now
+                    : log.CreatedAt)
+            };
 
             await _dataAccess.ExecuteStoredProcedureAsync(
                 _connStr,

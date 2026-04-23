@@ -15,6 +15,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IDBConnection, DBConnection>();
 builder.Services.AddScoped<IDataAccess, SqlDataAccess>(); // your existing implementation
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -25,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll"); // 👈 ADD HERE
+
 // Logging FIRST
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
 // Ensure authentication runs before authorization
@@ -65,8 +74,8 @@ app.Use(async (context, next) =>
 
 app.UseAuthorization();
 
-await app.UseOcelot(); 
-
 app.MapControllers();
+
+await app.UseOcelot(); 
 
 app.Run();

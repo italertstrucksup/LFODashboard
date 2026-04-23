@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
     <ProjectReference Include="..\HelperDLL\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
+    <ProjectReference Include="..\HelperDLL\LoggingInterface\LoggingInterface.csproj" />
   </ItemGroup>
 
 </Project>

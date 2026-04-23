@@ -65,6 +65,7 @@ public class HttpService : IHttpService
 
             var response = await _httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
+       
 
             if (!response.IsSuccessStatusCode)
                 throw new Exception($"POST API Error: {content}");

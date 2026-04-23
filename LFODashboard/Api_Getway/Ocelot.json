@@ -2,22 +2,70 @@
   "Routes": [
     //Authentication Web API
     {
-      "DownstreamPathTemplate": "/api/Account",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/auth/send_signup_otp",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7224
+          "Port": 700
         }
       ],
       "UpstreamHttpMethod": [ "Post" ],
-      "UpstreamPathTemplate": "/api/Account"
+      "UpstreamPathTemplate": "/send_signup_otp"
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/signup_user",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/signup_user"
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/login"
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/refresh-token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/refresh-token"
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/verifyOtp",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/verifyOtp"
     },
 
     //CataLoge Service APIs
     {
       "DownstreamPathTemplate": "/catalogs/items",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",

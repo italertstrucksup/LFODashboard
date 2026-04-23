@@ -81,6 +81,31 @@ namespace AuthServices_LFO.DAL.Implemetation
             await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
         }
 
+        public async Task<DataTable> SaveLoginOtpAsync(string mobileNo, string otp, DateTime expiry)
+        {
+            var parameters = new List<SqlParameter>
+    {
+        new SqlParameter("@Action",   "SAVE_LOGIN_OTP"),
+        new SqlParameter("@MobileNo", mobileNo),
+        new SqlParameter("@OTP",      otp),
+        new SqlParameter("@Validity", expiry)
+    };
+
+            return await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
+        }
+
+        public async Task<DataTable> ValidateLoginOtpAsync(string mobileNo, string otp)
+        {
+            var parameters = new List<SqlParameter>
+    {
+        new SqlParameter("@Action",   "VALIDATE_LOGIN_OTP"),
+        new SqlParameter("@MobileNo", mobileNo),
+        new SqlParameter("@OTP",      otp)
+    };
+
+            return await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
+        }
+
 
         // ─── SIGNUP ───────────────────────────────────────────
 

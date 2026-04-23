@@ -1,7 +1,8 @@
+using DataAccessInterface;
 using JwtAuthenticationManager;
+using LoggingInterface.Interface;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,15 @@ builder.Services.AddCustomJwtAuthentication(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddScoped<IDBConnection, DBConnection>();
+builder.Services.AddScoped<IDataAccess, SqlDataAccess>(); // your existing implementation
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -22,6 +32,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll"); // 👈 ADD HERE
+
+// Logging FIRST
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
 // Ensure authentication runs before authorization
 app.UseAuthentication();
 
@@ -29,10 +43,11 @@ app.UseAuthentication();
 // Exempt the token issuing endpoint and OpenAPI/Swagger so clients can obtain tokens and view docs.
 app.Use(async (context, next) =>
 {
+
     var path = context.Request.Path.Value ?? string.Empty;
 
     // Allow anonymous access to the authentication endpoint where clients obtain tokens
-    if (path.StartsWith("/api/Account", StringComparison.OrdinalIgnoreCase) &&
+    if ((path.StartsWith("/send_signup_otp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/signup_user", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/login", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/refresh-token", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/verifyOtp", StringComparison.OrdinalIgnoreCase)) &&
         context.Request.Method.Equals("POST", StringComparison.OrdinalIgnoreCase))
     {
         await next();
@@ -59,8 +74,8 @@ app.Use(async (context, next) =>
 
 app.UseAuthorization();
 
-await app.UseOcelot(); 
-
 app.MapControllers();
+
+await app.UseOcelot(); 
 
 app.Run();

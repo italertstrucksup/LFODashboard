@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api_Getway\Api_Getway.csproj" />
+    <ProjectReference Include="..\PrfileService.Model\ProfileService_LFO.Model.csproj" />
+    <ProjectReference Include="..\Profileservice.dL\ProfileService_LFO.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

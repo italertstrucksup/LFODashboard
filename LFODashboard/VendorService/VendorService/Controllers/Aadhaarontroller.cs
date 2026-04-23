@@ -24,7 +24,16 @@ namespace VendorService.Controllers
         {
             var result = await _aadhar.SendAadharOTPAsync(request.Data);
 
-            return Ok(ApiResponse<AadharResponse>.SuccessResponse(result));
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("verify_aadhaar")]
+        public async Task<IActionResult> VerifyAadharAsync([FromBody] ApiRequest<AadhaarVerifyRequest> request)
+        {
+            var result = await _aadhar.VerifyAadharAsync(request.Data);
+
+            return Ok(result);
         }
     }
 }

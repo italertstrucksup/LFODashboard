@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api_Getway\Api_Getway.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
+    <ProjectReference Include="..\PrfileService.Model\ProfileService_LFO.Model.csproj" />
+    <ProjectReference Include="..\ProfileService.BL\ProfileService_LFO.BL.csproj" />
+    <ProjectReference Include="..\Profileservice.dL\ProfileService_LFO.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

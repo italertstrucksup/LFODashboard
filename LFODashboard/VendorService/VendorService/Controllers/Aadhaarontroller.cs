@@ -20,7 +20,7 @@ namespace VendorService.Controllers
 
         [HttpPost]
         [Route("send_otp_aadhaar")]
-        public async Task<IActionResult> SendAadharOTPAsync([FromBody] ApiRequest<AadhaarRequest> request)
+        public async Task<IActionResult> SendAadharOTPAsync(ApiRequest<AadhaarRequest> request)
         {
             var result = await _aadhar.SendAadharOTPAsync(request.Data);
 
@@ -29,7 +29,7 @@ namespace VendorService.Controllers
 
         [HttpPost]
         [Route("verify_aadhaar")]
-        public async Task<IActionResult> VerifyAadharAsync([FromBody] ApiRequest<AadhaarVerifyRequest> request)
+        public async Task<IActionResult> VerifyAadharAsync(ApiRequest<AadhaarVerifyRequest> request)
         {
             var result = await _aadhar.VerifyAadharAsync(request.Data);
 

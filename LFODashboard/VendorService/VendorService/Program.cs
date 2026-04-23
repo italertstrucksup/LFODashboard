@@ -19,8 +19,18 @@ builder.Services.AddScoped<IWocomBL,WocomBL>();
 builder.Services.AddScoped<IWocomDAL,WocomDAL>();
 builder.Services.AddScoped<IAadharService,AadharService>();
 builder.Services.AddScoped<IAadhaarDAL,AadhaarDAL>();
+builder.Services.AddScoped<IDLService, DLService>();
+builder.Services.AddScoped<IDLDAL, DLDAL>();
+builder.Services.AddScoped<IPanService,PanService>();
+builder.Services.AddScoped<IPanDal,PanDAL>();
+builder.Services.AddScoped<IVoterService,VoterService>();
+builder.Services.AddScoped<IVoterDAL,VoterDAL>();
+builder.Services.AddScoped<IRCDetailsService, RCDetailService>();
+builder.Services.AddScoped<IRCDetailsDAL,RCDetailsDAL>();
 builder.Services.AddScoped<CL_JWTtokenGeneration>();
+
 builder.Services.AddHttpClient<IHttpService, HttpService>();
+
 
 
 

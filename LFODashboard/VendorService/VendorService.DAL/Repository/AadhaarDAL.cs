@@ -25,15 +25,15 @@ namespace VendorService.DAL.Repository
         }
         public async Task<AadharResponse> SendAadharOTPAsync(AadhaarRequest request)
         {
-            string apiUrl = _config["AadhaarService:ApiBaseUrl"] +_config["AadhaarService:SendOtp"];
+            string apiUrl = _config["SprintService:ApiBaseUrl"] +_config["SprintService:SendOtp"];
 
             string token = _cL_JWTtoken.GenerateToken();
 
             var headers = new Dictionary<string, string>
         {
             { "Token", token },
-            { "User-Agent", _config["AadhaarService:User-Agent"] },
-            { "AuthorisedKey", _config["AadhaarService:authKey"] }
+            { "User-Agent", _config["SprintService:User-Agent"] },
+            { "AuthorisedKey", _config["SprintService:authKey"] }
         };
 
             var requestBody = new
@@ -68,12 +68,12 @@ namespace VendorService.DAL.Repository
                 var token = _cL_JWTtoken.GenerateToken();
 
                 // apiUrl = $"{config["AadhaarService:ApiBaseUrl"]}{config["AadhaarService:VerifyOtp"]}";
-                string apiUrl = _config["AadhaarService:ApiBaseUrl"] + _config["AadhaarService:VerifyOtp"];
+                string apiUrl = _config["SprintService:ApiBaseUrl"] + _config["SprintService:VerifyOtp"];
                 var headers = new Dictionary<string, string>
         {
             { "Token", token },
-            { "User-Agent", _config["AadhaarService:User-Agent"] },
-            { "AuthorisedKey", _config["AadhaarService:authKey"] }
+            { "User-Agent", _config["SprintService:User-Agent"] },
+            { "AuthorisedKey", _config["SprintService:authKey"] }
         };
 
                 var body = new
@@ -87,7 +87,7 @@ namespace VendorService.DAL.Repository
                 {
                     apiResponse1.StatusCode = 200;
                     apiResponse1.Success = true;
-                    apiResponse1.Data = response;
+                    apiResponse1.Data = apiResponse;
                     apiResponse1.Message = "Aadhar Verification Successfull";
                     return apiResponse1;
                 }

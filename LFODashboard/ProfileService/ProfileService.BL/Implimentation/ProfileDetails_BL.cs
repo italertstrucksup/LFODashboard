@@ -15,7 +15,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
     }
 
     #region Get By Id
-    public async Task<ProfileResponse?> GetProfileDetailsByIdAsync(int userId)
+    public async Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId)
     {
         var dt = await _dl.GetProfileDetailsbyID(userId);
 
@@ -26,7 +26,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
 
         return new ProfileResponse
         {
-            UserId = Convert.ToInt32(row["UserId"]),
+            UserId = row["UserId"] == DBNull.Value ? Guid.Empty : (row["UserId"] is Guid g ? g : Guid.Parse(row["UserId"].ToString())),
             ProfileName = row["ProfileName"]?.ToString(),
             MobileNo = row["MobileNo"]?.ToString(),
             CompanyName = row["CompanyName"]?.ToString(),
@@ -45,7 +45,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
         if (!success)
             throw new Exception("Failed to save profile");
 
-        var profile = await GetProfileDetailsByIdAsync((int)request.UserId);
+        var profile = await GetProfileDetailsByIdAsync(request.UserId);
 
         if (profile == null)
             throw new Exception("Profile not found after save");
@@ -65,7 +65,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
             throw new Exception("Failed to save profile");
 
         // Fetch updated data
-        var profile = await GetProfileDetailsByIdAsync((int)request.UserId);
+        var profile = await GetProfileDetailsByIdAsync(request.UserId);
 
         if (profile == null)
             throw new Exception("Profile not found after save");

@@ -8,7 +8,7 @@ namespace ProfileService_LFO.DAL.Interface
 {
     public interface IprofileDetailsDL
     {
-        Task<DataTable> GetProfileDetailsbyID(int userId);
+        Task<DataTable> GetProfileDetailsbyID(Guid userId);
         Task<bool> UpdateFleetOperator(UpdateFleetOperatorRequest request);
         Task<bool> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
         Task<bool> InsertTruckDetails(TruckDetailsRequest request);

@@ -21,9 +21,12 @@ namespace ProfileService_LFO.API.Controllers
 
         #region Get Profile By Id
         [HttpGet("by-user/{userId}")]
-        public async Task<IActionResult> GetProfileById(int userId)
+        public async Task<IActionResult> GetProfileById(string userId)
         {
-            var result = await _profileBL.GetProfileDetailsByIdAsync(userId);
+            if (!Guid.TryParse(userId, out var guid))
+                return BadRequest(ApiResponse<string>.FailResponse("Invalid userId", 400));
+
+            var result = await _profileBL.GetProfileDetailsByIdAsync(guid);
 
             return Ok(ApiResponse<object>.SuccessResponse(result, "Profile fetched successfully", 200));
         }
@@ -40,7 +43,7 @@ namespace ProfileService_LFO.API.Controllers
         #endregion
         #region Update Profile by type
         [HttpPost("update/type")]
-        public async Task<IActionResult> InsertFleetOperatorbyType([FromBody] UpdateFleetOperatorRequest request)
+        public async Task<IActionResult> InsertFleetOperatorbyType( UpdateFleetOperatorRequest request)
         {
             var result = await _profileBL.InsertFleetOperatorbyType(request);
 
@@ -49,7 +52,7 @@ namespace ProfileService_LFO.API.Controllers
         #endregion
         #region Add Lane
         [HttpPost("lanes")]
-        public async Task<IActionResult> InsertPreferredLane([FromBody] PreferredLaneRequest request)
+        public async Task<IActionResult> InsertPreferredLane( PreferredLaneRequest request)
         {
             var result = await _profileBL.InsertPreferredLane(request);
 
@@ -69,7 +72,7 @@ namespace ProfileService_LFO.API.Controllers
 
         #region Add Truck
         [HttpPost("trucks")]
-        public async Task<IActionResult> InsertTruckDetails([FromBody] TruckDetailsRequest request)
+        public async Task<IActionResult> InsertTruckDetails( TruckDetailsRequest request)
         {
             var result = await _profileBL.InsertTruckDetails(request);
 
@@ -98,13 +101,7 @@ namespace ProfileService_LFO.API.Controllers
                );        
         }
 
-        [HttpGet("kyc/{profileId}")]
-        public async Task<IActionResult> GetKYC(long profileId)
-        {
-            var result = await _profileBL.GetKYCAsync(profileId);
-
-            return Ok(ApiResponse<object>.SuccessResponse(result, "KYC fetched successfully", 200));
-        }
+        
 
         [HttpPost("upload")]
         public async Task<IActionResult> InsertFleetOperatorDocument( UpdateDocumentRequest request)

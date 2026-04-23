@@ -8,7 +8,7 @@ namespace ProfileService_LFO.Model.Model
     {
         public string Status { get; set; }
         public long ProfileId { get; set; }
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
         public string MobileNo { get; set; }
         public string ProfileName { get; set; }
         public string CompanyName { get; set; }

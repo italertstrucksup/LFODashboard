@@ -19,12 +19,12 @@ namespace ProfileService_LFO.DAL.Implimentation
             _dataAccess = dataAccess;
         }
 
-        public async Task<DataTable> GetProfileDetailsbyID(int userId)
+        public async Task<DataTable> GetProfileDetailsbyID(Guid userId)
         {
             var parameters = new List<SqlParameter>
     {
         new SqlParameter("@Action", "GET_PROFILE_DETAILS"),
-        new SqlParameter("@UserId", userId)
+        new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId }
     };
             var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_GetFleetOperatorByUserId", parameters);
 
@@ -35,7 +35,7 @@ namespace ProfileService_LFO.DAL.Implimentation
         {
             var parameters = new List<SqlParameter>
     {
-        new SqlParameter("@Id", SqlDbType.BigInt) { Value = request.UserId },
+        new SqlParameter("@Id", SqlDbType.UniqueIdentifier) { Value = request.UserId },
 
         new SqlParameter("@CompanyName", SqlDbType.VarChar, 200) { Value = (object?)request.CompanyName ?? DBNull.Value },
         new SqlParameter("@CompanyAddress", SqlDbType.VarChar, 500) { Value = (object?)request.CompanyAddress ?? DBNull.Value },

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj": {}
+    "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj": {}
   },
   "projects": {
-    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj": {
+    "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
+        "projectUniqueName": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
         "projectName": "VendorService.BL",
-        "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
+        "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
         "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-        "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\obj\\",
+        "outputPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj"
               },
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
               }
             }
           }
@@ -350,14 +350,14 @@
         }
       }
     },
-    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
+    "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj",
+        "projectUniqueName": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj",
         "projectName": "VendorService.DAL",
-        "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj",
+        "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj",
         "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-        "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\obj\\",
+        "outputPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -378,8 +378,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
               }
             }
           }
@@ -703,14 +703,14 @@
         }
       }
     },
-    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
+    "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+        "projectUniqueName": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
         "projectName": "VendorService.Models",
-        "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+        "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
         "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-        "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
+        "outputPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1042,14 +1042,14 @@
         }
       }
     },
-    "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj": {
+    "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj",
+        "projectUniqueName": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj",
         "projectName": "VendorService",
-        "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj",
+        "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\VendorService.csproj",
         "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-        "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\obj\\",
+        "outputPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1070,14 +1070,14 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj"
               },
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.DAL\\VendorService.DAL.csproj"
               },
-              "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
-                "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
+              "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj": {
+                "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj"
               }
             }
           }

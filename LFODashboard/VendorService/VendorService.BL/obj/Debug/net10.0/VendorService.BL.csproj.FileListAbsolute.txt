@@ -51,3 +51,6 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Deb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\refint\VendorService.BL.dll
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\ref\VendorService.BL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\refint\VendorService.BL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.pdb

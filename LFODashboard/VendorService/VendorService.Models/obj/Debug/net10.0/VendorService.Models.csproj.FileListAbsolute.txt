@@ -33,3 +33,11 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\refint\VendorService.Models.dll
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\ref\VendorService.Models.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.AssemblyInfoInputs.cache
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.AssemblyInfo.cs
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.csproj.CoreCompileInputs.cache
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.sourcelink.json
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\refint\VendorService.Models.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.pdb

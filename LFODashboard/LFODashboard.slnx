@@ -9,7 +9,9 @@
     <Project Path="AuthServices/AuthServices_LFO/AuthServices_LFO.csproj" />
   </Folder>
   <Folder Name="/HelperDLL/">
+    <Project Path="HelperDLL/Common.Core/Common.Core.csproj" />
     <Project Path="HelperDLL/DataAccessInterface/DataAccessInterface.csproj" />
+    <Project Path="HelperDLL/HttpClientLib/HttpClientLib.csproj" />
     <Project Path="HelperDLL/JwtAuthenticationManager/JwtAuthenticationManager.csproj" />
   </Folder>
   <Folder Name="/MediaService/">
@@ -22,5 +24,11 @@
     <Project Path="VendorService/VendorService.DAL/VendorService.DAL.csproj" />
     <Project Path="VendorService/VendorService.Models/VendorService.Models.csproj" />
     <Project Path="VendorService/VendorService/VendorService.csproj" />
+  </Folder>
+  <Folder Name="/ProfilePhotoService/">
+    <Project Path="ProfilePhotoService/ProfilePhotoService.BL/ProfilePhotoService.BL.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService.DAL/ProfilePhotoService.DAL.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService.Model/ProfilePhotoService.Model.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService/ProfilePhotoService.csproj" />
   </Folder>
 </Solution>

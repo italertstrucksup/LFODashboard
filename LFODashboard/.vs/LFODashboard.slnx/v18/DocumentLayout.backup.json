@@ -3,12 +3,60 @@
   "WorkspaceRootPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|solutionrelative:mediaservice\\mediaservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\authservices\\authservices_lfo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|solutionrelative:authservices\\authservices_lfo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7AF71FC-8C58-0000-C100-13F891AFC7CE}|HelperDLL\\DataAccessInterface\\DataAccessInterface.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\helperdll\\dataaccessinterface\\sqldataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7AF71FC-8C58-0000-C100-13F891AFC7CE}|HelperDLL\\DataAccessInterface\\DataAccessInterface.csproj|solutionrelative:helperdll\\dataaccessinterface\\sqldataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\authservices\\authservices_lfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|solutionrelative:authservices\\authservices_lfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\authservices\\authservices_lfo\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|solutionrelative:authservices\\authservices_lfo\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.bl\\implementation\\mediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|solutionrelative:mediaservice\\mediaservice.bl\\implementation\\mediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4A14495-11F4-566C-2C2D-34D53F08A79B}|AuthServices\\AuthServices_LFO.DAL\\AuthServices_LFO.DAL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\authservices\\authservices_lfo.dal\\implemetation\\authdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4A14495-11F4-566C-2C2D-34D53F08A79B}|AuthServices\\AuthServices_LFO.DAL\\AuthServices_LFO.DAL.csproj|solutionrelative:authservices\\authservices_lfo.dal\\implemetation\\authdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{103E6A24-AFC7-0728-40A3-C86797CE91ED}|MediaService\\MediaService.Model\\MediaService.Model.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.model\\model\\mediaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{103E6A24-AFC7-0728-40A3-C86797CE91ED}|MediaService\\MediaService.Model\\MediaService.Model.csproj|solutionrelative:mediaservice\\mediaservice.model\\model\\mediaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.bl\\interface\\imediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|solutionrelative:mediaservice\\mediaservice.bl\\interface\\imediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.bl\\mediaservice.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|solutionrelative:mediaservice\\mediaservice.bl\\mediaservice.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|solutionrelative:mediaservice\\mediaservice\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|solutionrelative:mediaservice\\mediaservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.Model\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ProfilePhotoService.Model\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.DAL\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ProfilePhotoService.DAL\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.BL\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ProfilePhotoService.BL\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,37 +66,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\appsettings.json",
-              "RelativeDocumentMoniker": "MediaService\\MediaService\\appsettings.json",
-              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\appsettings.json",
-              "RelativeToolTip": "MediaService\\MediaService\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-14T04:43:48.105Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
-              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO\\Program.cs",
-              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
-              "RelativeToolTip": "AuthServices\\AuthServices_LFO\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T11:21:04.812Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Bookmark",
@@ -57,6 +79,175 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.Model\\Class1.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService.Model\\Class1.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.Model\\Class1.cs",
+              "RelativeToolTip": "ProfilePhotoService.Model\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T06:47:40.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.DAL\\Class1.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService.DAL\\Class1.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.DAL\\Class1.cs",
+              "RelativeToolTip": "ProfilePhotoService.DAL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T06:46:01.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.BL\\Class1.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService.BL\\Class1.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService.BL\\Class1.cs",
+              "RelativeToolTip": "ProfilePhotoService.BL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T06:45:13.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SqlDataAccess.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\HelperDLL\\DataAccessInterface\\SqlDataAccess.cs",
+              "RelativeDocumentMoniker": "HelperDLL\\DataAccessInterface\\SqlDataAccess.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\HelperDLL\\DataAccessInterface\\SqlDataAccess.cs",
+              "RelativeToolTip": "HelperDLL\\DataAccessInterface\\SqlDataAccess.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T06:31:17.284Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO\\appsettings.Development.json",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\appsettings.Development.json",
+              "RelativeToolTip": "AuthServices\\AuthServices_LFO\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-17T06:30:56.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\appsettings.json",
+              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO\\appsettings.json",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\appsettings.json",
+              "RelativeToolTip": "AuthServices\\AuthServices_LFO\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-17T06:30:38.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IMediaBusinessLayer.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Interface\\IMediaBusinessLayer.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.BL\\Interface\\IMediaBusinessLayer.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Interface\\IMediaBusinessLayer.cs",
+              "RelativeToolTip": "MediaService\\MediaService.BL\\Interface\\IMediaBusinessLayer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T05:29:53.892Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthDAL.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO.DAL\\Implemetation\\AuthDAL.cs",
+              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO.DAL\\Implemetation\\AuthDAL.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO.DAL\\Implemetation\\AuthDAL.cs",
+              "RelativeToolTip": "AuthServices\\AuthServices_LFO.DAL\\Implemetation\\AuthDAL.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T05:11:56.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MediaBusinessLayer.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "RelativeToolTip": "MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAAAJcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T08:37:20.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MediaService.BL.csproj",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "RelativeToolTip": "MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-17T05:29:41.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
+              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO\\Program.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
+              "RelativeToolTip": "AuthServices\\AuthServices_LFO\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:21:04.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MediaResponse.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.Model\\Model\\MediaResponse.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.Model\\Model\\MediaResponse.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.Model\\Model\\MediaResponse.cs",
+              "RelativeToolTip": "MediaService\\MediaService.Model\\Model\\MediaResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T07:04:43.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MediaController.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "RelativeToolTip": "MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T08:37:48.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Program.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService\\Program.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Program.cs",
+              "RelativeToolTip": "MediaService\\MediaService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T07:12:40.605Z"
             }
           ]
         }

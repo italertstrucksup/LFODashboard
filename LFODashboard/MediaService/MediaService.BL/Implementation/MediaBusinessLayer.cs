@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Text;
 using Amazon.S3.Model;
-using MediaService.Model.Model;
+using Common.Core;
 
 namespace MediaServiceAPI.BussinessLayer
 {
-    public class  MediaBusinessLayer : IMediaBusinessLayer
+    public class MediaBusinessLayer : IMediaBusinessLayer
     {
         private readonly S3Settings _s3Settings;
         private readonly IAmazonS3 _s3Client;
@@ -30,7 +30,7 @@ namespace MediaServiceAPI.BussinessLayer
             }
         }
 
-        public async Task<MediaResponse> UploadDocumentAsync(IFormFile file, string folderName)
+        public async Task<ApiResponse<object>> UploadDocumentAsync(IFormFile file, string folderName)
         {
             try
             {
@@ -54,35 +54,17 @@ namespace MediaServiceAPI.BussinessLayer
 
                 await fileTransferUtility.UploadAsync(uploadRequest);
 
-                return new MediaResponse
-                {
-                    IsSuccess = true,
-                    StatusCode = 200,
-                    Message = "Document uploaded successfully",
-                    Data = new { documentKey = s3Key }
-                };
+                return ApiResponse<object>.SuccessResponse(new { documentKey = s3Key }, "Document uploaded successfully");
             }
             catch (ArgumentException ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 400,
-                    Message = ex.Message
-                };
+                return ApiResponse<object>.FailResponse(ex.Message, 400);
             }
             catch (Exception ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 500,
-                    Message = $"Error uploading document: {ex.Message}"
-                };
+                return ApiResponse<object>.FailResponse($"Error uploading document: {ex.Message}", 500);
             }
         }
-
-        
 
         private string GenerateUniquePrefix(int length)
         {
@@ -109,8 +91,7 @@ namespace MediaServiceAPI.BussinessLayer
                 throw new ArgumentException("Invalid folder name. Allowed: KYC, logo, user.");
         }
 
-
-        public async Task<MediaResponse> GetDocumentAsync(string documentKey)
+        public async Task<ApiResponse<object>> GetDocumentAsync(string documentKey)
         {
             try
             {
@@ -128,35 +109,19 @@ namespace MediaServiceAPI.BussinessLayer
                 using var reader = new MemoryStream();
                 await responseStream.CopyToAsync(reader);
 
-                return new MediaResponse
-                {
-                    IsSuccess = true,
-                    StatusCode = 200,
-                    Message = "Document retrieved successfully",
-                    Data = Convert.ToBase64String(reader.ToArray())
-                };
+                return ApiResponse<object>.SuccessResponse(Convert.ToBase64String(reader.ToArray()), "Document retrieved successfully");
             }
             catch (ArgumentException ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 400,
-                    Message = ex.Message
-                };
+                return ApiResponse<object>.FailResponse(ex.Message, 400);
             }
             catch (Exception ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 500,
-                    Message = $"Error retrieving document: {ex.Message}"
-                };
+                return ApiResponse<object>.FailResponse($"Error retrieving document: {ex.Message}", 500);
             }
         }
 
-        public MediaResponse GetPreSignedUrl(string documentKey)
+        public ApiResponse<object> GetPreSignedUrl(string documentKey)
         {
             try
             {
@@ -172,54 +137,16 @@ namespace MediaServiceAPI.BussinessLayer
 
                 string url = _s3Client.GetPreSignedURL(request);
 
-                return new MediaResponse
-                {
-                    IsSuccess = true,
-                    StatusCode = 200,
-                    Message = "Pre-signed URL generated successfully",
-                    Data = new { url = url }
-                };
+                return ApiResponse<object>.SuccessResponse(new { url = url }, "Pre-signed URL generated successfully");
             }
             catch (ArgumentException ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 400,
-                    Message = ex.Message
-                };
+                return ApiResponse<object>.FailResponse(ex.Message, 400);
             }
             catch (Exception ex)
             {
-                return new MediaResponse
-                {
-                    IsSuccess = false,
-                    StatusCode = 500,
-                    Message = $"Error generating pre-signed URL: {ex.Message}"
-                };
+                return ApiResponse<object>.FailResponse($"Error generating pre-signed URL: {ex.Message}", 500);
             }
         }
-
-        //public async Task<bool> DeleteDocumentAsync(string documentKey)
-        //{
-        //    try
-        //    {
-        //        if (string.IsNullOrEmpty(documentKey))
-        //            throw new ArgumentException("Document key is required.");
-
-        //        var deleteObjectRequest = new DeleteObjectRequest
-        //        {
-        //            BucketName = _s3Settings.AwsBucketName,
-        //            Key = documentKey
-        //        };
-
-        //        await _s3Client.DeleteObjectAsync(deleteObjectRequest);
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"Error deleting document from S3: {ex.Message}");
-        //    }
-        //}
     }
 }

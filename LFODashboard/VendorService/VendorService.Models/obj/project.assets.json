@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+      "projectUniqueName": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
       "projectName": "VendorService.Models",
-      "projectPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
+      "projectPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\VendorService.Models.csproj",
       "packagesPath": "C:\\Users\\Neha\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
+      "outputPath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

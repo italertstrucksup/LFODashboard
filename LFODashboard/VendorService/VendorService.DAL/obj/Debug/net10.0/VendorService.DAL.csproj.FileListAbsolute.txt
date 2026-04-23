@@ -45,3 +45,6 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\De
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\refint\VendorService.DAL.dll
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\VendorService.DAL.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\ref\VendorService.DAL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\VendorService.DAL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\refint\VendorService.DAL.dll
+c:\Users\Neha\OneDrive\Desktop\LFODashboard\LFODashboard\LFODashboard\VendorService\VendorService.DAL\obj\Debug\net10.0\VendorService.DAL.pdb

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u4mxAUwZxWg=",
+  "dgSpecHash": "KCo3rWXpyjs=",
   "success": true,
-  "projectFilePath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
+  "projectFilePath": "c:\\Users\\Neha\\OneDrive\\Desktop\\LFODashboard\\LFODashboard\\LFODashboard\\VendorService\\VendorService.BL\\VendorService.BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Neha\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\Neha\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",

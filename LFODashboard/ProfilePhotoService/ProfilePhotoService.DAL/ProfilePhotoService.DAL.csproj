@@ -7,14 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="4.0.21" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.9" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
-    <ProjectReference Include="..\MediaService.Model\MediaService.Model.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\ProfilePhotoService.Model\ProfilePhotoService.Model.csproj" />
   </ItemGroup>
 
 </Project>

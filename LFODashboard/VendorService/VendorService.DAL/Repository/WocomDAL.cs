@@ -44,8 +44,8 @@ namespace VendorService.DAL.Repository
                 string smsUsername = _configurationBuilder.GetValue<string>("smsUsername");
                 string smsSignature = _configurationBuilder.GetValue<string>("smsSignature");
 
-                var WoComrequest = new HttpRequestMessage(HttpMethod.Post, 
-                    @$"{baseurl}username={smsUsername}&dest={mobile}&apikey={apikey}&signature={smsSignature}&msgtype=PM&msgtxt={message}&entityid={entityId}&templateid={tempid}");
+                string  requestUrl = @$"{baseurl}username={smsUsername}&dest={mobile}&apikey={apikey}&signature={smsSignature}&msgtype=PM&msgtxt={message}&entityid={entityId}&templateid={tempid}";
+                var WoComrequest = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 
                 var WoComresponse = await client.SendAsync(WoComrequest);
                 

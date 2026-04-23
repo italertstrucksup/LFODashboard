@@ -67,15 +67,15 @@ namespace ProfileService_LFO.API.Controllers
         }
         #endregion
 
-        //#region Add Truck
-        //[HttpPost("trucks")]
-        //public async Task<IActionResult> AddTruck([FromBody] TruckDetailsRequest request)
-        //{
-        //    var result = await _profileBL.AddTruckAsync(request);
+        #region Add Truck
+        [HttpPost("trucks")]
+        public async Task<IActionResult> InsertTruckDetails([FromBody] TruckDetailsRequest request)
+        {
+            var result = await _profileBL.InsertTruckDetails(request);
 
-        //    return Ok(ApiResponse<object>.SuccessResponse(result, "Truck Added  successfully", 200));
-        //}
-        //#endregion
+            return Ok(ApiResponse<object>.SuccessResponse(result, "Truck Added  successfully", 200));
+        }
+        #endregion
 
         //[HttpGet("trucks/{profileId}")]
         //public async Task<IActionResult> GetTrucks(long profileId)
@@ -118,13 +118,7 @@ namespace ProfileService_LFO.API.Controllers
 
         }
 
-        [HttpPost("kyc/documents")]
-        public async Task<IActionResult> UpsertKYCDocuments( KYCDocumentRequest request)
-        {
-            var result = await _profileBL.UpsertKYCDocumentsAsync(request);
-
-            return Ok(ApiResponse<object>.SuccessResponse(result, "KYC documents saved successfully", 200));
-        }
+        
 
 
     }

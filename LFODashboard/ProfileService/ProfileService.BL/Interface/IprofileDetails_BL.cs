@@ -15,7 +15,7 @@ namespace ProfileService_LFO.BL.Interface
         Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request);
         Task<bool> InsertPreferredLane(PreferredLaneRequest request);
         Task<DataTable> GetLanesAsync(long loginId);
-
+        Task<bool> InsertTruckDetails(TruckDetailsRequest request);
         //Task<bool> AddTruckAsync(TruckDetailsRequest request);
         //Task<DataTable> GetTrucksAsync(long profileId);
         Task<bool> InsertFleetOperatorKYC(KYCRequest request);

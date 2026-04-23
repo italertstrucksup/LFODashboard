@@ -6,13 +6,13 @@ namespace ProfileService_LFO.Model.Model
 {
     public class TruckDetailsRequest
     {
-        public long ProfileId { get; set; }
+        public long UserId { get; set; }
 
-        public string TruckNumber { get; set; }
+        public string VehicleNo { get; set; }
         public string OwnershipType { get; set; }
-        public string BodyType { get; set; }
-        public int TyreCount { get; set; }
-        public decimal Capacity { get; set; }
-        public string VehicleSize { get; set; }
+        public int BodyTypeId { get; set; }
+        public int CapacityId { get; set; }
+        public int SizeId { get; set; }
+        public int TyreId { get; set; }
     }
 }

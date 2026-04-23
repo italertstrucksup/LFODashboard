@@ -45,7 +45,6 @@ public class ProfileDetailsBL : IprofileDetails_BL
         if (!success)
             throw new Exception("Failed to save profile");
 
-        // Fetch updated data
         var profile = await GetProfileDetailsByIdAsync((int)request.UserId);
 
         if (profile == null)

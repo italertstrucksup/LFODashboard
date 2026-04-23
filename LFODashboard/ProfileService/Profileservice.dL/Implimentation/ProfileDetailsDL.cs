@@ -64,8 +64,14 @@ namespace ProfileService_LFO.DAL.Implimentation
         new SqlParameter("@UpdatedBy", SqlDbType.VarChar, 50) { Value = (object?)request.UpdatedBy ?? DBNull.Value }
     };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_InsertFleetOperatorbyType", parameters);
-            return result > 0;
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorbyType", parameters);
+            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            {
+                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+            }
+
+            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_InsertFleetOperatorbyType", parameters);
+            return rows > 0;
         }
 
         public async Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request)
@@ -79,13 +85,14 @@ namespace ProfileService_LFO.DAL.Implimentation
         
     };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(
-                _connStr,
-                "USP_InsertFleetOperatorDocument",
-                parameters
-            );
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorDocument", parameters);
+            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            {
+                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+            }
 
-            return result > 0;
+            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_InsertFleetOperatorDocument", parameters);
+            return rows > 0;
         }
 
         #region Insert
@@ -93,18 +100,18 @@ namespace ProfileService_LFO.DAL.Implimentation
         {
             var parameters = new List<SqlParameter>
         {
-            new SqlParameter("@ProfileId", SqlDbType.BigInt) { Value = request.ProfileId },
-            new SqlParameter("@TruckNumber", SqlDbType.VarChar, 20) { Value = request.TruckNumber },
+            new SqlParameter("@UserId", SqlDbType.BigInt) { Value = request.UserId },
+            new SqlParameter("@VehicleNo", SqlDbType.VarChar, 20) { Value = request.VehicleNo },
             new SqlParameter("@OwnershipType", SqlDbType.VarChar, 20) { Value = (object?)request.OwnershipType ?? DBNull.Value },
-            new SqlParameter("@BodyType", SqlDbType.VarChar, 100) { Value = request.BodyType },
-            new SqlParameter("@TyreCount", SqlDbType.Int) { Value = request.TyreCount },
-            new SqlParameter("@Capacity", SqlDbType.Decimal) { Value = request.Capacity },
-            new SqlParameter("@VehicleSize", SqlDbType.VarChar, 50) { Value = request.VehicleSize }
+            new SqlParameter("@BodyTypeId", SqlDbType.Int) { Value = request.BodyTypeId },
+            new SqlParameter("@TyreId", SqlDbType.Int) { Value = request.TyreId },
+            new SqlParameter("@CapacityId", SqlDbType.Int) { Value = request.CapacityId },
+            new SqlParameter("@SizeId", SqlDbType.Int) { Value = request.SizeId }
         };
 
             var result = await _dataAccess.ExecuteNonQueryAsync(
                 _connStr,
-                "USP_InsertFleetDetails",
+                "USP_MasterVehicleDetails",
                 parameters
             );
 
@@ -139,13 +146,14 @@ namespace ProfileService_LFO.DAL.Implimentation
           
         };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(
-                _connStr,
-                "SP_InsertPreferredLane",
-                parameters
-            );
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_InsertPreferredLane", parameters);
+            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            {
+                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+            }
 
-            return result > 0;
+            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_InsertPreferredLane", parameters);
+            return rows > 0;
         }
         #endregion
         #region Get
@@ -176,13 +184,14 @@ namespace ProfileService_LFO.DAL.Implimentation
             new SqlParameter("@KYCDocBack", SqlDbType.VarChar, 50) { Value = request.KYCDocBack }
         };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(
-                _connStr,
-                "SP_UpsertKYC",
-                parameters
-            );
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_UpsertKYC", parameters);
+            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            {
+                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+            }
 
-            return result > 0;
+            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_UpsertKYC", parameters);
+            return rows > 0;
         }
         #endregion
 
@@ -222,13 +231,14 @@ namespace ProfileService_LFO.DAL.Implimentation
         new SqlParameter("@IsSelfieUploaded", SqlDbType.Bit) { Value = request.IsSelfieUploaded }
     };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(
-                _connStr,
-                "SP_UpsertKYCDocuments",
-                parameters
-            );
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_UpsertKYCDocuments", parameters);
+            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            {
+                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+            }
 
-            return result > 0;
+            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_UpsertKYCDocuments", parameters);
+            return rows > 0;
         }
 
 #endregion

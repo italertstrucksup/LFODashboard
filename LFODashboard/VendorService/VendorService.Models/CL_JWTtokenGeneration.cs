@@ -16,8 +16,8 @@ public class CL_JWTtokenGeneration
 
     public string GenerateToken()
     {
-        var key = _config["AadhaarService:JWT-Key"];
-        var partnerId = _config["AadhaarService:User-Agent"];
+        var key = _config["SprintService:JWT-Key"];
+        var partnerId = _config["SprintService:User-Agent"];
 
         // 🔴 Safety checks (VERY IMPORTANT)
         if (string.IsNullOrWhiteSpace(key))

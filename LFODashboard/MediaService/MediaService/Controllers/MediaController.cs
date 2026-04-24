@@ -1,8 +1,7 @@
 using MediaService.BL.IBussinessLayer;
-using MediaService.Model.Model;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-
+using Common.Core;
+using MediaService.Model.Model;
 
 namespace MediaServiceAPI.Controllers
 {
@@ -24,6 +23,31 @@ namespace MediaServiceAPI.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
+        [HttpPost("upload-base64", Name = "UploadBase64")]
+        public async Task<IActionResult> UploadBase64([FromBody] ApiRequest<MediaUploadRequest> request)
+        {
+            if (request?.Data == null || string.IsNullOrEmpty(request.Data.File))
+            {
+                return BadRequest(ApiResponse<object>.FailResponse("Invalid request data", 400));
+            }
+
+            try
+            {
+                // Convert Base64 back to a file/stream for the business layer
+                byte[] bytes = Convert.FromBase64String(request.Data.File);
+                using (var stream = new MemoryStream(bytes))
+                {
+                    var file = new FormFile(stream, 0, bytes.Length, "file", "image.jpg");
+                    var response = await _mediaBusinessLayer.UploadDocumentAsync(file, request.Data.FolderName);
+                    return StatusCode(response.StatusCode, response);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<object>.FailResponse(ex.Message, 500));
+            }
+        }
+
         [HttpGet("get/{*documentKey}")]
         public IActionResult GetDocument([FromRoute] string documentKey)
         {
@@ -35,27 +59,8 @@ namespace MediaServiceAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { IsSuccess = false, StatusCode = 500, Message = ex.Message });
+                return StatusCode(500, ApiResponse<object>.FailResponse(ex.Message, 500));
             }
         }
-
-        //[HttpDelete("delete/{*documentKey}")]
-        //public async Task<IActionResult> DeleteDocument([FromRoute] string documentKey)
-        //{
-        //    try
-        //    {
-        //        string decodedKey = System.Net.WebUtility.UrlDecode(documentKey);
-        //        var result = await _mediaBusinessLayer.DeleteDocumentAsync(decodedKey);
-        //        return Ok(new { success = true, deleted = result });
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {ex.Message}");
-        //    }
-        //}
     }
 }

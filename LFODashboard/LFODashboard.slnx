@@ -9,13 +9,34 @@
     <Project Path="AuthServices/AuthServices_LFO/AuthServices_LFO.csproj" />
   </Folder>
   <Folder Name="/HelperDLL/">
+    <Project Path="HelperDLL/Common.Core/Common.Core.csproj" />
     <Project Path="HelperDLL/DataAccessInterface/DataAccessInterface.csproj" />
+    <Project Path="HelperDLL/HttpClientLib/HttpClientLib.csproj" />
     <Project Path="HelperDLL/JwtAuthenticationManager/JwtAuthenticationManager.csproj" />
+    <Project Path="HelperDLL/LoggingInterface/LoggingInterface.csproj" />
+  </Folder>
+  <Folder Name="/ManageAccessService/">
+    <Project Path="ManageAccessService/ManageAccessService.BL/ManageAccessService.BL.csproj" />
+    <Project Path="ManageAccessService/ManageAccessService.DAL/ManageAccessService.DAL.csproj" />
+    <Project Path="ManageAccessService/ManageAccessService.Model/ManageAccessService.Model.csproj" />
+    <Project Path="ManageAccessService/ManageAccessService/ManageAccessService.csproj" />
   </Folder>
   <Folder Name="/MediaService/">
     <Project Path="MediaService/MediaService.BL/MediaService.BL.csproj" />
     <Project Path="MediaService/MediaService.Model/MediaService.Model.csproj" />
     <Project Path="MediaService/MediaService/MediaService.csproj" />
+  </Folder>
+  <Folder Name="/ProfilePhotoService/">
+    <Project Path="ProfilePhotoService/ProfilePhotoService.BL/ProfilePhotoService.BL.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService.DAL/ProfilePhotoService.DAL.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService.Model/ProfilePhotoService.Model.csproj" />
+    <Project Path="ProfilePhotoService/ProfilePhotoService/ProfilePhotoService.csproj" />
+  </Folder>
+  <Folder Name="/ProfileService/">
+    <Project Path="ProfileService/PrfileService.Model/ProfileService_LFO.Model.csproj" />
+    <Project Path="ProfileService/ProfileService.BL/ProfileService_LFO.BL.csproj" />
+    <Project Path="ProfileService/Profileservice.dL/ProfileService_LFO.DAL.csproj" />
+    <Project Path="ProfileService/ProfileService/ProfileService.csproj" />
   </Folder>
   <Folder Name="/VendorService/">
     <Project Path="VendorService/VendorService.BL/VendorService.BL.csproj" />

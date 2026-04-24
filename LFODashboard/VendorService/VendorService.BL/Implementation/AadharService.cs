@@ -31,4 +31,19 @@ public class AadharService : IAadharService
 
         return result;
     }
+
+    public async Task<ApiResponse<AadharVerifyResponse>> VerifyAadharAsync(AadhaarVerifyRequest request)
+    {
+        // Validation
+        if (request == null)
+            throw new AppException("Request cannot be null");
+
+        // Call DAL
+        var result = await _aadhardal.VerifyAadharAsync(request);
+
+        if (result == null)
+            throw new AppException("Something went wrong, please try again later", 500);
+
+        return result;
+    }
 }

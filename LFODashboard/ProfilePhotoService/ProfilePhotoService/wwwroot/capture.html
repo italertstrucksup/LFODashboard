@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LFO Photo Capture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Camera Viewport */
+        .viewport {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        video, #preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        #preview {
+            display: none;
+            z-index: 10;
+        }
+
+        /* Overlay UI */
+        .ui-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 20;
+        }
+
+        .top-bar {
+            padding: 24px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+            text-align: center;
+        }
+
+            .top-bar h1 {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+                color: var(--primary);
+                text-transform: uppercase;
+            }
+
+        .bottom-bar {
+            padding-bottom: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .shutter-btn {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-group {
+            display: none;
+            gap: 24px;
+            width: 100%;
+            padding: 0 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 18px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-retake {
+            background: var(--glass);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-upload {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Full Screen States */
+        .full-screen-state {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #spinner-loading {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--glass);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="viewport">
+        <video id="video" autoplay playsinline></video>
+        <img id="preview" alt="Captured Photo">
+
+        <div class="ui-overlay" id="main-ui">
+            <div class="top-bar">
+                <h1>LFO Digital Identity</h1>
+                <div id="badge" style="background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; margin-top: 10px;">LOADING...</div>
+            </div>
+
+            <div class="bottom-bar">
+                <p id="hint" style="font-size: 0.9rem; opacity: 0.8;">Keep the person centered in frame</p>
+                <div class="shutter-btn" id="shutter-btn"><div style="width: 58px; height: 58px; border: 2px solid #000; border-radius: 50%;"></div></div>
+                <div class="action-group" id="action-group">
+                    <button class="btn btn-retake" id="retake-btn">Retake</button>
+                    <button class="btn btn-upload" id="upload-btn">Upload Photo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INITIAL LOADING STATE -->
+    <div class="full-screen-state" id="loading-screen" style="display: flex;">
+        <div id="spinner-loading"></div>
+        <p style="margin-top: 20px; opacity: 0.7;">Validating your secure link...</p>
+    </div>
+
+    <!-- INVALID LINK STATE -->
+    <div class="full-screen-state" id="error-screen">
+        <div class="icon-circle" style="background: var(--danger);">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Invalid Link</h2>
+        <p style="opacity: 0.7; margin-bottom: 30px;">This link has expired or has already been used to upload a photo.</p>
+        <p style="font-size: 0.9rem; color: var(--primary);">Please request a new link from your dashboard.</p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="full-screen-state" id="success-screen">
+        <div class="icon-circle" style="background: var(--success);">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Uploaded!</h2>
+        <p style="opacity: 0.7;">Your photo has been saved successfully.</p>
+    </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        const video = document.getElementById('video');
+        const preview = document.getElementById('preview');
+        const canvas = document.getElementById('canvas');
+        const shutterBtn = document.getElementById('shutter-btn');
+        const actionGroup = document.getElementById('action-group');
+        const retakeBtn = document.getElementById('retake-btn');
+        const uploadBtn = document.getElementById('upload-btn');
+        const badge = document.getElementById('badge');
+        const hint = document.getElementById('hint');
+
+        const loadingScreen = document.getElementById('loading-screen');
+        const errorScreen = document.getElementById('error-screen');
+        const successScreen = document.getElementById('success-screen');
+        const mainUi = document.getElementById('main-ui');
+
+        // Parse URL
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        const photoType = params.get('PhotoType') || 'profile';
+        badge.innerText = photoType.toUpperCase() + ' PHOTO';
+
+        // validate link  on load
+        async function validateAndStart() {
+            if (!token) {
+                showError();
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/ProfilePhoto/validate/${token}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    loadingScreen.style.display = 'none';
+                    startCamera();
+                } else {
+                    showError();
+                }
+            } catch (err) {
+                console.error(err);
+                showError();
+            }
+        }
+
+        function showError() {
+            loadingScreen.style.display = 'none';
+            errorScreen.style.display = 'flex';
+            mainUi.style.display = 'none';
+        }
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user', width: { ideal: 1080 } },
+                    audio: false
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                badge.innerText = "CAMERA ERROR";
+                hint.innerText = "Please allow camera access in browser settings";
+            }
+        }
+
+        validateAndStart();
+
+        // capture Logic
+        shutterBtn.onclick = () => {
+            const ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            preview.src = canvas.toDataURL('image/jpeg', 0.9);
+            preview.style.display = 'block';
+            shutterBtn.style.display = 'none';
+            actionGroup.style.display = 'flex';
+            hint.innerText = "Preview your capture";
+        };
+
+        retakeBtn.onclick = () => {
+            preview.style.display = 'none';
+            shutterBtn.style.display = 'flex';
+            actionGroup.style.display = 'none';
+            hint.innerText = "Keep the person centered in frame";
+        };
+
+        uploadBtn.onclick = async () => {
+            uploadBtn.disabled = true;
+            hint.innerText = "Uploading to S3...";
+
+            const base64 = preview.src.split(',')[1];
+            try {
+                const response = await fetch('/api/ProfilePhoto/upload', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token, imageBase64: base64 })
+                });
+                const res = await response.json();
+                if (res.success) {
+                    successScreen.style.display = 'flex';
+                } else {
+                    alert(res.message || "Upload failed.");
+                    uploadBtn.disabled = false;
+                }
+            } catch (err) {
+                alert("Connection failed.");
+                uploadBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

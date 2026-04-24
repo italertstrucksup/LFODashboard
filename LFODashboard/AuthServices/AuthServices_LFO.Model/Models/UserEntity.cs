@@ -2,7 +2,7 @@
 {
     public class UserEntity
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public string MobileNo { get; set; }
         public string AccessType { get; set; }
         public bool IsActive { get; set; }

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
     <ProjectReference Include="..\VendorService.BL\VendorService.BL.csproj" />
     <ProjectReference Include="..\VendorService.DAL\VendorService.DAL.csproj" />
     <ProjectReference Include="..\VendorService.Models\VendorService.Models.csproj" />

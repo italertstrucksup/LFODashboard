@@ -1,105 +1,267 @@
 {
   "Routes": [
-    //Authentication Web API
+    //Authentication Web API Port 700
     {
-      "DownstreamPathTemplate": "/api/auth/send_signup_otp",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/v1/Auth/login",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 700
         }
       ],
-      "UpstreamHttpMethod": [ "Post" ],
-      "UpstreamPathTemplate": "/send_signup_otp"
-    },
-    {
-      "DownstreamPathTemplate": "/api/auth/signup_user",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 700
-        }
-      ],
-      "UpstreamHttpMethod": [ "Post" ],
-      "UpstreamPathTemplate": "/signup_user"
-    },
-    {
-      "DownstreamPathTemplate": "/api/auth/login",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 700
-        }
-      ],
-      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/login"
     },
     {
-      "DownstreamPathTemplate": "/api/auth/refresh-token",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/v1/Auth/send-reset-otp",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 700
         }
       ],
-      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/send-reset-otp"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/reset-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/reset-password"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/send-login-otp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/send-login-otp"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/login-with-otp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/login-with-otp"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/refresh-token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/refresh-token"
     },
     {
-      "DownstreamPathTemplate": "/api/auth/verifyOtp",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/v1/Auth/send_signup_otp",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 700
         }
       ],
-      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/send_signup_otp"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/verifyOtp",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/verifyOtp"
     },
-
-    //CataLoge Service APIs
     {
-      "DownstreamPathTemplate": "/catalogs/items",
+      "DownstreamPathTemplate": "/api/v1/Auth/signup_user",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/signup_user"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/logout",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/logout"
+    },
+
+
+    // ProfilePhoto Service APIs Port 702
+    {
+      "DownstreamPathTemplate": "/api/ProfilePhoto/send-upload-link",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7069
+          "Port": 702
         }
       ],
-      "UpstreamHttpMethod": [ "Get" ],
-      "UpstreamPathTemplate": "/catalogs/items"
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/send-upload-link"
     },
     {
-      "DownstreamPathTemplate": "/WeatherForecast/demo/products",
+      "DownstreamPathTemplate": "/api/ProfilePhoto/resend-upload-link",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 702
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/resend-upload-link"
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProfilePhoto/upload",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 702
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/upload_user_photo"
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProfilePhoto/status/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7069
+          "Port": 702
         }
       ],
-      "UpstreamHttpMethod": [ "Get" ],
-      "UpstreamPathTemplate": "/demo/products"
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/user_photo_status/{id}"
     },
 
-    //Order Service APIs
+    //Manage Access Service APIs 703
     {
-      "DownstreamPathTemplate": "/orders",
+      "DownstreamPathTemplate": "/api/Access/add_subuser",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7216
+          "Port": 703
         }
       ],
-      "UpstreamHttpMethod": [ "Get" ],
-      "UpstreamPathTemplate": "/orders"
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_subuser"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Access/edit_subuser",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 703
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/edit_subuser"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Access/get_subuser",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 703
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/get_subuser"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Access/get_vehicle",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 703
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/get_vehicle"
+    },
+
+    //Media Service APIs 704
+
+    {
+      "DownstreamPathTemplate": "/api/Media/upload",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 704
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/media_upload"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Media/upload-base64",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 704
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/media_upload-base64"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Media/get/{img}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 704
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/get/{img}"
     }
 
   ],

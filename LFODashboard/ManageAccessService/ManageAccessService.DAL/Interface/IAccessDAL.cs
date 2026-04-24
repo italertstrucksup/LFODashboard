@@ -13,6 +13,7 @@ namespace ManageAccessService.DAL.Interface
         public Task<string> AssignVehicleAsync(AssignVehicleRequest request);
 
         public Task<DataTable> GetUserVehicleDataAsync(GetVehicleRequest request);
-        public Task<DataTable> GetVehicleListAsync(GetVehicleRequest request);
+        public Task<DataTable> GetUnassignedVehicleListAsync(GetVehicleRequest request);
+        public Task<DataTable> GetAssignedVehicleListAsync(GetVehicleRequest request);
     }
 }

@@ -23,86 +23,107 @@ namespace AuthServices_LFO.Controllers
         //------------------------SIGNUP-------------------------
         // POST api/auth/send_signup_otp
         [HttpPost("send_signup_otp")]
-        public async Task<IActionResult> SendSignupOtp([FromBody] SignupRequest request)
+        public async Task<IActionResult> SendSignupOtp(SignupRequest request)
         {
-            var result = await _authBL.SendSignupOtpAsync(request);
+            var result = await _authBL.SendSignupOtp(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
         // POST api/auth/signup_user
         [HttpPost("signup_user")]
-        public async Task<IActionResult> SignupAsync([FromBody] SignupRequest request)
+        public async Task<IActionResult> SignupAsync( SignupRequest request)
         {
-            var result = await _authBL.SignupAsync(request);
+            var result = await _authBL.UserRegister(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
         // POST api/auth/verify_Otp
         [HttpPost("verifyOtp")]
-        public async Task<IActionResult> VerifyOTP([FromBody] OTPVerifyRequest request)
+        public async Task<IActionResult> VerifyOTP( OTPVerifyRequest request)
         {
-            var result = await _authBL.VerifyOTPAsync(request);
+            var result = await _authBL.VerifySignupOTP(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
         // POST api/auth/login
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login( LoginReq request)
         {
-            var result = await _authBL.LoginAsync(request);
+            var result = await _authBL.UserLogin(request);
             return result.Success ? Ok(result) : Unauthorized(result);
         }
 
 
         // POST api/auth/refresh-token
         [HttpPost("refresh-token")]
-        public async Task<IActionResult> RefreshToken([FromBody] LoginRequest request)
+        public async Task<IActionResult> RefreshToken( LoginReq request)
         {
-            var result = await _authBL.RefreshTokenAsync(request);
+            var result = await _authBL.RefreshToken(request);
             return result.Success ? Ok(result) : Unauthorized(result);
         }
 
+        // POST api/auth/send-login-otp
         [HttpPost("send-login-otp")]
-        public async Task<IActionResult> SendLoginOtp([FromBody] LoginOtpRequest request)
+        public async Task<IActionResult> SendLoginOtp( LoginOtpRequest request)
         {
-            var result = await _authBL.SendLoginOtpAsync(request);
+            var result = await _authBL.SendLoginOtp(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
+        // POST api/auth/login-with-otp
         [HttpPost("login-with-otp")]
-        public async Task<IActionResult> LoginWithOtp([FromBody] LoginOtpRequest request)
+        public async Task<IActionResult> LoginWithOtp( LoginOtpRequest request)
         {
-            var result = await _authBL.LoginWithOtpAsync(request);
+            var result = await _authBL.LoginWithOtp(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
-        // POST api/auth/logout
+        // POST api/auth/send-reset-otp
+        [HttpPost("send-reset-otp")]
+        public async Task<IActionResult> SendResetOtp(ResetPasswordReq request)
+        {
+            var result = await _authBL.SendResetOtp(request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        // POST api/auth/reset-password
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordReq request)
+        {
+            var result = await _authBL.ResetPassword(request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        //-------------------LOGOUT-------------------
+
         [HttpPost("logout")]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
-            var userIdStr = User.Claims.FirstOrDefault(c =>
-            c.Type == ClaimTypes.NameIdentifier ||
-            c.Type == "nameid" ||
-            c.Type.EndsWith("nameidentifier"))?.Value;
-
-            if (!int.TryParse(userIdStr, out int userId))
-                return BadRequest(new { Message = "Invalid token" });
-
-            var result = await _authBL.RevokeTokenAsync(userId);
-            return result.Success ? Ok(result) : BadRequest(result);
-        }
-
-        // GET api/auth/me
-        [HttpGet("me")]
-        [Authorize]
-        public IActionResult GetMe()
-        {
-            return Ok(new
+            try
             {
-                UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-                Name = User.FindFirst(ClaimTypes.Name)?.Value,
-                Role = User.FindFirst(ClaimTypes.Role)?.Value,
-                EntityType = User.FindFirst("EntityType")?.Value
-            });
+                var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var refreshToken = Request.Headers["RefreshToken"].FirstOrDefault();
+
+                if (string.IsNullOrWhiteSpace(userIdStr) || string.IsNullOrWhiteSpace(refreshToken))
+                {
+                    return Ok(new { Success = true, Message = "Logged out successfully" });
+                }
+
+                if (!Guid.TryParse(userIdStr, out Guid userId))
+                {
+                    return Ok(new { Success = true, Message = "Logged out successfully" });
+                }
+
+                var result = await _authBL.RevokeToken(userId, refreshToken);
+
+                return Ok(result);
+            }
+            catch
+            {
+                return Ok(new { Success = true, Message = "Logged out successfully" });
+            }
         }
+
+
     }
 }

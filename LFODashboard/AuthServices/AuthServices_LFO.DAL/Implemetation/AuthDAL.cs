@@ -17,151 +17,165 @@ namespace AuthServices_LFO.DAL.Implemetation
             _dataAccess = dataAccess;
         }
 
-        public async Task<DataTable> ValidateUserAsync(string UserName,string Password)
+        //---------LOGIN------------------
+        public async Task<DataTable> ValidateUser(string MobileNumber,string Password)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action", "VALIDATE_USER"),
-                new SqlParameter("@MobileNo", UserName),
+                
+                new SqlParameter("@MobileNo", MobileNumber),
                 new SqlParameter("@PasswordHash", Password)
             };
 
             var result = await _dataAccess.ExecuteStoredProcedureAsync(
                 _connStr,
-                "LFO_SP_Login",
+                "usp_validateuser",
                 parameters
             );
 
             return result;
         }
 
-        public async Task<DataTable> ValidateRefreshTokenAsync(string userName, string refreshToken)
+        public async Task SaveTokens(Guid userid, string refreshToken, DateTime expiryRefreshToken)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action", "VALIDATE_REFRESH_TOKEN"),
-                new SqlParameter("@MobileNo", userName),
+                new SqlParameter("@UserId", userid),
+                new SqlParameter("@RefreshToken", refreshToken),
+                new SqlParameter("@ExpiryRefreshToken", expiryRefreshToken)
+            };
+
+            await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr, "usp_savetokens", parameters);
+        }
+
+
+        public async Task<DataTable> GetAccessToken( string refreshToken)
+        {
+            var parameters = new List<SqlParameter>
+            {
+
+               
                 new SqlParameter("@RefreshToken", refreshToken)
             };
 
             var result = await _dataAccess.ExecuteStoredProcedureAsync(
                 _connStr,
-                "LFO_SP_Login",
+                "usp_getnewaccesstoken",
                 parameters
             );
 
             return result;
         }
 
-        public async Task RevokeTokensAsync(int userId)
+        public async Task<DataTable> RevokeToken(Guid userid, string refreshToken)
         {
             var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@Action", "REVOKE_TOKENS"),
-                new SqlParameter("@LoginId", userId)
-            };
+    {
+        new SqlParameter("@UserId", userid),
+        new SqlParameter("@RefreshToken", refreshToken)
+    };
 
-            await _dataAccess.ExecuteStoredProcedureAsync(
+            return await _dataAccess.ExecuteStoredProcedureAsync(
                 _connStr,
-                "LFO_SP_Login",
+                "usp_revoketoken",
                 parameters
             );
         }
 
-        public async Task SaveTokensAsync(int userId, string referenceToken, string refreshToken, DateTime validity)
-        {
-            var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@Action",         "SAVE_REFRESH_TOKEN"),
-                new SqlParameter("@LoginId",         userId),
-                new SqlParameter("@RefreshToken",   refreshToken),
-                new SqlParameter("@Validity",       validity)
-            };
 
-            await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
-        }
-
-        public async Task<DataTable> SaveLoginOtpAsync(string mobileNo, string otp, DateTime expiry)
-        {
-            var parameters = new List<SqlParameter>
-    {
-        new SqlParameter("@Action",   "SAVE_LOGIN_OTP"),
-        new SqlParameter("@MobileNo", mobileNo),
-        new SqlParameter("@OTP",      otp),
-        new SqlParameter("@Validity", expiry)
-    };
-
-            return await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
-        }
-
-        public async Task<DataTable> ValidateLoginOtpAsync(string mobileNo, string otp)
-        {
-            var parameters = new List<SqlParameter>
-    {
-        new SqlParameter("@Action",   "VALIDATE_LOGIN_OTP"),
-        new SqlParameter("@MobileNo", mobileNo),
-        new SqlParameter("@OTP",      otp)
-    };
-
-            return await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "LFO_SP_Login", parameters);
-        }
 
 
         // ─── SIGNUP ───────────────────────────────────────────
 
-        public async Task<DataTable> CheckUserAsync(string mobileNo)
+        public async Task<DataTable> CheckUser(string mobileNo)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action",   "CHECK_USER"),
                 new SqlParameter("@MobileNo", mobileNo)
             };
 
             return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr, "LFO_SP_Signup", parameters);
+                _connStr, "usp_checkuser", parameters);
         }
 
-        public async Task<DataTable> SignupAsync(string mobileNo, string passwordHash, string createdBy)
+
+        public async Task<DataTable> Signup(string mobileNo, string passwordHash, string createdBy)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action",       "SIGNUP"),
                 new SqlParameter("@MobileNo",     mobileNo),
                 new SqlParameter("@PasswordHash", passwordHash),
                 new SqlParameter("@CreatedBy",    createdBy)
             };
 
             return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr, "LFO_SP_Signup", parameters);
+                _connStr, "usp_signup", parameters);
         }
 
-        public async Task<DataTable> SaveOTPAsync(string mobileNo, string otp, string otpType, DateTime expiryTime)
+
+        
+        //---------------------OTP SAVE AND VERIFY-------------------------
+        public async Task<DataTable> GetOTP( string mobileNo, string otpType)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action",     "SAVE_OTP"),
+                new SqlParameter("@UserId", DBNull.Value),
                 new SqlParameter("@MobileNo",   mobileNo),
-                new SqlParameter("@OTP",        otp),
-                new SqlParameter("@OTPType",    otpType),
-                new SqlParameter("@ExpiryTime", expiryTime)
+                new SqlParameter("@OTPType",    otpType)
             };
 
             return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr, "LFO_SP_Signup", parameters);
+                _connStr, "usp_generateotp", parameters);
         }
 
-        public async Task<DataTable> VerifyOTPAsync(string mobileNo, string otp, string otpType)
+        public async Task<DataTable> VerifyOTP(string mobileNo, string otp, string otpType)
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@Action",   "VERIFY_OTP"),
+                
                 new SqlParameter("@MobileNo", mobileNo),
                 new SqlParameter("@OTP",      otp),
                 new SqlParameter("@OTPType",  otpType)
             };
 
             return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr, "LFO_SP_Signup", parameters);
+                _connStr, "usp_verifyotp", parameters);
+        }
+
+
+        public async Task<DataTable> VerifyLoginOtp(string mobileNo, string otp)
+        {
+            var parameters = new List<SqlParameter>
+    {
+        new SqlParameter("@MobileNo", mobileNo),
+        new SqlParameter("@OTP", otp)
+    };
+
+            return await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "usp_verifyotplogin",
+                parameters
+            );
+        }
+
+
+        //------------------RESET PASSWORD-----------------------
+
+        public async Task<DataTable> ResetPassword(string mobileNo, string otp, string newPasswordHash)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@MobileNo", mobileNo),
+                new SqlParameter("@OTP", otp),
+                new SqlParameter("@NewPasswordHash", newPasswordHash)
+            };
+
+            return await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "usp_resetpassword",
+                parameters
+            );
         }
 
 

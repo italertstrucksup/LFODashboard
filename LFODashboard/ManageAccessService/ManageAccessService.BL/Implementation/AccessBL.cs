@@ -105,10 +105,14 @@ namespace ManageAccessService.BL.Implementation
         {
             try
             {
+                DataTable result = new DataTable();
                 if (request == null)
                     return ApiResponse<string>.FailResponse("Invalid request", 400);
 
-                var result = await _accessDAL.GetVehicleListAsync(request);
+                if(string.IsNullOrEmpty(request.subUserId))
+                     result = await _accessDAL.GetUnassignedVehicleListAsync(request);
+                else
+                     result = await _accessDAL.GetAssignedVehicleListAsync(request);
 
                 if (result == null || result.Rows.Count == 0)
                     return ApiResponse<string>.FailResponse("No data found", 404);

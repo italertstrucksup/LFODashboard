@@ -7,6 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Interface\appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Interface\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
@@ -16,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
     <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
     <ProjectReference Include="..\..\HelperDLL\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
     <ProjectReference Include="..\AuthServices_LFO.DAL\AuthServices_LFO.DAL.csproj" />
     <ProjectReference Include="..\AuthServices_LFO.Model\AuthServices_LFO.Model.csproj" />

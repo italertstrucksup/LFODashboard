@@ -1,6 +1,5 @@
 ﻿using Common.Core;
 using HttpClientLib;
-
 using Microsoft.Extensions.Configuration;
 using ProfilePhotoService.BL.Interface;
 using ProfilePhotoService.DAL.Interface;
@@ -61,11 +60,27 @@ namespace ProfilePhotoService.BL.Implemetation
             return await SendUploadLinkAsync(request);
         }
 
+        public async Task<ApiResponse<bool>> ValidateTokenAsync(string token)
+        {
+            try
+            {
+                var result = await _profilePhotoDAL.ValidateUploadTokenAsync(token);
+                if (result.Rows.Count > 0 && result.Rows[0]["Result"].ToString() == "SUCCESS")
+                {
+                    return ApiResponse<bool>.SuccessResponse(true, "Token valid");
+                }
+                return ApiResponse<bool>.FailResponse("Invalid or used link", 401);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<bool>.FailResponse(ex.Message, 500);
+            }
+        }
+
         public async Task<ApiResponse<bool>> UploadPhotoAsync(PhotoUploadRequest request)
         {
             try
             {
-                //validate token and get UserId and photo_type
                 var validationResult = await _profilePhotoDAL.ValidateUploadTokenAsync(request.Token);
                 if (validationResult.Rows.Count == 0 || validationResult.Rows[0]["Result"].ToString() != "SUCCESS")
                 {
@@ -74,12 +89,10 @@ namespace ProfilePhotoService.BL.Implemetation
 
                 Guid userId = Guid.Parse(validationResult.Rows[0]["UserId"].ToString()!);
 
-                //get phototype from token session
                 string photoType = validationResult.Columns.Contains("photo_type")
                                    ? validationResult.Rows[0]["photo_type"].ToString()!
                                    : "profile";
-
-                //call mediaservice 
+            
                 string mediaServiceUrl = _config["AppConfig:MediaServiceUrl"] ?? "https://localhost:7126/api/Media";
 
                 var apiUploadRequest = new ApiRequest<MediaUploadRequest>
@@ -102,7 +115,6 @@ namespace ProfilePhotoService.BL.Implemetation
                         documentKey = prop.GetString() ?? "";
                     }
 
-                    // update db with documentKey 
                     var updateResult = await _profilePhotoDAL.UpdateProfilePhotoAsync(userId, documentKey, photoType);
 
                     if (updateResult.Rows.Count > 0 && updateResult.Rows[0]["Result"].ToString() == "SUCCESS")
@@ -128,7 +140,7 @@ namespace ProfilePhotoService.BL.Implemetation
         {
             try
             {
-                //status check 
+               
                 var result = await _profilePhotoDAL.GetUploadStatusAsync(loginId, "profile");
                 if (result.Rows.Count > 0)
                 {

@@ -146,6 +146,7 @@ namespace ManageAccessService.DAL.Implementation
                     TypeName = "dbo.VehicleListType", // MUST match SQL type
                     Value = vehicleTable
                 },
+                new SqlParameter("@SubUserId", (object?)request.subUserId ?? DBNull.Value),
                 new SqlParameter("@FromDate", (object?)request.fromDate ?? DBNull.Value),
                 new SqlParameter("@ToDate", (object?)request.toDate ?? DBNull.Value)
             };
@@ -157,13 +158,30 @@ namespace ManageAccessService.DAL.Implementation
             return result;
         }
 
-        public async Task<DataTable> GetVehicleListAsync(GetVehicleRequest request)
+        public async Task<DataTable> GetUnassignedVehicleListAsync(GetVehicleRequest request)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@UserId", (object?)request.userId ?? DBNull.Value),
+                new SqlParameter("@AccessType", (object?)request.accessType ?? DBNull.Value),
+                new SqlParameter("@Action", "vehicle_list")
+            };
+
+            var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "usp_GetVehicleList",
+                parameters
+            );
+
+            return result;
+        }
+
+        public async Task<DataTable> GetAssignedVehicleListAsync(GetVehicleRequest request)
         {
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@UserId", (object?)request.userId ?? DBNull.Value),
                 new SqlParameter("@SubUserId", (object?)request.subUserId ?? DBNull.Value),
-                new SqlParameter("@AccessType", (object?)request.accessType ?? DBNull.Value)
+                new SqlParameter("@AccessType", (object?)request.accessType ?? DBNull.Value),
+                new SqlParameter("@Action", "assigned_vehicle_list")
             };
 
             var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "usp_GetVehicleList",

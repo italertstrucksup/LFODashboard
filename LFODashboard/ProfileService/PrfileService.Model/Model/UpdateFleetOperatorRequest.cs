@@ -8,42 +8,33 @@ namespace ProfileService_LFO.Model.Model
     public class UpdateFleetOperatorRequest
     {
 
-        [Required]
-        public long UserId { get; set; }
+        // Make fields nullable so model binding won't treat them as implicitly required
+        public Guid? UserId { get; set; }
 
-        [Required]
-        [MaxLength(200)]
-        public string ProfileName { get; set; }
+        public string? ProfileName { get; set; }
 
 
         [MaxLength(200)]
         public string? CompanyName { get; set; }
 
-        [Required]
-        [MaxLength(10)]
-        public string Pincode { get; set; }
+        
+        public string? Pincode { get; set; }
 
         [MaxLength(500)]
         public string? CompanyAddress { get; set; }
         [MaxLength(500)]
         public string? OwnerName { get; set; }
-        [Required]
 
-        public string? OpretarType { get; set; }
+        public string? OperatorType { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [MaxLength(100)]
         public string? SubCity { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string State { get; set; }
+       
+        public string? State { get; set; }
 
-        [MaxLength(200)]
-      
-        public string UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; }
     }
 }

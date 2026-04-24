@@ -7,16 +7,18 @@ namespace AuthServices_LFO.DAL.Interface
 {
     public interface IAuthDAL
     {
-        Task<DataTable> ValidateUserAsync(string UserName, string Password);
-        Task<DataTable> ValidateRefreshTokenAsync(string userName, string refreshToken);
-        Task RevokeTokensAsync(int userId);
-        Task SaveTokensAsync(int userId, string referenceToken, string refreshToken, DateTime validity);
-        Task<DataTable> SaveLoginOtpAsync(string mobileNo, string otp, DateTime expiry);
-        Task<DataTable> ValidateLoginOtpAsync(string mobileNo, string otp);
+        Task<DataTable> ValidateUser(string MobileNumber, string Password);
+        Task<DataTable> GetAccessToken( string refreshToken);
+        Task<DataTable> RevokeToken(Guid userid, string refreshToken);
+        Task SaveTokens(Guid userid, string refreshToken, DateTime expiryRefreshToken);
+        
 
-        Task<DataTable> CheckUserAsync(string mobileNo);
-        Task<DataTable> SignupAsync(string mobileNo, string passwordHash, string createdBy);
-        Task<DataTable> SaveOTPAsync(string mobileNo, string otp, string otpType, DateTime expiryTime);
-        Task<DataTable> VerifyOTPAsync(string mobileNo, string otp, string otpType);
+        Task<DataTable> CheckUser(string mobileNo);
+        Task<DataTable> Signup(string mobileNo, string passwordHash, string createdBy);
+        Task<DataTable> GetOTP( string mobileNo, string otpType);
+        Task<DataTable> VerifyOTP( string mobileNo, string otp, string otpType);
+        Task<DataTable> VerifyLoginOtp(string mobileNo, string otp);
+
+        Task<DataTable> ResetPassword(string mobileNo, string otp, string newPasswordHash);
     }
 }

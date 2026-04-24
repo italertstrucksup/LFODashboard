@@ -6,6 +6,8 @@ using DataAccessInterface;
 using HttpClientLib;
 using JwtAuthenticationManager;
 using JwtAuthenticationManager.Models;
+using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Text;
@@ -31,38 +33,60 @@ namespace AuthServices_LFO.BL.Implemetation
 
         //-------------------------Login-----------------------------------
 
-        public async Task<ApiResponse<TokenResponse>> LoginAsync(LoginRequest request)
+        public async Task<ApiResponse<TokenResponse>> UserLogin(LoginReq request)
         {
             try
             {
-                var result = await _authDAL.ValidateUserAsync(request.UserName, Helper.HashPassword(request.UserPassword));
+                var result = await _authDAL.ValidateUser(
+                    request.UserName,
+                    Helper.HashPassword(request.UserPassword)
+                );
 
+                // SAFETY CHECK
                 if (result.Rows.Count == 0)
+                {
+                    return ApiResponse<TokenResponse>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var row = result.Rows[0];
+
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+
+                if (statusCode == 0)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
                         "Invalid mobile number or password",
                         statusCode: 401
                     );
+                }
 
-                var row = result.Rows[0];
-                var isActive = Convert.ToBoolean(row["IsActive"]);
-
-                if (!isActive)
+                
+                if (!Guid.TryParse(row["UserId"]?.ToString(), out Guid userId))
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
-                        "Account is deactive",
-                        statusCode: 403
+                        "Invalid user data",
+                        statusCode: 500
                     );
+                }
+
+                var isActive = Convert.ToBoolean(row["IsActive"]);
 
                 var user = new UserEntity
                 {
-                    UserId = Convert.ToInt32(row["LoginId"]),
-                    MobileNo = row["MobileNo"].ToString(),
-                    AccessType = row["AccessType"].ToString(),
+                    UserId = userId,
+                    MobileNo = row["MobileNo"]?.ToString(),
+                    AccessType = row["AccessType"]?.ToString(),
                     IsActive = isActive
                 };
 
-                var refreshExpiry = DateTime.UtcNow.AddDays(int.Parse(_config["Jwt:RefreshTokenExpiryDays"]));
+                var refreshExpiry = DateTime.UtcNow.AddDays(
+                    int.Parse(_config["Jwt:RefreshTokenExpiryDays"])
+                );
 
-                AuthenticationRequest req = new AuthenticationRequest
+                var authRequest = new AuthenticationRequest
                 {
                     UserName = request.UserName,
                     MobileNo = user.MobileNo,
@@ -70,9 +94,13 @@ namespace AuthServices_LFO.BL.Implemetation
                     LoginId = user.UserId.ToString()
                 };
 
-                AuthenticationResponse tokenData = _jwtTokenHandler.GenrateJwtToken(req);
+                var tokenData = _jwtTokenHandler.GenrateJwtToken(authRequest);
 
-                await _authDAL.SaveTokensAsync(user.UserId, tokenData.JwtToken, tokenData.RefreshToken, refreshExpiry);
+                await _authDAL.SaveTokens(
+                    user.UserId,
+                    tokenData.RefreshToken,
+                    refreshExpiry
+                );
 
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
@@ -86,47 +114,74 @@ namespace AuthServices_LFO.BL.Implemetation
             }
             catch (Exception ex)
             {
-                return ApiResponse<TokenResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<TokenResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
 
-     
-
-        public async Task<ApiResponse<TokenResponse>> RefreshTokenAsync(LoginRequest request)
+        public async Task<ApiResponse<TokenResponse>> RefreshToken(LoginReq request)
         {
             try
             {
-                var result = await _authDAL.ValidateRefreshTokenAsync(request.UserName, request.RefreshToken);
+                var result = await _authDAL.GetAccessToken(request.RefreshToken);
 
                 if (result.Rows.Count == 0)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
                         "Invalid refresh token",
                         statusCode: 401
                     );
+                }
 
                 var row = result.Rows[0];
-                var validity = Convert.ToDateTime(row["TokenExpiry"]);
 
-                if (validity <= DateTime.UtcNow)
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+
+                if (statusCode == 0)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
-                        "Refresh token expired, please login again",
+                        "Invalid or expired token",
                         statusCode: 401
                     );
+                }
+
+                var expiry = Convert.ToDateTime(row["TokenExpiry"]);
+
+                if (expiry <= DateTime.UtcNow)
+                {
+                    return ApiResponse<TokenResponse>.FailResponse(
+                        "Refresh token expired",
+                        statusCode: 401
+                    );
+                }
+
+               
+                if (!Guid.TryParse(row["UserId"]?.ToString(), out Guid userId))
+                {
+                    return ApiResponse<TokenResponse>.FailResponse(
+                        "Invalid user data",
+                        statusCode: 500
+                    );
+                }
 
                 var user = new UserEntity
                 {
-                    UserId = Convert.ToInt32(row["LoginId"]),
-                    MobileNo = row["MobileNo"].ToString(),
-                    AccessType = row["AccessType"].ToString(),
+                    UserId = userId,
+                    MobileNo = row["MobileNo"]?.ToString(),
+                    AccessType = row["AccessType"]?.ToString(),
                     IsActive = Convert.ToBoolean(row["IsActive"])
                 };
 
-                var refreshExpiry = DateTime.UtcNow.AddDays(int.Parse(_config["Jwt:RefreshTokenExpiryDays"]));
+                var refreshExpiry = DateTime.UtcNow.AddDays(
+                    int.Parse(_config["Jwt:RefreshTokenExpiryDays"])
+                );
 
-                AuthenticationResponse tokenData = _jwtTokenHandler.GetTokenByRefreshToken(request.RefreshToken);
+                var tokenData = _jwtTokenHandler.GetTokenByRefreshToken(request.RefreshToken);
 
-                await _authDAL.SaveTokensAsync(user.UserId, tokenData.JwtToken, tokenData.RefreshToken, refreshExpiry);
+                await _authDAL.SaveTokens(user.UserId, tokenData.RefreshToken, refreshExpiry);
 
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
@@ -144,108 +199,196 @@ namespace AuthServices_LFO.BL.Implemetation
             }
         }
 
-      
 
-        public async Task<ApiResponse<object>> RevokeTokenAsync(int userId)
+
+        public async Task<ApiResponse<object>> RevokeToken(Guid userid, string refreshToken)
         {
             try
             {
-                await _authDAL.RevokeTokensAsync(userId);
+                var result = await _authDAL.RevokeToken(userid, refreshToken);
 
-                return ApiResponse<object>.SuccessResponse(
-                    null,
-                    message: "Logged out successfully"
+                if (result.Rows.Count == 0)
+                {
+                    return ApiResponse<object>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var statusCode = Convert.ToInt32(result.Rows[0]["StatusCode"]);
+                var message = result.Rows[0]["Message"]?.ToString();
+
+                if (statusCode == 1)
+                {
+                    return ApiResponse<object>.SuccessResponse(
+                        null,
+                        message ?? "Logged out successfully"
+                    );
+                }
+
+                return ApiResponse<object>.FailResponse(
+                    message ?? "Logout failed",
+                    statusCode: 400
                 );
             }
             catch (Exception ex)
             {
-                return ApiResponse<object>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<object>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
-        public async Task<ApiResponse<SignupResponse>> SendLoginOtpAsync(LoginOtpRequest request)
+        public async Task<ApiResponse<SignupResponse>> SendLoginOtp(LoginOtpRequest request)
         {
             try
             {
-                // User exist karta hai ya nahi
-                var checkResult = await _authDAL.CheckUserAsync(request.MobileNo);
+                //  Check user
+                var checkResult = await _authDAL.CheckUser(request.MobileNo);
 
                 if (checkResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var statusCode = Convert.ToInt32(checkResult.Rows[0]["StatusCode"]);
+
+                //  User does NOT exist
+                if (statusCode == 1)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         "Mobile number not registered, please signup",
                         statusCode: 404
                     );
+                }
 
-                var isActive = Convert.ToBoolean(checkResult.Rows[0]["IsActive"]);
-                if (!isActive)
+                //  User blocked
+                if (statusCode == 2)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
-                        "Account is deactive",
+                        "Account is blocked",
                         statusCode: 403
                     );
+                }
 
-                var otp = GenerateOTP();
-                var expiry = DateTime.Now.AddSeconds(60);
+                //  Generate OTP
+                var otpResult = await _authDAL.GetOTP(request.MobileNo, "loginotp");
 
-                await _authDAL.SaveLoginOtpAsync(request.MobileNo, otp, expiry);
+                if (otpResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Failed to generate OTP",
+                        statusCode: 500
+                    );
+                }
 
+                var otp = otpResult.Rows[0]["OTP"]?.ToString();
+
+                //  OTP NULL check 
+                if (string.IsNullOrEmpty(otp))
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "OTP generation failed",
+                        statusCode: 500
+                    );
+                }
+
+                
                 var apiResponse = await CallOtpApi(request.MobileNo, otp, "loginotp");
 
                 if (!apiResponse.Success)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         apiResponse.Message,
                         statusCode: 502
                     );
+                }
 
+                
                 return ApiResponse<SignupResponse>.SuccessResponse(
-                    new SignupResponse { OTP = Convert.ToBase64String(Encoding.UTF8.GetBytes(apiResponse.Data?.OTP)) },
+                    new SignupResponse
+                    {
+                        OTP = Convert.ToBase64String(Encoding.UTF8.GetBytes(otp))
+                    },
                     message: "OTP sent successfully"
                 );
             }
             catch (Exception ex)
             {
-                return ApiResponse<SignupResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<SignupResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
 
-        public async Task<ApiResponse<TokenResponse>> LoginWithOtpAsync(LoginOtpRequest request)
+        public async Task<ApiResponse<TokenResponse>> LoginWithOtp(LoginOtpRequest request)
         {
             try
             {
-                var result = await _authDAL.ValidateLoginOtpAsync(request.MobileNo, request.OTP);
+                var result = await _authDAL.VerifyLoginOtp(
+                    request.MobileNo,
+                    request.OTP
+                );
 
                 if (result.Rows.Count == 0)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
                         "Invalid or expired OTP",
                         statusCode: 400
                     );
+                }
 
                 var row = result.Rows[0];
 
-                if (row["Result"].ToString() == "FAILED")
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+
+                if (statusCode == 0)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
                         "Invalid or expired OTP",
                         statusCode: 400
                     );
+                }
+
+                
+                if (!Guid.TryParse(row["UserId"]?.ToString(), out Guid userId))
+                {
+                    return ApiResponse<TokenResponse>.FailResponse(
+                        "Invalid user data",
+                        statusCode: 500
+                    );
+                }
 
                 var isActive = Convert.ToBoolean(row["IsActive"]);
+
                 if (!isActive)
+                {
                     return ApiResponse<TokenResponse>.FailResponse(
                         "Account is deactive",
                         statusCode: 403
                     );
+                }
 
                 var user = new UserEntity
                 {
-                    UserId = Convert.ToInt32(row["LoginId"]),
-                    MobileNo = row["MobileNo"].ToString(),
-                    AccessType = row["AccessType"].ToString(),
+                    UserId = userId,
+                    MobileNo = row["MobileNo"]?.ToString(),
+                    AccessType = row["AccessType"]?.ToString(),
                     IsActive = isActive
                 };
 
-                var refreshExpiry = DateTime.UtcNow.AddDays(int.Parse(_config["Jwt:RefreshTokenExpiryDays"]));
+                //  Token generate
+                var refreshExpiry = DateTime.UtcNow.AddDays(
+                    int.Parse(_config["Jwt:RefreshTokenExpiryDays"])
+                );
 
-                AuthenticationRequest req = new AuthenticationRequest
+                var authRequest = new AuthenticationRequest
                 {
                     UserName = user.MobileNo,
                     MobileNo = user.MobileNo,
@@ -253,9 +396,14 @@ namespace AuthServices_LFO.BL.Implemetation
                     LoginId = user.UserId.ToString()
                 };
 
-                AuthenticationResponse tokenData = _jwtTokenHandler.GenrateJwtToken(req);
+                var tokenData = _jwtTokenHandler.GenrateJwtToken(authRequest);
 
-                await _authDAL.SaveTokensAsync(user.UserId, tokenData.JwtToken, tokenData.RefreshToken, refreshExpiry);
+                // 🔹 Save token
+                await _authDAL.SaveTokens(
+                    user.UserId,
+                    tokenData.RefreshToken,
+                    refreshExpiry
+                );
 
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
@@ -269,99 +417,176 @@ namespace AuthServices_LFO.BL.Implemetation
             }
             catch (Exception ex)
             {
-                return ApiResponse<TokenResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<TokenResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
 
-        //------------------------SIGNUP-------------------------
 
-        public async Task<ApiResponse<SignupResponse>> SendSignupOtpAsync(SignupRequest request)
+
+        public async Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupRequest request)
         {
             try
             {
-                var checkResult = await _authDAL.CheckUserAsync(request.MobileNo);
+                
+                var checkResult = await _authDAL.CheckUser(request.MobileNo);
 
-                if (checkResult.Rows.Count > 0)
+                if (checkResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var statusCode = Convert.ToInt32(checkResult.Rows[0]["StatusCode"]);
+
+                if (statusCode == 0)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         "Mobile number already registered, please login",
                         statusCode: 400
                     );
+                }
+                if (statusCode == 2) 
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Your account is blocked. Please contact support.",
+                        statusCode: 403
+                    );
+                }
 
-                var otp = GenerateOTP();
-                var expiry = DateTime.Now.AddSeconds(60);
+
+
+
                 string otpType = "signup";
 
-                await _authDAL.SaveOTPAsync(request.MobileNo, otp, otpType, expiry);
+               
+                var otpResult = await _authDAL.GetOTP( request.MobileNo, otpType);
 
+                if (otpResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Failed to generate OTP",
+                        statusCode: 500
+                    );
+                }
+
+                var otp = otpResult.Rows[0]["OTP"]?.ToString();
+
+                //  Send OTP via API
                 var apiResponse = await CallOtpApi(request.MobileNo, otp, otpType);
 
                 if (!apiResponse.Success)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         apiResponse.Message,
                         statusCode: 502
                     );
+                }
 
                 return ApiResponse<SignupResponse>.SuccessResponse(
-                    new SignupResponse { OTP = Convert.ToBase64String(Encoding.UTF8.GetBytes(apiResponse.Data?.OTP)) },
+                    new SignupResponse
+                    {
+                        OTP = Convert.ToBase64String(Encoding.UTF8.GetBytes(otp))
+                    },
                     message: "OTP sent successfully"
                 );
             }
             catch (Exception ex)
             {
-                return ApiResponse<SignupResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<SignupResponse>.FailResponse(
+                    ex.Message.ToString(),
+                    statusCode: 500
+                );
             }
         }
 
 
-
-        public async Task <ApiResponse<SignupResponse>> SignupAsync(SignupRequest request)
+        public async Task<ApiResponse<SignupResponse>> UserRegister(SignupRequest request)
         {
             try
             {
                 var hashedPassword = Helper.HashPassword(request.Password);
 
-                var signupResult = await _authDAL.SignupAsync(request.MobileNo, hashedPassword, request.MobileNo);
+                var signupResult = await _authDAL.Signup(
+                    request.MobileNo,
+                    hashedPassword,
+                    request.MobileNo
+                );
 
-              
-                if (signupResult.Rows.Count > 0)
-                    return ApiResponse<SignupResponse>.SuccessResponse(
-                        null,
-                        message: signupResult.Rows[0]["result"].ToString()
-                    );
-                else
+                if (signupResult.Rows.Count == 0)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         "Something went wrong",
                         statusCode: 500
                     );
+                }
+
+                var row = signupResult.Rows[0];
+
+                //  StatusCode check 
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+
+                if (statusCode == 1)
+                {
+                    return ApiResponse<SignupResponse>.SuccessResponse(
+                        null,
+                        message: "User registered successfully"
+                    );
+                }
+
+                return ApiResponse<SignupResponse>.FailResponse(
+                    "User registration failed",
+                    statusCode: 400
+                );
             }
             catch (Exception ex)
             {
-                return ApiResponse<SignupResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<SignupResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
-        // ─── VERIFY OTP ───────────────────────────────────────
 
-        public async Task<ApiResponse<SignupResponse>> VerifyOTPAsync(OTPVerifyRequest request)
+      
+
+
+        public async Task<ApiResponse<SignupResponse>> VerifySignupOTP(OTPVerifyRequest request)
         {
             try
             {
-                var result = await _authDAL.VerifyOTPAsync(request.MobileNo, request.OTP, request.OTPType);
+                var result = await _authDAL.VerifyOTP(
+                    request.MobileNo,
+                    request.OTP,
+                    request.OTPType
+                );
 
                 if (result.Rows.Count == 0)
+                {
                     return ApiResponse<SignupResponse>.FailResponse(
                         "Invalid or expired OTP",
                         statusCode: 400
                     );
+                }
 
-                var dbResult = result.Rows[0]["Result"].ToString();
+                var row = result.Rows[0];
 
-                if (dbResult == "SUCCESS")
+                //  use StatusCode instead of Result
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+
+                if (statusCode == 1)
+                {
                     return ApiResponse<SignupResponse>.SuccessResponse(
                         null,
                         message: "OTP verified successfully, please login"
                     );
+                }
 
                 return ApiResponse<SignupResponse>.FailResponse(
                     "Invalid or expired OTP",
@@ -370,18 +595,150 @@ namespace AuthServices_LFO.BL.Implemetation
             }
             catch (Exception ex)
             {
-                return ApiResponse<SignupResponse>.FailResponse(ex.Message, statusCode: 500);
+                return ApiResponse<SignupResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
             }
         }
 
 
 
-        // ─── HELPER ───────────────────────────────────────────
-        private string GenerateOTP()
+        //----------------------RESET PASSWORD LOGIC-----------------------------
+
+        public async Task<ApiResponse<SignupResponse>> SendResetOtp(ResetPasswordReq request)
         {
-            var random = new Random();
-            return random.Next(1000, 9999).ToString();
+            try
+            {
+                // Check user
+                var checkResult = await _authDAL.CheckUser(request.MobileNo);
+
+                if (checkResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var statusCode = Convert.ToInt32(checkResult.Rows[0]["StatusCode"]);
+
+                // User does NOT exist
+                if (statusCode == 1)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Mobile number not registered",
+                        statusCode: 404
+                    );
+                }
+
+                // User blocked
+                if (statusCode == 2)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Account is blocked",
+                        statusCode: 403
+                    );
+                }
+
+                // Generate OTP (reset type)
+                var otpResult = await _authDAL.GetOTP(request.MobileNo, "reset");
+
+                if (otpResult.Rows.Count == 0)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "Failed to generate OTP",
+                        statusCode: 500
+                    );
+                }
+
+                var otp = otpResult.Rows[0]["OTP"]?.ToString();
+
+                // OTP NULL check
+                if (string.IsNullOrEmpty(otp))
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        "OTP generation failed",
+                        statusCode: 500
+                    );
+                }
+
+                // Send OTP
+                var apiResponse = await CallOtpApi(request.MobileNo, otp, "reset");
+
+                if (!apiResponse.Success)
+                {
+                    return ApiResponse<SignupResponse>.FailResponse(
+                        apiResponse.Message,
+                        statusCode: 502
+                    );
+                }
+
+                // Return success
+                return ApiResponse<SignupResponse>.SuccessResponse(
+                    new SignupResponse
+                    {
+                        OTP = Convert.ToBase64String(Encoding.UTF8.GetBytes(otp))
+                    },
+                    message: "Reset OTP sent successfully"
+                );
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<SignupResponse>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
+            }
         }
+
+        public async Task<ApiResponse<object>> ResetPassword(ResetPasswordReq request)
+        {
+            try
+            {
+                var result = await _authDAL.ResetPassword(
+                    request.MobileNo,
+                    request.OTP,
+                    Helper.HashPassword(request.NewPassword)
+                );
+
+                if (result.Rows.Count == 0)
+                {
+                    return ApiResponse<object>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var row = result.Rows[0];
+
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+                var message = row["Message"]?.ToString();
+
+                if (statusCode == 1)
+                {
+                    return ApiResponse<object>.SuccessResponse(
+                        null,
+                        message: "Password reset successful"
+                    );
+                }
+
+                return ApiResponse<object>.FailResponse(
+                    message ?? "Password reset failed",
+                    statusCode: 400
+                );
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<object>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
+            }
+        }
+
+
+
 
         //------------------------VENDOR OTP API CALL-----------------------------
 
@@ -410,7 +767,7 @@ namespace AuthServices_LFO.BL.Implemetation
             }
             catch (Exception ex)
             {
-                return ApiResponse<SignupResponse>.FailResponse("OTP API failed: " + ex.Message, statusCode: 502);
+                return ApiResponse<SignupResponse>.FailResponse("OTP API failed: " + ex.Message.ToString(), statusCode: 502);
             }
         }
 

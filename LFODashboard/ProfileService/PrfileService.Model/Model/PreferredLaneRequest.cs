@@ -7,6 +7,7 @@ namespace ProfileService_LFO.Model.Model
     public class PreferredLaneRequest
     {
         public long OperatorId { get; set; }
+        public Guid? UserId { get; set; }
 
         public string FromLocation { get; set; }
         public string ToLocation { get; set; }

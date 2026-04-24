@@ -8,14 +8,12 @@ namespace ProfileService_LFO.DAL.Interface
 {
     public interface IprofileDetailsDL
     {
-        Task<DataTable> GetProfileDetailsbyID(int userId);
-        Task<bool> UpdateFleetOperator(UpdateFleetOperatorRequest request);
-        Task<bool> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
+        Task<DataTable> GetProfileDetailsbyID(Guid userId);
+        Task<(bool IsSuccess, string Message)> UpdateFleetOperator(UpdateFleetOperatorRequest request);
+        Task<(bool IsSuccess, string Message)> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
         Task<bool> InsertTruckDetails(TruckDetailsRequest request);
-        Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request);
-
-        Task<bool> InsertPreferredLane(PreferredLaneRequest request);  
-        Task<DataTable> GetLanesAsync(long loginId);
+        Task<(bool IsSuccess, string Message)> InsertFleetOperatorDocument(UpdateDocumentRequest request);
+        Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request);        Task<DataTable> GetLanesAsync(long loginId);
         Task<bool> InsertFleetOperatorKYC(KYCRequest request);
 
         Task<DataTable> GetKYCAsync(long profileId);

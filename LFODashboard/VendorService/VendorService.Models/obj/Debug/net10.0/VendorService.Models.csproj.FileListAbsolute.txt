@@ -33,3 +33,7 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\refint\VendorService.Models.dll
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\ref\VendorService.Models.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorService.Models.csproj.AssemblyReference.cache
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\bin\Debug\net10.0\Common.Core.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\bin\Debug\net10.0\Common.Core.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.Models\obj\Debug\net10.0\VendorSe.7112A6DC.Up2Date

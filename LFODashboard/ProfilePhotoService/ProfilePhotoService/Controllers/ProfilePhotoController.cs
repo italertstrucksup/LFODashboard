@@ -39,14 +39,6 @@ namespace ProfilePhotoService.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("validate/{token}")]
-        public async Task<IActionResult> ValidateToken(string token)
-        {
-            var result = await _profilePhotoBL.ValidateTokenAsync(token);
-            if (result.Success) return Ok(result);
-            return StatusCode(result.StatusCode, result);
-        }
-
         [HttpGet("status/{loginId}")]
         public async Task<IActionResult> GetStatus(Guid loginId)
         {

@@ -126,3 +126,13 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\VendorService.genruntimeconfig.cache
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\obj\Debug\net10.0\ref\VendorService.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Newtonsoft.Json.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Common.Core.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\HttpClientLib.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\HttpClientLib.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService\bin\Debug\net10.0\Common.Core.pdb

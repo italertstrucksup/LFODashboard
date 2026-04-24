@@ -51,3 +51,7 @@ D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Deb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\refint\VendorService.BL.dll
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\VendorService.BL.pdb
 D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\obj\Debug\net10.0\ref\VendorService.BL.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\Common.Core.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\HttpClientLib.dll
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\Common.Core.pdb
+D:\GIT_Projects\LFODashboard\LFODashboard\VendorService\VendorService.BL\bin\Debug\net10.0\HttpClientLib.pdb

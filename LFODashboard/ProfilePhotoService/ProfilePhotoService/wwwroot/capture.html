@@ -260,27 +260,12 @@
         const photoType = params.get('PhotoType') || 'profile';
         badge.innerText = photoType.toUpperCase() + ' PHOTO';
 
-        // validate link  on load
-        async function validateAndStart() {
-            if (!token) {
-                showError();
-                return;
-            }
-
-            try {
-                const response = await fetch(`/api/ProfilePhoto/validate/${token}`);
-                const result = await response.json();
-
-                if (result.success) {
-                    loadingScreen.style.display = 'none';
-                    startCamera();
-                } else {
-                    showError();
-                }
-            } catch (err) {
-                console.error(err);
-                showError();
-            }
+        // Start Camera directly now that separate validation API is removed
+        if (!token) {
+            showError();
+        } else {
+            loadingScreen.style.display = 'none';
+            startCamera();
         }
 
         function showError() {
@@ -302,9 +287,7 @@
             }
         }
 
-        validateAndStart();
-
-        // capture Logic
+        // Capture Logic
         shutterBtn.onclick = () => {
             const ctx = canvas.getContext('2d');
             canvas.width = video.videoWidth;

@@ -3,12 +3,68 @@
   "WorkspaceRootPath": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|solutionrelative:mediaservice\\mediaservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3671D676-98B9-4CF0-4E5D-7ECE9E72AE11}|MediaService\\MediaService\\MediaService.csproj|solutionrelative:mediaservice\\mediaservice\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\authservices\\authservices_lfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B0FA406-FB48-6B74-14D4-6B9A2B0833C6}|AuthServices\\AuthServices_LFO\\AuthServices_LFO.csproj|solutionrelative:authservices\\authservices_lfo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.bl\\implementation\\mediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|solutionrelative:mediaservice\\mediaservice.bl\\implementation\\mediabusinesslayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\mediaservice\\mediaservice.bl\\mediaservice.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F5558AD5-9827-6E99-43A4-9442E0A629E5}|MediaService\\MediaService.BL\\MediaService.BL.csproj|solutionrelative:mediaservice\\mediaservice.bl\\mediaservice.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{102A49A0-E4EA-56D6-A74E-15C6229A15CA}|ProfileService\\ProfileService.BL\\ProfileService_LFO.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profileservice\\profileservice.bl\\implimentation\\profiledetails_bl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{102A49A0-E4EA-56D6-A74E-15C6229A15CA}|ProfileService\\ProfileService.BL\\ProfileService_LFO.BL.csproj|solutionrelative:profileservice\\profileservice.bl\\implimentation\\profiledetails_bl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profileservice\\profileservice\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|solutionrelative:profileservice\\profileservice\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice\\controllers\\profilephotocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|solutionrelative:profilephotoservice\\profilephotoservice\\controllers\\profilephotocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice.model\\models\\mediaupoadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|solutionrelative:profilephotoservice\\profilephotoservice.model\\models\\mediaupoadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice.model\\models\\photouploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|solutionrelative:profilephotoservice\\profilephotoservice.model\\models\\photouploadrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice.model\\models\\uploadlinkrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5420A789-FF15-533E-576C-59956CF47609}|ProfilePhotoService\\ProfilePhotoService.Model\\ProfilePhotoService.Model.csproj|solutionrelative:profilephotoservice\\profilephotoservice.model\\models\\uploadlinkrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77FCCBF8-DC2B-3ACE-DFC7-D4C40426F23C}|ProfilePhotoService\\ProfilePhotoService.BL\\ProfilePhotoService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice.bl\\implementation\\profilephotobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77FCCBF8-DC2B-3ACE-DFC7-D4C40426F23C}|ProfilePhotoService\\ProfilePhotoService.BL\\ProfilePhotoService.BL.csproj|solutionrelative:profilephotoservice\\profilephotoservice.bl\\implementation\\profilephotobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice\\wwwroot\\capture.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|solutionrelative:profilephotoservice\\profilephotoservice\\wwwroot\\capture.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77FCCBF8-DC2B-3ACE-DFC7-D4C40426F23C}|ProfilePhotoService\\ProfilePhotoService.BL\\ProfilePhotoService.BL.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice.bl\\interface\\iprofilephotobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77FCCBF8-DC2B-3ACE-DFC7-D4C40426F23C}|ProfilePhotoService\\ProfilePhotoService.BL\\ProfilePhotoService.BL.csproj|solutionrelative:profilephotoservice\\profilephotoservice.bl\\interface\\iprofilephotobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profileservice\\profileservice\\controllers\\imagefilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|solutionrelative:profileservice\\profileservice\\controllers\\imagefilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profilephotoservice\\profilephotoservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2930191-27FD-3175-DA4C-A6F49CF6009C}|ProfilePhotoService\\ProfilePhotoService\\ProfilePhotoService.csproj|solutionrelative:profilephotoservice\\profilephotoservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\profileservice\\profileservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E58D2655-CF75-157B-ADD4-21BC88CAD8B5}|ProfileService\\ProfileService\\ProfileService.csproj|solutionrelative:profileservice\\profileservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9EAD880-1C4B-FAEE-918F-9822562F9B9D}|ManageAccessService\\ManageAccessService\\ManageAccessService.csproj|d:\\git_projects\\lfodashboard\\lfodashboard\\manageaccessservice\\manageaccessservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9EAD880-1C4B-FAEE-918F-9822562F9B9D}|ManageAccessService\\ManageAccessService\\ManageAccessService.csproj|solutionrelative:manageaccessservice\\manageaccessservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,40 +79,210 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\appsettings.json",
-              "RelativeDocumentMoniker": "MediaService\\MediaService\\appsettings.json",
-              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\appsettings.json",
-              "RelativeToolTip": "MediaService\\MediaService\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-14T04:43:48.105Z",
+              "Title": "MediaController.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "RelativeToolTip": "MediaService\\MediaService\\Controllers\\MediaController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAgwCMAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:59:52.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MediaService.BL",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "RelativeToolTip": "MediaService\\MediaService.BL\\MediaService.BL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-24T04:59:03.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProfileDetails_BL.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService.BL\\Implimentation\\ProfileDetails_BL.cs",
+              "RelativeDocumentMoniker": "ProfileService\\ProfileService.BL\\Implimentation\\ProfileDetails_BL.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService.BL\\Implimentation\\ProfileDetails_BL.cs",
+              "RelativeToolTip": "ProfileService\\ProfileService.BL\\Implimentation\\ProfileDetails_BL.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAgwGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:43:46.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IProfilePhotoBL.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.BL\\Interface\\IProfilePhotoBL.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService.BL\\Interface\\IProfilePhotoBL.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.BL\\Interface\\IProfilePhotoBL.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService.BL\\Interface\\IProfilePhotoBL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:16:40.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProfilePhotoController.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\Controllers\\ProfilePhotoController.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService\\Controllers\\ProfilePhotoController.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\Controllers\\ProfilePhotoController.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService\\Controllers\\ProfilePhotoController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T11:03:04.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ImageFileController.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Controllers\\ImageFileController.cs",
+              "RelativeDocumentMoniker": "ProfileService\\ProfileService\\Controllers\\ImageFileController.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Controllers\\ImageFileController.cs",
+              "RelativeToolTip": "ProfileService\\ProfileService\\Controllers\\ImageFileController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:58:49.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
-              "RelativeDocumentMoniker": "AuthServices\\AuthServices_LFO\\Program.cs",
-              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\AuthServices\\AuthServices_LFO\\Program.cs",
-              "RelativeToolTip": "AuthServices\\AuthServices_LFO\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Title": "MediaBusinessLayer.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "RelativeDocumentMoniker": "MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "RelativeToolTip": "MediaService\\MediaService.BL\\Implementation\\MediaBusinessLayer.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T11:21:04.812Z",
+              "WhenOpened": "2026-04-23T10:16:23.313Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MediaUpoadRequest.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\MediaUpoadRequest.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\MediaUpoadRequest.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\MediaUpoadRequest.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\MediaUpoadRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:18:49.164Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PhotoUploadRequest.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\PhotoUploadRequest.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\PhotoUploadRequest.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\PhotoUploadRequest.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\PhotoUploadRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:18:57.202Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "ProfileService\\ProfileService\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "ProfileService\\ProfileService\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAgwAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:47:30.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UploadLinkRequest.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\UploadLinkRequest.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\UploadLinkRequest.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.Model\\Models\\UploadLinkRequest.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService.Model\\Models\\UploadLinkRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:19:00.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProfilePhotoBL.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.BL\\Implementation\\ProfilePhotoBL.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService.BL\\Implementation\\ProfilePhotoBL.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService.BL\\Implementation\\ProfilePhotoBL.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService.BL\\Implementation\\ProfilePhotoBL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T10:15:27.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "capture.html",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\wwwroot\\capture.html",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService\\wwwroot\\capture.html",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\wwwroot\\capture.html",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService\\wwwroot\\capture.html",
+              "ViewState": "AgIAACgBAAAAAAAAAAAUwE8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-24T04:17:12.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\Program.cs",
+              "RelativeDocumentMoniker": "ProfilePhotoService\\ProfilePhotoService\\Program.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfilePhotoService\\ProfilePhotoService\\Program.cs",
+              "RelativeToolTip": "ProfilePhotoService\\ProfilePhotoService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T11:04:02.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Program.cs",
+              "RelativeDocumentMoniker": "ProfileService\\ProfileService\\Program.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ProfileService\\ProfileService\\Program.cs",
+              "RelativeToolTip": "ProfileService\\ProfileService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T11:04:26.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ManageAccessService\\ManageAccessService\\Program.cs",
+              "RelativeDocumentMoniker": "ManageAccessService\\ManageAccessService\\Program.cs",
+              "ToolTip": "D:\\GIT_Projects\\LFODashboard\\LFODashboard\\ManageAccessService\\ManageAccessService\\Program.cs",
+              "RelativeToolTip": "ManageAccessService\\ManageAccessService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-23T11:08:38.666Z",
+              "EditorCaption": ""
             }
           ]
         }

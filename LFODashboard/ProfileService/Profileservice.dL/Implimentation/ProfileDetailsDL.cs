@@ -21,64 +21,125 @@ namespace ProfileService_LFO.DAL.Implimentation
 
         public async Task<DataTable> GetProfileDetailsbyID(Guid userId)
         {
+            // Pass only the parameters expected by the stored procedure.
             var parameters = new List<SqlParameter>
-    {
-        new SqlParameter("@Action", "GET_PROFILE_DETAILS"),
-        new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId }
-    };
+            {
+                new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId }
+            };
+
             var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_GetFleetOperatorByUserId", parameters);
 
             return result;
         }
 
-        public async Task<bool> UpdateFleetOperator(UpdateFleetOperatorRequest request)
+        public async Task<(bool IsSuccess, string Message)> UpdateFleetOperator(UpdateFleetOperatorRequest request)
         {
             var parameters = new List<SqlParameter>
     {
-        new SqlParameter("@Id", SqlDbType.UniqueIdentifier) { Value = request.UserId },
+        new SqlParameter("@UserId", SqlDbType.UniqueIdentifier)
+        {
+            Value = request.UserId
+        },
 
-        new SqlParameter("@CompanyName", SqlDbType.VarChar, 200) { Value = (object?)request.CompanyName ?? DBNull.Value },
-        new SqlParameter("@CompanyAddress", SqlDbType.VarChar, 500) { Value = (object?)request.CompanyAddress ?? DBNull.Value },
-        new SqlParameter("@Pincode", SqlDbType.VarChar, 10) { Value = (object?)request.Pincode ?? DBNull.Value },
-        new SqlParameter("@City", SqlDbType.VarChar, 100) { Value = (object?)request.City ?? DBNull.Value },
-        new SqlParameter("@SubCity", SqlDbType.VarChar, 100) { Value = (object?)request.SubCity ?? DBNull.Value },
-        new SqlParameter("@State", SqlDbType.VarChar, 100) { Value = (object?)request.State ?? DBNull.Value },
+        new SqlParameter("@CompanyName", SqlDbType.VarChar, 200)
+        {
+            Value = (object?)request.CompanyName ?? DBNull.Value
+        },
 
-        new SqlParameter("@UpdatedBy", SqlDbType.VarChar, 50) { Value = (object?)request.UpdatedBy ?? DBNull.Value }
+        new SqlParameter("@CompanyAddress", SqlDbType.VarChar, 500)
+        {
+            Value = (object?)request.CompanyAddress ?? DBNull.Value
+        },
+
+        new SqlParameter("@PinCode", SqlDbType.VarChar, 10)
+        {
+            Value = (object?)request.Pincode ?? DBNull.Value
+        },
+
+        new SqlParameter("@City", SqlDbType.VarChar, 100)
+        {
+            Value = (object?)request.City ?? DBNull.Value
+        },
+
+        new SqlParameter("@SubCity", SqlDbType.VarChar, 100)
+        {
+            Value = (object?)request.SubCity ?? DBNull.Value
+        },
+
+        new SqlParameter("@State", SqlDbType.VarChar, 100)
+        {
+            Value = (object?)request.State ?? DBNull.Value
+        }
     };
 
-            var result = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_UpdateFleetOperator", parameters);
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "USP_UpdateFleetOperator",
+                parameters
+            );
 
-            return result > 0;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return (
+                    Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                    dt.Rows[0]["Message"]?.ToString()
+                );
+            }
+
+            return (false, "No response from DB");
         }
 
-        public async Task<bool> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
+        public async Task<(bool IsSuccess, string Message)> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
         {
             var parameters = new List<SqlParameter>
     {
-        new SqlParameter("@Id", SqlDbType.BigInt) { Value = request.UserId },
-
-        new SqlParameter("@ownerName", SqlDbType.VarChar, 200) { Value = (object?)request.OwnerName ?? DBNull.Value },
-        new SqlParameter("@OpretarType", SqlDbType.VarChar, 500) { Value = (object?)request.OpretarType ?? DBNull.Value },
-
-        new SqlParameter("@UpdatedBy", SqlDbType.VarChar, 50) { Value = (object?)request.UpdatedBy ?? DBNull.Value }
+        new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
+        new SqlParameter("@OwnerName", SqlDbType.VarChar, 255) { Value = (object?)request.OwnerName ?? DBNull.Value },
+        new SqlParameter("@OperatorType", SqlDbType.Int) { Value = (object?)request.OperatorType ?? DBNull.Value }
     };
 
             var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorbyType", parameters);
-            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+               return (
+               Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+               dt.Rows[0]["Message"]?.ToString()
+                );
             }
 
-            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_InsertFleetOperatorbyType", parameters);
-            return rows > 0;
+            return (false, "No response from DB");
         }
 
-        public async Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request)
+        #region Insert
+        public async Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request)
+        {
+            var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
+            new SqlParameter("@FromLocation", SqlDbType.VarChar, 100) { Value = request.FromLocation },
+            new SqlParameter("@ToLocation", SqlDbType.VarChar, 100) { Value = request.ToLocation },
+
+        };
+
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertPreferredLane", parameters);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return (
+                Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                dt.Rows[0]["Message"]?.ToString()
+                 );
+            }
+
+            return (false, "No response from DB");
+        }
+        #endregion
+
+        public async Task<(bool IsSuccess, string Message)> InsertFleetOperatorDocument(UpdateDocumentRequest request)
         {
             var parameters = new List<SqlParameter>
     {
-        new SqlParameter("@OperatorId", SqlDbType.BigInt) { Value = request.OperatorId },
+            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
 
         new SqlParameter("@COI_File", SqlDbType.VarChar, 500) { Value = (object?)request.DocumentType ?? DBNull.Value },
         new SqlParameter("@PAN_File", SqlDbType.VarChar, 500) { Value = (object?)request.DocumentUrl ?? DBNull.Value },
@@ -86,13 +147,15 @@ namespace ProfileService_LFO.DAL.Implimentation
     };
 
             var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorDocument", parameters);
-            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            if (dt != null && dt.Rows.Count > 0)
             {
-                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+                return (
+                Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                dt.Rows[0]["Message"]?.ToString()
+                 );
             }
 
-            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "USP_InsertFleetOperatorDocument", parameters);
-            return rows > 0;
+            return (false, "No response from DB");
         }
 
         #region Insert
@@ -135,27 +198,7 @@ namespace ProfileService_LFO.DAL.Implimentation
         }
         #endregion
 
-        #region Insert
-        public async Task<bool> InsertPreferredLane(PreferredLaneRequest request)
-        {
-            var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@LoginId", SqlDbType.BigInt) { Value = request.OperatorId },
-            new SqlParameter("@FromLocation", SqlDbType.VarChar, 100) { Value = request.FromLocation },
-            new SqlParameter("@ToLocation", SqlDbType.VarChar, 100) { Value = request.ToLocation },
-          
-        };
-
-            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_InsertPreferredLane", parameters);
-            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
-            {
-                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
-            }
-
-            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_InsertPreferredLane", parameters);
-            return rows > 0;
-        }
-        #endregion
+       
         #region Get
         public async Task<DataTable> GetLanesAsync(long loginId)
         {

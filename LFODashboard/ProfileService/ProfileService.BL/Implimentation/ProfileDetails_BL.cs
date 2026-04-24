@@ -40,63 +40,66 @@ public class ProfileDetailsBL : IprofileDetails_BL
     #region update
     public async Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request)
     {
-        var success = await _dl.UpdateFleetOperator(request);
+        if (request == null || request.UserId == Guid.Empty)
+            throw new ArgumentException("UserId is required for update", nameof(request.UserId));
 
-        if (!success)
-            throw new Exception("Failed to save profile");
+        var result = await _dl.UpdateFleetOperator(request);
 
-        var profile = await GetProfileDetailsByIdAsync(request.UserId);
+        if (!result.IsSuccess)
+            throw new Exception(result.Message);
 
-        if (profile == null)
-            throw new Exception("Profile not found after save");
-
-        profile.Message = "Profile saved successfully";
-
-        return profile;
+        return new ProfileResponse
+        {
+            IsSuccess = true,
+            Message = result.Message
+        };
     }
     #endregion
 
     #region update
     public async Task<ProfileResponse> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
     {
-        var success = await _dl.InsertFleetOperatorbyType(request);
+        if (request == null || request.UserId == Guid.Empty)
+            throw new ArgumentException("UserId is required");
 
-        if (!success)
-            throw new Exception("Failed to save profile");
+        var result = await _dl.InsertFleetOperatorbyType(request);
 
-        // Fetch updated data
-        var profile = await GetProfileDetailsByIdAsync(request.UserId);
-
-        if (profile == null)
-            throw new Exception("Profile not found after save");
-
-        profile.Message = "Profile saved successfully";
-
-        return profile;
+        return new ProfileResponse
+        {
+            IsSuccess = result.IsSuccess,
+            Message = result.Message,
+            UserId =  (Guid)request.UserId
+        };
     }
     #endregion
-    public async Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request)
-    {
-        var result = await _dl.InsertFleetOperatorDocument(request);
 
-        if (!result)
-            throw new Exception("Failed to save documents");
-
-        return true;
-    }
-
-    public async Task<bool> InsertPreferredLane(PreferredLaneRequest request)
+    public async Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request)
     {
         if (request == null)
             throw new ArgumentNullException(nameof(request));
 
         var result = await _dl.InsertPreferredLane(request);
 
-        if (!result)
-            throw new Exception("Failed to add lane");
-
-        return true;
+        return new ProfileResponse
+        {
+            IsSuccess = result.IsSuccess,
+            Message = result.Message,
+            UserId = (Guid)request.UserId
+        };
     }
+    public async Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request)
+    {
+        var result = await _dl.InsertFleetOperatorDocument(request);
+
+        return new ProfileResponse
+        {
+            IsSuccess = result.IsSuccess,
+            Message = result.Message,
+            UserId = (Guid)request.UserId
+        };
+    }
+
+   
 
     public async Task<DataTable> GetLanesAsync(long loginId)
     {

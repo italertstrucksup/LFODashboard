@@ -16,5 +16,6 @@ namespace ProfileService_LFO.Model.Model
         public string State { get; set; }
         public string IsKYCDone { get; set; }
         public string Message { get; set; }
+        public bool IsSuccess { get; set; }
     }
 }

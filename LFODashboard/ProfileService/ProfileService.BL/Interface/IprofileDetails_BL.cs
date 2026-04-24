@@ -12,8 +12,8 @@ namespace ProfileService_LFO.BL.Interface
         Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request);
         Task<ProfileResponse> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
         Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId);
-        Task<bool> InsertFleetOperatorDocument(UpdateDocumentRequest request);
-        Task<bool> InsertPreferredLane(PreferredLaneRequest request);
+        Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request);
+        Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request);
         Task<DataTable> GetLanesAsync(long loginId);
         Task<bool> InsertTruckDetails(TruckDetailsRequest request);
         //Task<bool> AddTruckAsync(TruckDetailsRequest request);

@@ -1,4 +1,5 @@
-﻿using ProfileService_LFO.DAL.Interface;
+﻿using Microsoft.AspNetCore.Http;
+using ProfileService_LFO.DAL.Interface;
 using ProfileService_LFO.Model.Model;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,11 @@ namespace ProfileService_LFO.BL.Interface
         Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId);
         Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request);
         Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request);
-        Task<DataTable> GetLanesAsync(long loginId);
-        Task<bool> InsertTruckDetails(TruckDetailsRequest request);
-        //Task<bool> AddTruckAsync(TruckDetailsRequest request);
-        //Task<DataTable> GetTrucksAsync(long profileId);
-        Task<bool> InsertFleetOperatorKYC(KYCRequest request);
-        Task<DataTable> GetKYCAsync(long profileId);
-        Task<bool> UpsertKYCDocumentsAsync(KYCDocumentRequest request);
+        Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request);
+        
+        Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request);
+
+
 
 
 

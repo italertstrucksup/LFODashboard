@@ -139,14 +139,60 @@ namespace ProfileService_LFO.DAL.Implimentation
         {
             var parameters = new List<SqlParameter>
     {
-            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
+        new SqlParameter("@UserId", SqlDbType.UniqueIdentifier)
+        {
+            Value = request.UserId
+        },
 
-        new SqlParameter("@COI_File", SqlDbType.VarChar, 500) { Value = (object?)request.DocumentType ?? DBNull.Value },
-        new SqlParameter("@PAN_File", SqlDbType.VarChar, 500) { Value = (object?)request.DocumentUrl ?? DBNull.Value },
-        
+        new SqlParameter("@DocumentType", SqlDbType.VarChar, 50)
+        {
+            Value = request.DocumentType
+        },
+
+        new SqlParameter("@DocumentUrl", SqlDbType.VarChar, 500)
+        {
+            Value = request.DocumentUrl
+        }
     };
 
-            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorDocument", parameters);
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "USP_InsertFleetOperatorDocument",
+                parameters
+            );
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return (
+                    Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                    dt.Rows[0]["Message"]?.ToString()
+                );
+            }
+
+            return (false, "No response from DB");
+        }
+
+        #region Insert
+        public async Task<(bool IsSuccess, string Message)> InsertTruckDetails(TruckDetailsRequest request)
+        {
+            var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
+            new SqlParameter("@VehicleNo", SqlDbType.VarChar, 20) { Value = request.VehicleNo },
+            new SqlParameter("@OwnershipType", SqlDbType.VarChar, 20) { Value = (object?)request.OwnershipType ?? DBNull.Value },
+            new SqlParameter("@BodyTypeId", SqlDbType.Int) { Value = request.BodyTypeId },
+            new SqlParameter("@TyreId", SqlDbType.Int) { Value = request.TyreId },
+            new SqlParameter("@CapacityId", SqlDbType.Int) { Value = request.CapacityId },
+            new SqlParameter("@SizeId", SqlDbType.Int) { Value = request.SizeId }
+        };
+
+            
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "USP_MasterVehicleDetails",
+                parameters
+            );
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 return (
@@ -157,134 +203,40 @@ namespace ProfileService_LFO.DAL.Implimentation
 
             return (false, "No response from DB");
         }
-
-        #region Insert
-        public async Task<bool> InsertTruckDetails(TruckDetailsRequest request)
-        {
-            var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@UserId", SqlDbType.BigInt) { Value = request.UserId },
-            new SqlParameter("@VehicleNo", SqlDbType.VarChar, 20) { Value = request.VehicleNo },
-            new SqlParameter("@OwnershipType", SqlDbType.VarChar, 20) { Value = (object?)request.OwnershipType ?? DBNull.Value },
-            new SqlParameter("@BodyTypeId", SqlDbType.Int) { Value = request.BodyTypeId },
-            new SqlParameter("@TyreId", SqlDbType.Int) { Value = request.TyreId },
-            new SqlParameter("@CapacityId", SqlDbType.Int) { Value = request.CapacityId },
-            new SqlParameter("@SizeId", SqlDbType.Int) { Value = request.SizeId }
-        };
-
-            var result = await _dataAccess.ExecuteNonQueryAsync(
-                _connStr,
-                "USP_MasterVehicleDetails",
-                parameters
-            );
-
-            return result > 0;
-        }
-        #endregion
-
-        #region Get
-        public async Task<DataTable> GetTrucksByProfileId(long profileId)
-        {
-            var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@ProfileId", SqlDbType.BigInt) { Value = profileId }
-        };
-
-            return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr,
-                "SP_GetTrucksByProfileId",
-                parameters
-            );
-        }
         #endregion
 
        
-        #region Get
-        public async Task<DataTable> GetLanesAsync(long loginId)
-        {
-            var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@LoginId", SqlDbType.BigInt) { Value = loginId }
-        };
 
-            return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr,
-                "SP_GetPreferredLanes",
-                parameters
-            );
-        }
-        #endregion
+       
+       
 
         #region Insert
-        public async Task<bool> InsertFleetOperatorKYC(KYCRequest request)
+        public async Task<(bool IsSuccess, string Message)> InsertFleetOperatorKYC(KYCRequest request)
         {
             var parameters = new List<SqlParameter>
         {
-            new SqlParameter("@OperatorId", SqlDbType.BigInt) { Value = request.ProfileId },
+            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = request.UserId },
             new SqlParameter("@KYCType", SqlDbType.VarChar, 50) { Value = request.KYCType },
             new SqlParameter("@KYCNumber", SqlDbType.VarChar, 50) { Value = request.KYCNumber },
             new SqlParameter("@KYCDocFront", SqlDbType.VarChar, 50) { Value = request.KYCDocFront },
             new SqlParameter("@KYCDocBack", SqlDbType.VarChar, 50) { Value = request.KYCDocBack }
         };
 
-            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_UpsertKYC", parameters);
-            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "USP_InsertFleetOperatorKYC", parameters);
+            if (dt != null && dt.Rows.Count > 0)
             {
-                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
+                return (
+                Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                dt.Rows[0]["Message"]?.ToString()
+                 );
             }
 
-            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_UpsertKYC", parameters);
-            return rows > 0;
+            return (false, "No response from DB");
         }
         #endregion
 
-        #region Get
-        public async Task<DataTable> GetKYCAsync(long profileId)
-        {
-            var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@ProfileId", SqlDbType.BigInt) { Value = profileId }
-        };
-
-            return await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr,
-                "SP_GetKYCByProfileId",
-                parameters
-            );
-        }
-        #endregion
-
-        #region
-        public async Task<bool> UpsertKYCDocumentsAsync(KYCDocumentRequest request)
-        {
-            var parameters = new List<SqlParameter>
-    {
-        new SqlParameter("@KYCId", SqlDbType.BigInt) { Value = request.KYCId },
-
-        new SqlParameter("@ProfilePhoto", SqlDbType.VarChar, 500) { Value = (object?)request.ProfilePhoto ?? DBNull.Value },
-
-        new SqlParameter("@AadhaarNumber", SqlDbType.VarChar, 20) { Value = (object?)request.AadhaarNumber ?? DBNull.Value },
-        new SqlParameter("@AadhaarFront", SqlDbType.VarChar, 500) { Value = (object?)request.AadhaarFront ?? DBNull.Value },
-        new SqlParameter("@AadhaarBack", SqlDbType.VarChar, 500) { Value = (object?)request.AadhaarBack ?? DBNull.Value },
-
-        new SqlParameter("@PANNumber", SqlDbType.VarChar, 20) { Value = (object?)request.PANNumber ?? DBNull.Value },
-        new SqlParameter("@PANFile", SqlDbType.VarChar, 500) { Value = (object?)request.PANFile ?? DBNull.Value },
-
-        new SqlParameter("@SelfieKey", SqlDbType.VarChar, 500) { Value = (object?)request.SelfieKey ?? DBNull.Value },
-        new SqlParameter("@IsSelfieUploaded", SqlDbType.Bit) { Value = request.IsSelfieUploaded }
-    };
-
-            var dt = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "SP_UpsertKYCDocuments", parameters);
-            if (dt != null && dt.Rows.Count > 0 && dt.Columns.Contains("IsSuccess"))
-            {
-                return Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1;
-            }
-
-            var rows = await _dataAccess.ExecuteNonQueryAsync(_connStr, "SP_UpsertKYCDocuments", parameters);
-            return rows > 0;
-        }
-
-#endregion
+       
+        
 
     }
 }

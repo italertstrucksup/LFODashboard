@@ -60,15 +60,17 @@ namespace ProfileService_LFO.API.Controllers
         }
         #endregion
 
-        #region Get Lanes
-        [HttpGet("lanes/{loginId}")]
-        public async Task<IActionResult> GetLanes(long loginId)
-        {
-            var result = await _profileBL.GetLanesAsync(loginId);
 
-            return Ok(ApiResponse<object>.SuccessResponse(result, "Lane fetched successfully", 200));
+        [HttpPost("upload")]
+        public async Task<IActionResult> InsertFleetOperatorDocument(
+            UpdateDocumentRequest request
+           )
+        {
+            var result = await _profileBL.InsertFleetOperatorDocument(request);
+
+            return Ok(ApiResponse<object>.SuccessResponse(result, "Documents uploaded successfully", 200));
         }
-        #endregion
+     
 
         #region Add Truck
         [HttpPost("trucks")]
@@ -101,19 +103,6 @@ namespace ProfileService_LFO.API.Controllers
                );        
         }
 
-        
-
-        [HttpPost("upload")]
-        public async Task<IActionResult> InsertFleetOperatorDocument( UpdateDocumentRequest request)
-        {
-            
-
-            var result = await _profileBL.InsertFleetOperatorDocument(request);
-            return Ok(
-               ApiResponse<object>.SuccessResponse(result, "Documents uploaded successfully", 200)
-           );
-
-        }
 
         
 

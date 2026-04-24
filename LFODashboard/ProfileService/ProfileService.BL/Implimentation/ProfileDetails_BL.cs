@@ -1,13 +1,18 @@
-﻿using ProfileService_LFO.BL.Interface;
+﻿using HttpClientLib;
+using Microsoft.AspNetCore.Http;
+using ProfileService_LFO.BL.Interface;
 using ProfileService_LFO.DAL.Implimentation;
 using ProfileService_LFO.DAL.Interface;
 using ProfileService_LFO.Model.Model;
+using System.ComponentModel.Design;
 using System.Data;
+using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class ProfileDetailsBL : IprofileDetails_BL
 {
     private readonly IprofileDetailsDL _dl;
+
 
     public ProfileDetailsBL(IprofileDetailsDL dl)
     {
@@ -87,8 +92,11 @@ public class ProfileDetailsBL : IprofileDetails_BL
             UserId = (Guid)request.UserId
         };
     }
+
     public async Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request)
     {
+       
+
         var result = await _dl.InsertFleetOperatorDocument(request);
 
         return new ProfileResponse
@@ -99,53 +107,92 @@ public class ProfileDetailsBL : IprofileDetails_BL
         };
     }
 
-   
-
-    public async Task<DataTable> GetLanesAsync(long loginId)
+    public async Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request)
     {
-        return await _dl.GetLanesAsync(loginId);
-    }
-    public async Task<bool> InsertTruckDetails(TruckDetailsRequest request)
-    {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
+       
         var result = await _dl.InsertTruckDetails(request);
 
-        if (!result)
-            throw new Exception("Failed to add truck");
-
-        return true;
+        return new ProfileResponse
+        {
+            IsSuccess = result.IsSuccess,
+            Message = result.Message,
+            UserId = (Guid)request.UserId
+        };
     }
 
-    //public async Task<DataTable> GetTrucksAsync(long profileId)
-    //{
-    //    return await _dl.GetTrucksByProfileId(profileId);
-    //}
-
-    public async Task<bool> InsertFleetOperatorKYC(KYCRequest request)
+    public async Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request)
     {
         var result = await _dl.InsertFleetOperatorKYC(request);
 
-        if (!result)
-            throw new Exception("Failed to save KYC");
-
-        return true;
+        return new ProfileResponse
+        {
+            IsSuccess = result.IsSuccess,
+            Message = result.Message,
+            UserId = (Guid)request.UserId
+        };
     }
+    //public async Task<ProfileResponse> InsertFleetOperatorDocument(
+    //UpdateDocumentRequest request,
+    //IFormFile file)
+    //{
+    //    if (file == null)
+    //        throw new Exception("File is required");
 
-    public async Task<DataTable> GetKYCAsync(long profileId)
-    {
-        return await _dl.GetKYCAsync(profileId);
-    }
+    //    // 🔹 Convert file → Base64
+    //    using var ms = new MemoryStream();
+    //    await file.CopyToAsync(ms);
+    //    var base64 = Convert.ToBase64String(ms.ToArray());
 
-    public async Task<bool> UpsertKYCDocumentsAsync(KYCDocumentRequest request)
-    {
-        var result = await _dl.UpsertKYCDocumentsAsync(request);
+    //    // 🔹 Prepare Media API request
+    //    var mediaRequest = new
+    //    {
+    //        Data = new
+    //        {
+    //            File = base64,
+    //            FolderName = "KYC"
+    //        }
+    //    };
 
-        if (!result)
-            throw new Exception("Failed to save KYC documents");
+    //    // 🔹 Call Media API
+    //    var response = await _httpService.PostAsync<object, ApiResponse<object>>(
+    //        "https://localhost:7235/api/Media/upload-base64", // 🔥 FIX PORT
+    //        mediaRequest
+    //    );
 
-        return true;
-    }
+    //    if (response == null || !response.Success)
+    //        throw new Exception(response?.Message ?? "Upload failed");
+
+    //    // 🔹 Extract documentKey
+    //    var json = JsonSerializer.Serialize(response.Data);
+    //    var doc = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+
+    //    if (doc == null || !doc.ContainsKey("documentKey"))
+    //        throw new Exception("Invalid response from Media API");
+
+    //    string documentKey = doc["documentKey"];
+
+    //    // 🔹 Save in DB
+    //    request.DocumentUrl = documentKey;
+
+    //    var result = await _dl.InsertFleetOperatorDocument(request);
+
+    //    if (!result.IsSuccess)
+    //        throw new Exception(result.Message);
+
+    //    return new ProfileResponse
+    //    {
+    //        IsSuccess = true,
+    //        Message = result.Message
+    //    };
+    //}
+
+
+
+
+
+
+
+
 
 
 }

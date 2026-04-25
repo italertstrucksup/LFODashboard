@@ -33,7 +33,7 @@ namespace MediaServiceAPI.Controllers
 
             try
             {
-                // Convert Base64 back to a file/stream for the business layer
+                 
                 byte[] bytes = Convert.FromBase64String(request.Data.File);
                 using (var stream = new MemoryStream(bytes))
                 {

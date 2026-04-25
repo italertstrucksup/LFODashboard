@@ -22,6 +22,8 @@ namespace ProfileService_LFO.BL.Interface
         Task<DataTable> GetKYCAsync(long profileId);
         Task<bool> UpsertKYCDocumentsAsync(KYCDocumentRequest request);
 
+        Task<CompleteKYCResponse> GetCompleteKYCDataAsync(int userId);
+
 
 
     }

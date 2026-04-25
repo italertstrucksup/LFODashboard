@@ -148,4 +148,45 @@ public class ProfileDetailsBL : IprofileDetails_BL
     }
 
 
+    public async Task<CompleteKYCResponse> GetCompleteKYCDataAsync(int userId)
+    {
+        var response = new CompleteKYCResponse();
+
+        // Step 1 & 2: Basic & Company Details
+        var dtProfile = await _dl.GetProfileDetailsbyID(userId);
+        if (dtProfile != null && dtProfile.Rows.Count > 0)
+        {
+            var row = dtProfile.Rows[0];
+            response.Step1 = new Step1BasicDetails
+            {
+                ProfileName = row["ProfileName"]?.ToString(),
+                MobileNo = row["MobileNo"]?.ToString(),
+                OperatorType = row["OpretarType"]?.ToString(),
+                ProfilePhoto = row["ProfilePhoto"]?.ToString()
+            };
+
+            response.Step2 = new Step2CompanyDetails
+            {
+                CompanyName = row["CompanyName"]?.ToString(),
+                CompanyAddress = row["CompanyAddress"]?.ToString(),
+                Pincode = row["Pincode"]?.ToString(),
+                City = row["City"]?.ToString(),
+                SubCity = row["SubCity"]?.ToString(),
+                State = row["State"]?.ToString()
+            };
+        }
+
+        // Step 3: Truck Details
+        response.Step3_TruckDetails = await _dl.GetTrucksByProfileId(userId);
+
+        // Step 4: Preferred Lanes
+        response.Step4_PreferredLanes = await _dl.GetLanesAsync(userId);
+
+        // Step 5: KYC Details
+        response.Step5_KYCDetails = await _dl.GetKYCAsync(userId);
+
+        return response;
+    }
+
+
 }

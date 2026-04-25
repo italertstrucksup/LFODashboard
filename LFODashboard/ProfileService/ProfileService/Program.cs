@@ -1,8 +1,18 @@
+using DataAccessInterface;
+using HttpClientLib;
+using ProfileService_LFO.BL.Interface;
+using ProfileService_LFO.DAL.Implimentation;
+using ProfileService_LFO.DAL.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IDataAccess, SqlDataAccess>();
+builder.Services.AddScoped<IprofileDetails_BL, ProfileDetailsBL>();
+builder.Services.AddScoped<IprofileDetailsDL, ProfileDetailsDL>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddApiVersioning(options =>

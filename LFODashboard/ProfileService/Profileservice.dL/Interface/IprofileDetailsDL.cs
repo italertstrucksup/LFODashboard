@@ -11,12 +11,9 @@ namespace ProfileService_LFO.DAL.Interface
         Task<DataTable> GetProfileDetailsbyID(Guid userId);
         Task<(bool IsSuccess, string Message)> UpdateFleetOperator(UpdateFleetOperatorRequest request);
         Task<(bool IsSuccess, string Message)> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
-        Task<bool> InsertTruckDetails(TruckDetailsRequest request);
+        Task<(bool IsSuccess, string Message)> InsertTruckDetails(TruckDetailsRequest request);
         Task<(bool IsSuccess, string Message)> InsertFleetOperatorDocument(UpdateDocumentRequest request);
-        Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request);        Task<DataTable> GetLanesAsync(long loginId);
-        Task<bool> InsertFleetOperatorKYC(KYCRequest request);
-
-        Task<DataTable> GetKYCAsync(long profileId);
-        Task<bool> UpsertKYCDocumentsAsync(KYCDocumentRequest request);
+        Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request);
+        Task<(bool IsSuccess, string Message)> InsertFleetOperatorKYC(KYCRequest request);
     }
 }

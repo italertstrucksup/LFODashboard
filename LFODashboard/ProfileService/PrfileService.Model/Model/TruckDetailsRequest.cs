@@ -6,7 +6,7 @@ namespace ProfileService_LFO.Model.Model
 {
     public class TruckDetailsRequest
     {
-        public long UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         public string VehicleNo { get; set; }
         public string OwnershipType { get; set; }

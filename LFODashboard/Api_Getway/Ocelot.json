@@ -3,7 +3,7 @@
     //Authentication Web API Port 700
     {
       "DownstreamPathTemplate": "/api/v1/Auth/login",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -15,7 +15,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/send-reset-otp",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -27,7 +27,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/reset-password",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -39,7 +39,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/send-login-otp",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -51,7 +51,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/login-with-otp",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -63,7 +63,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/refresh-token",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -75,7 +75,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/send_signup_otp",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -87,7 +87,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/verifyOtp",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -99,7 +99,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/signup_user",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -111,7 +111,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/Auth/logout",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -162,7 +162,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/ProfilePhoto/status/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -176,7 +176,7 @@
     //Manage Access Service APIs 703
     {
       "DownstreamPathTemplate": "/api/Access/add_subuser",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -188,7 +188,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/Access/edit_subuser",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -200,7 +200,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/Access/get_subuser",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -212,7 +212,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/Access/get_vehicle",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -227,7 +227,7 @@
 
     {
       "DownstreamPathTemplate": "/api/Media/upload",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -240,7 +240,7 @@
 
     {
       "DownstreamPathTemplate": "/api/Media/upload-base64",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -253,7 +253,7 @@
 
     {
       "DownstreamPathTemplate": "/api/Media/get/{img}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -262,10 +262,177 @@
       ],
       "UpstreamHttpMethod": [ "GET" ],
       "UpstreamPathTemplate": "/get/{img}"
+    },
+
+    //Vendor Service APIs 701
+
+    {
+      "DownstreamPathTemplate": "/api/Aadhaar/send_otp_aadhaar",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/send_otp_aadhaar"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Aadhaar/verify_aadhaar",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/verify_aadhaar"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/DL/verify-dl",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/verify-dl"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Pan/verify-pan",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/verify-pan"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/RCDetail/rc-verify",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/rc-verify"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/VoterID/verify-voterid",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/verify-voterid"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Wocom/OTPService",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 701
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/OTPService"
+    },
+
+    //Profile Service APIs 705
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/trucks",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_trucks"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/lanes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_lanes"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/kyc",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_kyc_doc"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/upload",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_doc_upload"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/update",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/update_oprator_detail"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Profile/update/type",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 705
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/add_oprator_type"
     }
 
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:7235"
+    "BaseUrl": "http://localhost:7235"
   }
 }

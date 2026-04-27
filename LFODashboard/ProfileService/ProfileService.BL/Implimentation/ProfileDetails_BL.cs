@@ -1,198 +1,180 @@
-﻿using HttpClientLib;
-using Microsoft.AspNetCore.Http;
-using ProfileService_LFO.BL.Interface;
-using ProfileService_LFO.DAL.Implimentation;
+﻿using ProfileService_LFO.BL.Interface;
 using ProfileService_LFO.DAL.Interface;
 using ProfileService_LFO.Model.Model;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Text.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Common.Core;
 
 public class ProfileDetailsBL : IprofileDetails_BL
 {
     private readonly IprofileDetailsDL _dl;
-
 
     public ProfileDetailsBL(IprofileDetailsDL dl)
     {
         _dl = dl;
     }
 
-    #region Get By Id
-    public async Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId)
+    #region Update Fleet Operator
+    public async Task<ApiResponse<ProfileResponse>> UpdateFleetOperator(UpdateFleetOperatorRequest request)
     {
-        var dt = await _dl.GetProfileDetailsbyID(userId);
-
-        if (dt == null || dt.Rows.Count == 0)
-            return null;
-
-        var row = dt.Rows[0];
-
-        return new ProfileResponse
+        try
         {
-            UserId = row["UserId"] == DBNull.Value ? Guid.Empty : (row["UserId"] is Guid g ? g : Guid.Parse(row["UserId"].ToString())),
-            ProfileName = row["ProfileName"]?.ToString(),
-            MobileNo = row["MobileNo"]?.ToString(),
-            CompanyName = row["CompanyName"]?.ToString(),
-            City = row["City"]?.ToString(),
-            State = row["State"]?.ToString(),
-            IsKYCDone = row["IsKYCDone"].ToString()
-        };
+            var message = await _dl.UpdateFleetOperator(request);
+
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to update fleet operator", 404);
+           
+
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Fleet operator updated successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
     }
     #endregion
 
-    #region update
-    public async Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request)
+
+    #region Insert Fleet Operator By Type
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
     {
-        if (request == null || request.UserId == Guid.Empty)
-            throw new ArgumentException("UserId is required for update", nameof(request.UserId));
-
-        var result = await _dl.UpdateFleetOperator(request);
-
-        if (!result.IsSuccess)
-            throw new Exception(result.Message);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = true,
-            Message = result.Message
-        };
+            var message = await _dl.InsertFleetOperatorbyType(request);
+
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to insert operator type", 404);
+            
+
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Operator type inserted successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
     }
     #endregion
 
-    #region update
-    public async Task<ProfileResponse> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
+
+    #region Insert Preferred Lane
+    public async Task<ApiResponse<ProfileResponse>> InsertPreferredLane(PreferredLaneRequest request)
     {
-        if (request == null || request.UserId == Guid.Empty)
-            throw new ArgumentException("UserId is required");
-
-        var result = await _dl.InsertFleetOperatorbyType(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId =  (Guid)request.UserId
-        };
+            var message = await _dl.InsertPreferredLane(request);
+
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to insert preferred lane", 404);
+           
+
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Preferred lane inserted successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
     }
     #endregion
 
-    public async Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request)
+
+    #region Insert Fleet Operator Document
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorDocument(UpdateDocumentRequest request)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        var result = await _dl.InsertPreferredLane(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertFleetOperatorDocument(request);
 
-    public async Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request)
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to insert document", 404);
+            else
+            {
+                // same structure
+            }
+
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Document inserted successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
+    }
+    #endregion
+
+
+    #region Insert Truck Details
+    public async Task<ApiResponse<ProfileResponse>> InsertTruckDetails(TruckDetailsRequest request)
     {
-       
-
-        var result = await _dl.InsertFleetOperatorDocument(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertTruckDetails(request);
 
-    public async Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request)
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to insert truck details", 404);
+            else
+            {
+                // same structure
+            }
+
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Truck details inserted successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
+    }
+    #endregion
+
+
+    #region Insert Fleet Operator KYC
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorKYC(KYCRequest request)
     {
-       
-        var result = await _dl.InsertTruckDetails(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertFleetOperatorKYC(request);
 
-    public async Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request)
-    {
-        var result = await _dl.InsertFleetOperatorKYC(request);
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to insert KYC", 404);
+           
 
-        return new ProfileResponse
+            var result = new ProfileResponse
+            {
+                UserId = request.UserId.ToString(),
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "KYC inserted successfully");
+        }
+        catch (Exception ex)
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message, 400);
+        }
     }
-    //public async Task<ProfileResponse> InsertFleetOperatorDocument(
-    //UpdateDocumentRequest request,
-    //IFormFile file)
-    //{
-    //    if (file == null)
-    //        throw new Exception("File is required");
-
-    //    // 🔹 Convert file → Base64
-    //    using var ms = new MemoryStream();
-    //    await file.CopyToAsync(ms);
-    //    var base64 = Convert.ToBase64String(ms.ToArray());
-
-    //    // 🔹 Prepare Media API request
-    //    var mediaRequest = new
-    //    {
-    //        Data = new
-    //        {
-    //            File = base64,
-    //            FolderName = "KYC"
-    //        }
-    //    };
-
-    //    // 🔹 Call Media API
-    //    var response = await _httpService.PostAsync<object, ApiResponse<object>>(
-    //        "https://localhost:7235/api/Media/upload-base64", // 🔥 FIX PORT
-    //        mediaRequest
-    //    );
-
-    //    if (response == null || !response.Success)
-    //        throw new Exception(response?.Message ?? "Upload failed");
-
-    //    // 🔹 Extract documentKey
-    //    var json = JsonSerializer.Serialize(response.Data);
-    //    var doc = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-
-    //    if (doc == null || !doc.ContainsKey("documentKey"))
-    //        throw new Exception("Invalid response from Media API");
-
-    //    string documentKey = doc["documentKey"];
-
-    //    // 🔹 Save in DB
-    //    request.DocumentUrl = documentKey;
-
-    //    var result = await _dl.InsertFleetOperatorDocument(request);
-
-    //    if (!result.IsSuccess)
-    //        throw new Exception(result.Message);
-
-    //    return new ProfileResponse
-    //    {
-    //        IsSuccess = true,
-    //        Message = result.Message
-    //    };
-    //}
-
-
-
-
-
-
-
-
-
-
+    #endregion
 }

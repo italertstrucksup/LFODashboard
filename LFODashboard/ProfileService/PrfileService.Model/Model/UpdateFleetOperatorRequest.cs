@@ -26,6 +26,7 @@ namespace ProfileService_LFO.Model.Model
         public string? OwnerName { get; set; }
 
         public string? OperatorType { get; set; }
+        public string? ProfileImage { get; set; }
 
         public string? City { get; set; }
 

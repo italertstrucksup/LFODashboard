@@ -14,7 +14,7 @@ namespace AuthServices_LFO.BL.Interface
         Task<ApiResponse<TokenResponse>> LoginWithOtp(LoginOtpRequest request);
 
 
-        Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupRequest request);
+        Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupOtpRequest request);
 
         Task<ApiResponse<SignupResponse>> UserRegister(SignupRequest request);
         Task<ApiResponse<SignupResponse>> VerifySignupOTP(OTPVerifyRequest request);

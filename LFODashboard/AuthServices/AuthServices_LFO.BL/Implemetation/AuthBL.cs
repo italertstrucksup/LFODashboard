@@ -105,6 +105,8 @@ namespace AuthServices_LFO.BL.Implemetation
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
                     {
+                        UserId = user.UserId,                
+                        AccessType = user.AccessType,
                         ReferenceToken = tokenData.JwtToken,
                         RefreshToken = tokenData.RefreshToken,
                         Validity = tokenData.ExpiresIn
@@ -427,7 +429,7 @@ namespace AuthServices_LFO.BL.Implemetation
 
 
 
-        public async Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupRequest request)
+        public async Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupOtpRequest request)
         {
             try
             {
@@ -441,6 +443,7 @@ namespace AuthServices_LFO.BL.Implemetation
                         statusCode: 500
                     );
                 }
+               
 
                 var statusCode = Convert.ToInt32(checkResult.Rows[0]["StatusCode"]);
 
@@ -458,8 +461,6 @@ namespace AuthServices_LFO.BL.Implemetation
                         statusCode: 403
                     );
                 }
-
-
 
 
                 string otpType = "signup";

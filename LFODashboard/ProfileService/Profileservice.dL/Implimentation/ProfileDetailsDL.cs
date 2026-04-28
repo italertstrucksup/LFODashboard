@@ -235,8 +235,28 @@ namespace ProfileService_LFO.DAL.Implimentation
         }
         #endregion
 
-       
-        
+
+
+
+
+        public async Task<DataSet> GetCompleteKYCDataAsync(Guid userId)
+        {
+            var ds = new DataSet();
+            using (var conn = new SqlConnection(_connStr))
+            {
+                using (var cmd = new SqlCommand("USP_GetCompleteKYCData", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId });
+
+                    using (var adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(ds);
+                    }
+                }
+            }
+            return ds;
+        }
 
     }
 }

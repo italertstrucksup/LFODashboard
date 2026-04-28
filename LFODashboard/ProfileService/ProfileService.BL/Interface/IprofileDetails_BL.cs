@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using Common.Core;
 
 namespace ProfileService_LFO.BL.Interface
 {
@@ -16,12 +17,12 @@ namespace ProfileService_LFO.BL.Interface
         Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request);
         Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request);
         Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request);
-        
+
         Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request);
 
 
 
-        Task<CompleteKYCResponse> GetCompleteKYCDataAsync(int userId);
+        Task<ApiResponse<CompleteKYCResponse>> GetCompleteKYCDataAsync(Guid userId);
 
 
 

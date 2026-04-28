@@ -1,8 +1,10 @@
-using System.Runtime;
+using Amazon.S3;
 using MediaService.BL;
 using MediaService.BL.IBussinessLayer;
 using MediaService.BL.Model;
 using MediaServiceAPI.BussinessLayer;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +20,29 @@ builder.Services.AddSwaggerGen(options =>
     options.CustomSchemaIds(x => x.FullName);
 });
 
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ReportApiVersions = true;
+});
+
 // Configure S3 Settings from appsettings.json
+var s3Settings = builder.Configuration.GetSection("AWS").Get<S3Settings>();
 builder.Services.Configure<S3Settings>(builder.Configuration.GetSection("AWS"));
 
+// Register AWS S3 Client as a Singleton
+if (s3Settings != null && !string.IsNullOrEmpty(s3Settings.AwsAccessKeyId) && !string.IsNullOrEmpty(s3Settings.AwsSecretKey))
+{
+    builder.Services.AddSingleton<IAmazonS3>(new AmazonS3Client(s3Settings.AwsAccessKeyId, s3Settings.AwsSecretKey, Amazon.RegionEndpoint.APSouth1));
+}
+else
+{
+    builder.Services.AddSingleton<IAmazonS3>(new AmazonS3Client(Amazon.RegionEndpoint.APSouth1));
+}
+
 // Dependency Injection registration
-builder.Services.AddScoped<IMediaBusinessLayer,MediaBusinessLayer>();
+builder.Services.AddScoped<IMediaBusinessLayer, MediaBusinessLayer>();
 
 var app = builder.Build();
 

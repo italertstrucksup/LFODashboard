@@ -16,18 +16,10 @@ namespace MediaServiceAPI.BussinessLayer
         private readonly S3Settings _s3Settings;
         private readonly IAmazonS3 _s3Client;
 
-        public MediaBusinessLayer(IOptions<S3Settings> s3Settings)
+        public MediaBusinessLayer(IOptions<S3Settings> s3Settings, IAmazonS3 s3Client)
         {
             _s3Settings = s3Settings.Value ?? throw new ArgumentNullException(nameof(s3Settings));
-
-            if (!string.IsNullOrEmpty(_s3Settings.AwsAccessKeyId) && !string.IsNullOrEmpty(_s3Settings.AwsSecretKey))
-            {
-                _s3Client = new AmazonS3Client(_s3Settings.AwsAccessKeyId, _s3Settings.AwsSecretKey, RegionEndpoint.APSouth1);
-            }
-            else
-            {
-                _s3Client = new AmazonS3Client(RegionEndpoint.APSouth1);
-            }
+            _s3Client = s3Client;
         }
 
         public async Task<ApiResponse<object>> UploadDocumentAsync(IFormFile file, string folderName)
@@ -36,25 +28,22 @@ namespace MediaServiceAPI.BussinessLayer
             {
                 ValidateFile(file);
                 ValidateFolder(folderName);
-                using var newMemoryStream = new MemoryStream();
-                await file.CopyToAsync(newMemoryStream);
 
-                var fileTransferUtility = new TransferUtility(_s3Client);
-
-                string preFixKey = GenerateUniquePrefix(5);
-                string uniqueFileName = $"{preFixKey}_{file.FileName}";
-                string s3Key = $"{uniqueFileName}";
-
-                var uploadRequest = new TransferUtilityUploadRequest
+                using (var stream = file.OpenReadStream())
                 {
-                    InputStream = newMemoryStream,
-                    Key = s3Key,
-                    BucketName = _s3Settings.AwsBucketName
-                };
+                    string s3Key = GenerateS3Key(file.FileName, folderName);
+                    await UploadToS3Async(stream, s3Key);
 
-                await fileTransferUtility.UploadAsync(uploadRequest);
+                    var request = new GetPreSignedUrlRequest
+                    {
+                        BucketName = _s3Settings.AwsBucketName,
+                        Key = s3Key,
+                        Expires = DateTime.UtcNow.AddMinutes(15)
+                    };
+                    string url = _s3Client.GetPreSignedURL(request);
 
-                return ApiResponse<object>.SuccessResponse(new { documentKey = s3Key }, "Document uploaded successfully");
+                    return ApiResponse<object>.SuccessResponse(new { documentKey = s3Key, url = url }, "Document uploaded successfully");
+                }
             }
             catch (ArgumentException ex)
             {
@@ -66,16 +55,56 @@ namespace MediaServiceAPI.BussinessLayer
             }
         }
 
-        private string GenerateUniquePrefix(int length)
+
+        public async Task<ApiResponse<object>> UploadBase64Async(string base64Data, string folderName, string fileName = "image.jpg")
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
-            var result = new StringBuilder(length);
+            try
+            {
+                if (string.IsNullOrEmpty(base64Data)) throw new ArgumentException("No data provided.");
+                ValidateFolder(folderName);
 
-            for (int i = 0; i < length; i++)
-                result.Append(chars[random.Next(chars.Length)]);
+                byte[] bytes = Convert.FromBase64String(base64Data);
+                using (var stream = new MemoryStream(bytes))
+                {
+                    string s3Key = GenerateS3Key(fileName, folderName);
+                    await UploadToS3Async(stream, s3Key);
 
-            return result.ToString() + DateTime.Now.ToString("ddMMyyyyHHmmssfff");
+                    var request = new GetPreSignedUrlRequest
+                    {
+                        BucketName = _s3Settings.AwsBucketName,
+                        Key = s3Key,
+                        Expires = DateTime.UtcNow.AddMinutes(15)
+                    };
+                    string url = _s3Client.GetPreSignedURL(request);
+
+                    return ApiResponse<object>.SuccessResponse(new { documentKey = s3Key, url = url }, "Image uploaded successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<object>.FailResponse($"Error uploading base64: {ex.Message}", 500);
+            }
+        }
+
+        private async Task UploadToS3Async(Stream stream, string key)
+        {
+            var uploadRequest = new TransferUtilityUploadRequest
+            {
+                InputStream = stream,
+                Key = key,
+                BucketName = _s3Settings.AwsBucketName,
+                AutoCloseStream = false // Handled by using blocks
+            };
+
+            var fileTransferUtility = new TransferUtility(_s3Client);
+            await fileTransferUtility.UploadAsync(uploadRequest);
+        }
+
+        private string GenerateS3Key(string originalFileName, string folderName)
+        {
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
+            string uniqueId = Guid.NewGuid().ToString("N").Substring(0, 6);
+            return $"{folderName}/{timestamp}_{uniqueId}_{originalFileName}";
         }
 
         private void ValidateFile(IFormFile file)
@@ -105,9 +134,8 @@ namespace MediaServiceAPI.BussinessLayer
                 };
 
                 using var response = await _s3Client.GetObjectAsync(request);
-                using var responseStream = response.ResponseStream;
                 using var reader = new MemoryStream();
-                await responseStream.CopyToAsync(reader);
+                await response.ResponseStream.CopyToAsync(reader);
 
                 return ApiResponse<object>.SuccessResponse(Convert.ToBase64String(reader.ToArray()), "Document retrieved successfully");
             }

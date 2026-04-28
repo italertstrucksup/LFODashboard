@@ -4,7 +4,8 @@ using ProfilePhotoService.Model.Models;
 
 namespace ProfilePhotoService.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class ProfilePhotoController : ControllerBase
     {
@@ -16,7 +17,7 @@ namespace ProfilePhotoService.Controllers
         }
 
         [HttpPost("send-upload-link")]
-        public async Task<IActionResult> SendUploadLink([FromBody] UploadLinkRequest request)
+        public async Task<IActionResult> SendUploadLink(UploadLinkRequest request)
         {
             var result = await _profilePhotoBL.SendUploadLinkAsync(request);
             if (result.Success) return Ok(result);
@@ -24,7 +25,7 @@ namespace ProfilePhotoService.Controllers
         }
 
         [HttpPost("resend-upload-link")]
-        public async Task<IActionResult> ResendUploadLink([FromBody] UploadLinkRequest request)
+        public async Task<IActionResult> ResendUploadLink(UploadLinkRequest request)
         {
             var result = await _profilePhotoBL.ResendUploadLinkAsync(request);
             if (result.Success) return Ok(result);
@@ -32,7 +33,7 @@ namespace ProfilePhotoService.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadPhoto([FromBody] PhotoUploadRequest request)
+        public async Task<IActionResult> UploadPhoto(PhotoUploadRequest request)
         {
             var result = await _profilePhotoBL.UploadPhotoAsync(request);
             if (result.Success) return Ok(result);

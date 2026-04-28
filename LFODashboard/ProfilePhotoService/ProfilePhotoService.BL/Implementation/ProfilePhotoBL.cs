@@ -77,14 +77,14 @@ namespace ProfilePhotoService.BL.Implemetation
             }
         }
 
-        public async Task<ApiResponse<bool>> UploadPhotoAsync(PhotoUploadRequest request)
+        public async Task<ApiResponse<object>> UploadPhotoAsync(PhotoUploadRequest request)
         {
             try
             {
                 var validationResult = await _profilePhotoDAL.ValidateUploadTokenAsync(request.Token);
                 if (validationResult.Rows.Count == 0 || validationResult.Rows[0]["Result"].ToString() != "SUCCESS")
                 {
-                    return ApiResponse<bool>.FailResponse("Invalid or used link.", 401);
+                    return ApiResponse<object>.FailResponse("Invalid or used link.", 401);
                 }
 
                 Guid userId = Guid.Parse(validationResult.Rows[0]["UserId"].ToString()!);
@@ -92,8 +92,8 @@ namespace ProfilePhotoService.BL.Implemetation
                 string photoType = validationResult.Columns.Contains("photo_type")
                                    ? validationResult.Rows[0]["photo_type"].ToString()!
                                    : "profile";
-            
-                string mediaServiceUrl = _config["AppConfig:MediaServiceUrl"] ?? "https://localhost:7126/api/Media";
+
+                string mediaServiceUrl = _config["AppConfig:MediaServiceUrl"] ?? "https://localhost:7126/api/v1/Media";
 
                 var apiUploadRequest = new ApiRequest<MediaUploadRequest>
                 {
@@ -110,9 +110,13 @@ namespace ProfilePhotoService.BL.Implemetation
                 if (uploadResponse != null && uploadResponse.Success)
                 {
                     string documentKey = "";
-                    if (uploadResponse.Data is System.Text.Json.JsonElement element && element.TryGetProperty("documentKey", out var prop))
+                    string url = "";
+                    if (uploadResponse.Data is System.Text.Json.JsonElement element)
                     {
-                        documentKey = prop.GetString() ?? "";
+                        if (element.TryGetProperty("documentKey", out var docProp))
+                            documentKey = docProp.GetString() ?? "";
+                        if (element.TryGetProperty("url", out var urlProp))
+                            url = urlProp.GetString() ?? "";
                     }
 
                     var updateResult = await _profilePhotoDAL.UpdateProfilePhotoAsync(userId, documentKey, photoType);
@@ -120,19 +124,19 @@ namespace ProfilePhotoService.BL.Implemetation
                     if (updateResult.Rows.Count > 0 && updateResult.Rows[0]["Result"].ToString() == "SUCCESS")
                     {
                         await _profilePhotoDAL.ExpireTokenAsync(request.Token);
-                        return ApiResponse<bool>.SuccessResponse(true, "Profile photo synced successfully.");
+                        return ApiResponse<object>.SuccessResponse(new { documentKey = documentKey, url = url }, "Profile photo synced successfully.");
                     }
 
                     string dbError = (updateResult.Rows.Count > 0) ? updateResult.Rows[0]["Message"]?.ToString() : "Database update failed (No response from SP)";
-                    return ApiResponse<bool>.FailResponse(dbError, 500);
+                    return ApiResponse<object>.FailResponse(dbError, 500);
                 }
 
                 string remoteError = uploadResponse?.Message ?? "Unreachable";
-                return ApiResponse<bool>.FailResponse($"Media Service Error: {remoteError}", 500);
+                return ApiResponse<object>.FailResponse($"Media Service Error: {remoteError}", 500);
             }
             catch (Exception ex)
             {
-                return ApiResponse<bool>.FailResponse(ex.Message, 500);
+                return ApiResponse<object>.FailResponse(ex.Message, 500);
             }
         }
 

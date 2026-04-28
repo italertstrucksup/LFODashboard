@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Api_Getway\Api_Getway.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
     <ProjectReference Include="..\..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
     <ProjectReference Include="..\PrfileService.Model\ProfileService_LFO.Model.csproj" />
     <ProjectReference Include="..\Profileservice.dL\ProfileService_LFO.DAL.csproj" />

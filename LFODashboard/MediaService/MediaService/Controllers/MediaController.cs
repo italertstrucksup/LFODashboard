@@ -6,7 +6,8 @@ using MediaService.Model.Model;
 namespace MediaServiceAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class MediaController : ControllerBase
     {
         private readonly IMediaBusinessLayer _mediaBusinessLayer;
@@ -24,7 +25,7 @@ namespace MediaServiceAPI.Controllers
         }
 
         [HttpPost("upload-base64", Name = "UploadBase64")]
-        public async Task<IActionResult> UploadBase64([FromBody] ApiRequest<MediaUploadRequest> request)
+        public async Task<IActionResult> UploadBase64(ApiRequest<MediaUploadRequest> request)
         {
             if (request?.Data == null || string.IsNullOrEmpty(request.Data.File))
             {
@@ -33,14 +34,8 @@ namespace MediaServiceAPI.Controllers
 
             try
             {
-                // Convert Base64 back to a file/stream for the business layer
-                byte[] bytes = Convert.FromBase64String(request.Data.File);
-                using (var stream = new MemoryStream(bytes))
-                {
-                    var file = new FormFile(stream, 0, bytes.Length, "file", "image.jpg");
-                    var response = await _mediaBusinessLayer.UploadDocumentAsync(file, request.Data.FolderName);
-                    return StatusCode(response.StatusCode, response);
-                }
+                var response = await _mediaBusinessLayer.UploadBase64Async(request.Data.File, request.Data.FolderName);
+                return StatusCode(response.StatusCode, response);
             }
             catch (Exception ex)
             {

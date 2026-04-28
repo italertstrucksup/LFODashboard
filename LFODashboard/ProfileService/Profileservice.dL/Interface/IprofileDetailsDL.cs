@@ -15,5 +15,7 @@ namespace ProfileService_LFO.DAL.Interface
         Task<(bool IsSuccess, string Message)> InsertFleetOperatorDocument(UpdateDocumentRequest request);
         Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request);
         Task<(bool IsSuccess, string Message)> InsertFleetOperatorKYC(KYCRequest request);
+        Task<DataSet> GetCompleteKYCDataAsync(Guid userId);
+
     }
 }

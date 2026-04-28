@@ -125,6 +125,18 @@
 
     // ProfilePhoto Service APIs Port 702
     {
+      "DownstreamPathTemplate": "/capture.html",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 702
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/capture.html"
+    },
+    {
       "DownstreamPathTemplate": "/api/ProfilePhoto/send-upload-link",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -221,6 +233,30 @@
       ],
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/get_vehicle"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Permission/get_features",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 703
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/get_features"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Permission/get_modules",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 703
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/get_modules"
     },
 
     //Media Service APIs 704

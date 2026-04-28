@@ -105,6 +105,8 @@ namespace AuthServices_LFO.BL.Implemetation
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
                     {
+                        UserId = user.UserId,                
+                        AccessType = user.AccessType,
                         ReferenceToken = tokenData.JwtToken,
                         RefreshToken = tokenData.RefreshToken,
                         Validity = tokenData.ExpiresIn
@@ -261,7 +263,7 @@ namespace AuthServices_LFO.BL.Implemetation
                 if (statusCode == 1)
                 {
                     return ApiResponse<SignupResponse>.FailResponse(
-                        "Mobile number not registered, please signup",
+                        "Mobile number not registered",
                         statusCode: 404
                     );
                 }
@@ -408,6 +410,8 @@ namespace AuthServices_LFO.BL.Implemetation
                 return ApiResponse<TokenResponse>.SuccessResponse(
                     new TokenResponse
                     {
+                        UserId = user.UserId,
+                        AccessType = user.AccessType,
                         ReferenceToken = tokenData.JwtToken,
                         RefreshToken = tokenData.RefreshToken,
                         Validity = tokenData.ExpiresIn
@@ -427,7 +431,7 @@ namespace AuthServices_LFO.BL.Implemetation
 
 
 
-        public async Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupRequest request)
+        public async Task<ApiResponse<SignupResponse>> SendSignupOtp(SignupOtpRequest request)
         {
             try
             {
@@ -441,25 +445,24 @@ namespace AuthServices_LFO.BL.Implemetation
                         statusCode: 500
                     );
                 }
+               
 
                 var statusCode = Convert.ToInt32(checkResult.Rows[0]["StatusCode"]);
 
                 if (statusCode == 0)
                 {
                     return ApiResponse<SignupResponse>.FailResponse(
-                        "Mobile number already registered, please login",
+                        "Mobile number already registered",
                         statusCode: 400
                     );
                 }
                 if (statusCode == 2) 
                 {
                     return ApiResponse<SignupResponse>.FailResponse(
-                        "Your account is blocked. Please contact support.",
+                        "Your account is blocked, please contact support.",
                         statusCode: 403
                     );
                 }
-
-
 
 
                 string otpType = "signup";
@@ -584,7 +587,7 @@ namespace AuthServices_LFO.BL.Implemetation
                 {
                     return ApiResponse<SignupResponse>.SuccessResponse(
                         null,
-                        message: "OTP verified successfully, please login"
+                        message: "OTP verified successfully"
                     );
                 }
 

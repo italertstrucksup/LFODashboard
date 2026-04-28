@@ -23,7 +23,7 @@ namespace AuthServices_LFO.Controllers
         //------------------------SIGNUP-------------------------
         // POST api/auth/send_signup_otp
         [HttpPost("send_signup_otp")]
-        public async Task<IActionResult> SendSignupOtp(SignupRequest request)
+        public async Task<IActionResult> SendSignupOtp(SignupOtpRequest request)
         {
             var result = await _authBL.SendSignupOtp(request);
             return result.Success ? Ok(result) : BadRequest(result);

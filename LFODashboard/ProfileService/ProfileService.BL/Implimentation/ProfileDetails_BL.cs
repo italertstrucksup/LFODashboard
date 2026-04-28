@@ -1,16 +1,16 @@
-﻿using HttpClientLib;
+﻿using Common.Core;
+using HttpClientLib;
 using Microsoft.AspNetCore.Http;
 using ProfileService_LFO.BL.Interface;
 using ProfileService_LFO.DAL.Implimentation;
 using ProfileService_LFO.DAL.Interface;
 using ProfileService_LFO.Model.Model;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Text.Json;
-using System.Collections.Generic;
-using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using Common.Core;
 
 public class ProfileDetailsBL : IprofileDetails_BL
 {
@@ -43,7 +43,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
             IsKYCDone = row["kyc_status"]?.ToString() ?? "0"
         };
     }
-    #endregion
+
 
     #region update
     public async Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request)
@@ -197,7 +197,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
 
         if (ds != null && ds.Tables.Count > 0)
         {
-            //operator & addressdetails
+            //Operator & Address Details
             if (ds.Tables[0].Rows.Count > 0)
             {
                 var row = ds.Tables[0].Rows[0];
@@ -220,7 +220,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 };
             }
 
-            // documents
+            //Documents
             if (ds.Tables.Count > 1)
             {
                 response.Documents = new List<RegistrationDocument>();
@@ -237,7 +237,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 }
             }
 
-            //truck details
+            //Truck Details
             if (ds.Tables.Count > 2)
             {
                 response.TruckDetails = new List<TruckDetail>();
@@ -256,7 +256,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 }
             }
 
-            //preferred lanes
+            //Preferred Lanes
             if (ds.Tables.Count > 3)
             {
                 response.PreferredLanes = new List<PreferredLane>();
@@ -274,7 +274,7 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 }
             }
 
-            //kyc details
+            // Table 4: KYC Details
             if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
             {
                 var row = ds.Tables[4].Rows[0];
@@ -294,5 +294,5 @@ public class ProfileDetailsBL : IprofileDetails_BL
         return ApiResponse<CompleteKYCResponse>.SuccessResponse(response, "Complete registration data fetched successfully", 200);
     }
 
-
+    #endregion
 }

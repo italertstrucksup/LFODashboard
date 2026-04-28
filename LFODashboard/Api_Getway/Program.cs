@@ -47,7 +47,28 @@ app.Use(async (context, next) =>
     var path = context.Request.Path.Value ?? string.Empty;
 
     // Allow anonymous access to the authentication endpoint where clients obtain tokens
-    if ((path.StartsWith("/login", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/send-reset-otp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/reset-password", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/send-login-otp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/login-with-otp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/refresh-token", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/send_signup_otp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/verifyOtp", StringComparison.OrdinalIgnoreCase)||path.StartsWith("/signup_user", StringComparison.OrdinalIgnoreCase)) &&
+    var allowedPaths = new[]
+    {
+        "/login",
+        "/send-reset-otp",
+        "/reset-password",
+        "/send-login-otp",
+        "/login-with-otp",
+        "/refresh-token",
+        "/send_signup_otp",
+        "/verifyOtp",
+        "/signup_user"
+        
+    };
+
+    if ( path.StartsWith("/capture.html", StringComparison.OrdinalIgnoreCase) &&
+        context.Request.Method.Equals("GET", StringComparison.OrdinalIgnoreCase))
+    {
+        await next();
+        return;
+    }
+
+    if (allowedPaths.Any(p => path.StartsWith(p, StringComparison.OrdinalIgnoreCase)) &&
         context.Request.Method.Equals("POST", StringComparison.OrdinalIgnoreCase))
     {
         await next();

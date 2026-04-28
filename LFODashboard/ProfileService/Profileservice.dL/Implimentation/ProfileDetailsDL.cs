@@ -32,6 +32,27 @@ namespace ProfileService_LFO.DAL.Implimentation
             return result;
         }
 
+        #region Get Complete KYC Data
+        public async Task<DataSet> GetCompleteKYCDataAsync(Guid userId)
+        {
+            var ds = new DataSet();
+            using (var conn = new SqlConnection(_connStr))
+            {
+                using (var cmd = new SqlCommand("USP_GetCompleteKYCData", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId });
+                    
+                    using (var adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(ds);
+                    }
+                }
+            }
+            return ds;
+        }
+        #endregion
+
         public async Task<(bool IsSuccess, string Message)> UpdateFleetOperator(UpdateFleetOperatorRequest request)
         {
             var parameters = new List<SqlParameter>
@@ -102,10 +123,10 @@ namespace ProfileService_LFO.DAL.Implimentation
 
             if (dt != null && dt.Rows.Count > 0)
             {
-               return (
-               Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
-               dt.Rows[0]["Message"]?.ToString()
-                );
+                return (
+                Convert.ToInt32(dt.Rows[0]["IsSuccess"]) == 1,
+                dt.Rows[0]["Message"]?.ToString()
+                 );
             }
 
             return (false, "No response from DB");
@@ -186,7 +207,7 @@ namespace ProfileService_LFO.DAL.Implimentation
             new SqlParameter("@SizeId", SqlDbType.Int) { Value = request.SizeId }
         };
 
-            
+
             var dt = await _dataAccess.ExecuteStoredProcedureAsync(
                 _connStr,
                 "USP_MasterVehicleDetails",
@@ -205,10 +226,10 @@ namespace ProfileService_LFO.DAL.Implimentation
         }
         #endregion
 
-       
 
-       
-       
+
+
+
 
         #region Insert
         public async Task<(bool IsSuccess, string Message)> InsertFleetOperatorKYC(KYCRequest request)
@@ -237,26 +258,6 @@ namespace ProfileService_LFO.DAL.Implimentation
 
 
 
-
-
-        public async Task<DataSet> GetCompleteKYCDataAsync(Guid userId)
-        {
-            var ds = new DataSet();
-            using (var conn = new SqlConnection(_connStr))
-            {
-                using (var cmd = new SqlCommand("USP_GetCompleteKYCData", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.UniqueIdentifier) { Value = userId });
-
-                    using (var adapter = new SqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(ds);
-                    }
-                }
-            }
-            return ds;
-        }
 
     }
 }

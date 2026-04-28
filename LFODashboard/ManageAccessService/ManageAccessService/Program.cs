@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAccessBL, AccessBL>();
 builder.Services.AddScoped<IAccessDAL, AccessDAL>();
+builder.Services.AddScoped<IPermissionBL, PermissionBL>();
+builder.Services.AddScoped<IPermissionDAL, PermissionDAL>();
 // 🔥 ADD THIS (Missing)
 builder.Services.AddScoped<IDataAccess, SqlDataAccess>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

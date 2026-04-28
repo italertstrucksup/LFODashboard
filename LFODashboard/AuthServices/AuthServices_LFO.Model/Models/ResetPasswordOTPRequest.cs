@@ -4,9 +4,8 @@ using System.Text;
 
 namespace AuthServices_LFO.Model.Models
 {
-    public class ResetPasswordReq
+    public class ResetPasswordOTPRequest
     {
         public string MobileNo { get; set; }
-        public string NewPassword { get; set; }
     }
 }

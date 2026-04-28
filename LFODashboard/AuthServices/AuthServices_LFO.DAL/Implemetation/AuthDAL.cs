@@ -160,14 +160,29 @@ namespace AuthServices_LFO.DAL.Implemetation
         }
 
 
+        public async Task<DataTable> VerifyOTPResetPassword(string mobileNo, string otp)
+        {
+            var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@MobileNo", mobileNo),
+            new SqlParameter("@OTP", otp)
+        };
+
+            return await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "usp_verifyresetotp",
+                parameters
+            );
+        }
+
+
         //------------------RESET PASSWORD-----------------------
 
-        public async Task<DataTable> ResetPassword(string mobileNo, string otp, string newPasswordHash)
+        public async Task<DataTable> ResetPassword(string mobileNo, string newPasswordHash)
         {
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@MobileNo", mobileNo),
-                new SqlParameter("@OTP", otp),
                 new SqlParameter("@NewPasswordHash", newPasswordHash)
             };
 

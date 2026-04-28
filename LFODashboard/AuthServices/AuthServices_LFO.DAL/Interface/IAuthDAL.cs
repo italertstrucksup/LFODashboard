@@ -18,7 +18,8 @@ namespace AuthServices_LFO.DAL.Interface
         Task<DataTable> GetOTP( string mobileNo, string otpType);
         Task<DataTable> VerifyOTP( string mobileNo, string otp, string otpType);
         Task<DataTable> VerifyLoginOtp(string mobileNo, string otp);
+        Task<DataTable> VerifyOTPResetPassword(string mobileNo, string otp);
 
-        Task<DataTable> ResetPassword(string mobileNo, string otp, string newPasswordHash);
+        Task<DataTable> ResetPassword(string mobileNo, string newPasswordHash);
     }
 }

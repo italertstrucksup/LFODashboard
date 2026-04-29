@@ -237,51 +237,57 @@ namespace ProfileService_LFO.DAL.Implimentation
         #region Insert Truck Details
         public async Task<string> InsertTruckDetails(TruckDetailsRequest request)
         {
-            var parameters = new List<SqlParameter>
+            if (request?.Trucks == null || !request.Trucks.Any())
+                return "No trucks found";
+
+            foreach (var truck in request.Trucks)
             {
-                new SqlParameter("@UserId", SqlDbType.UniqueIdentifier)
-                {
-                    Value = request.UserId
-                },
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@UserId", SqlDbType.UniqueIdentifier)
+            {
+                Value = request.UserId
+            },
 
-                new SqlParameter("@VehicleNo", SqlDbType.VarChar, 20)
-                {
-                    Value = request.VehicleNo
-                },
+            new SqlParameter("@VehicleNo", SqlDbType.VarChar, 20)
+            {
+                Value = truck.VehicleNo
+            },
 
-                new SqlParameter("@OwnershipType", SqlDbType.VarChar, 20)
-                {
-                    Value = (object?)request.OwnershipType ?? DBNull.Value
-                },
+            new SqlParameter("@OwnershipType", SqlDbType.VarChar, 20)
+            {
+                Value = (object?)truck.OwnershipType ?? DBNull.Value
+            },
 
-                new SqlParameter("@BodyTypeId", SqlDbType.Int)
-                {
-                    Value = request.BodyTypeId
-                },
+            new SqlParameter("@BodyTypeId", SqlDbType.Int)
+            {
+                Value = truck.BodyTypeId
+            },
 
-                new SqlParameter("@TyreId", SqlDbType.Int)
-                {
-                    Value = request.TyreId
-                },
+            new SqlParameter("@TyreId", SqlDbType.Int)
+            {
+                Value = truck.TyreId
+            },
 
-                new SqlParameter("@CapacityId", SqlDbType.Int)
-                {
-                    Value = request.CapacityId
-                },
+            new SqlParameter("@CapacityId", SqlDbType.Int)
+            {
+                Value = truck.CapacityId
+            },
 
-                new SqlParameter("@SizeId", SqlDbType.Int)
-                {
-                    Value = request.SizeId
-                }
-            };
+            new SqlParameter("@SizeId", SqlDbType.Int)
+            {
+                Value = truck.SizeId
+            }
+        };
 
-            await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr,
-                "USP_MasterVehicleDetails",
-                parameters
-            );
+                await _dataAccess.ExecuteStoredProcedureAsync(
+                    _connStr,
+                    "USP_MasterVehicleDetails",
+                    parameters
+                );
+            }
 
-            return "Truck inserted successfully";
+            return "Trucks inserted successfully";
         }
         #endregion
 

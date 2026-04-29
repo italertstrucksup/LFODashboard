@@ -14,7 +14,6 @@ namespace ProfileService_LFO.DAL.Interface
         Task<string> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
 
         Task<string> InsertTruckDetails(TruckDetailsRequest request);
-
         Task<string> InsertFleetOperatorDocument(UpdateDocumentRequest request);
         Task<string> InsertPreferredLane(PreferredLaneRequest request);
         Task<string> InsertFleetOperatorKYC(KYCRequest request);

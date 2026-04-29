@@ -20,8 +20,8 @@ namespace ProfileService_LFO.API.Controllers
        
 
         #region Update Profile
-        [HttpPost("updateProfile")]
-        public async Task<IActionResult> UpdateFleetOperator(UpdateFleetOperatorRequest request)
+        [HttpPost("updateCompanyDetails")]
+        public async Task<IActionResult> UpdateFleetOperator(UpdateProfileRequest request)
         {
             return Ok(await _profileBL.UpdateFleetOperator(request));
         }
@@ -44,7 +44,7 @@ namespace ProfileService_LFO.API.Controllers
         #endregion
 
         #region Upload Document
-        [HttpPost("uploadDocument")]
+        [HttpPost("AddDocument")]
         public async Task<IActionResult> InsertFleetOperatorDocument(UpdateDocumentRequest request)
         {
             return Ok(await _profileBL.InsertFleetOperatorDocument(request));
@@ -52,8 +52,8 @@ namespace ProfileService_LFO.API.Controllers
         #endregion
 
         #region Add Truck
-        [HttpPost("AddTruckstrucks")]
-        public async Task<IActionResult> InsertTruckDetails([FromForm] TruckDetailsRequest request)
+        [HttpPost("Addtrucks")]
+        public async Task<IActionResult> InsertTruckDetails([FromBody] TruckDetailsRequest request)
         {
             return Ok(await _profileBL.InsertTruckDetails(request));
         }

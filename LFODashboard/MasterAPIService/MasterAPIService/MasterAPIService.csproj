@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HelperDLL\Common.Core\Common.Core.csproj" />
-    <ProjectReference Include="..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
-    <ProjectReference Include="..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\Common.Core\Common.Core.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
     <ProjectReference Include="..\MasterAPIServiceBL\MasterAPIServiceBL.csproj" />
   </ItemGroup>
 

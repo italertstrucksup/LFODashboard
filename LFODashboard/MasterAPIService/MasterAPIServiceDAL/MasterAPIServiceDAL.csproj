@@ -11,10 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HelperDLL\Common.Core\Common.Core.csproj" />
-    <ProjectReference Include="..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
-    <ProjectReference Include="..\HelperDLL\HttpClientLib\HttpClientLib.csproj" />
-    <ProjectReference Include="..\MasterAPIServiceDAL\MasterAPIServiceDAL.csproj" />
+    <ProjectReference Include="..\..\HelperDLL\DataAccessInterface\DataAccessInterface.csproj" />
     <ProjectReference Include="..\MasterAPIServiceModel\MasterAPIServiceModel.csproj" />
   </ItemGroup>
 

@@ -1,21 +1,21 @@
 ﻿using ProfileService_LFO.Model.Model;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace ProfileService_LFO.DAL.Interface
 {
     public interface IprofileDetailsDL
     {
         Task<DataTable> GetProfileDetailsbyID(Guid userId);
-        Task<(bool IsSuccess, string Message)> UpdateFleetOperator(UpdateFleetOperatorRequest request);
-        Task<(bool IsSuccess, string Message)> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
-        Task<(bool IsSuccess, string Message)> InsertTruckDetails(TruckDetailsRequest request);
-        Task<(bool IsSuccess, string Message)> InsertFleetOperatorDocument(UpdateDocumentRequest request);
-        Task<(bool IsSuccess, string Message)> InsertPreferredLane(PreferredLaneRequest request);
-        Task<(bool IsSuccess, string Message)> InsertFleetOperatorKYC(KYCRequest request);
+
         Task<DataSet> GetCompleteKYCDataAsync(Guid userId);
 
+        Task<string> UpdateFleetOperator(UpdateProfileRequest request);
+
+        Task<string> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
+
+        Task<string> InsertTruckDetails(TruckDetailsRequest request);
+        Task<string> InsertFleetOperatorDocument(UpdateDocumentRequest request);
+        Task<string> InsertPreferredLane(PreferredLaneRequest request);
+        Task<string> InsertFleetOperatorKYC(KYCRequest request);
     }
 }

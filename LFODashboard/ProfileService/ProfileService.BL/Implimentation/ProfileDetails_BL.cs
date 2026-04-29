@@ -1,209 +1,192 @@
 ﻿using Common.Core;
-using HttpClientLib;
-using Microsoft.AspNetCore.Http;
 using ProfileService_LFO.BL.Interface;
-using ProfileService_LFO.DAL.Implimentation;
 using ProfileService_LFO.DAL.Interface;
 using ProfileService_LFO.Model.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Data;
-using System.Text.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class ProfileDetailsBL : IprofileDetails_BL
 {
     private readonly IprofileDetailsDL _dl;
-
 
     public ProfileDetailsBL(IprofileDetailsDL dl)
     {
         _dl = dl;
     }
 
-    #region Get By Id
-    public async Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId)
+
+
+    #region Update Fleet Operator
+    public async Task<ApiResponse<ProfileResponse>> UpdateFleetOperator(UpdateProfileRequest request)
     {
-        var dt = await _dl.GetProfileDetailsbyID(userId);
-
-        if (dt == null || dt.Rows.Count == 0)
-            return null;
-
-        var row = dt.Rows[0];
-
-        return new ProfileResponse
+        try
         {
-            UserId = row["user_id"] == DBNull.Value ? Guid.Empty : (row["user_id"] is Guid g ? g : Guid.Parse(row["user_id"].ToString())),
-            ProfileName = row["owner_name"]?.ToString(),
-            MobileNo = row["mobile_no"]?.ToString(),
-            CompanyName = row["company_name"]?.ToString(),
-            City = row["city"]?.ToString(),
-            State = row["state"]?.ToString(),
-            IsKYCDone = row["kyc_status"]?.ToString() ?? "0"
-        };
-    }
+            var message = await _dl.UpdateFleetOperator(request);
 
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to update profile", 404);
 
-    #region update
-    public async Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request)
-    {
-        if (request == null || request.UserId == Guid.Empty)
-            throw new ArgumentException("UserId is required for update", nameof(request.UserId));
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
 
-        var result = await _dl.UpdateFleetOperator(request);
-
-        if (!result.IsSuccess)
-            throw new Exception(result.Message);
-
-        return new ProfileResponse
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Profile updated successfully");
+        }
+        catch (Exception ex)
         {
-            IsSuccess = true,
-            Message = result.Message
-        };
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
     }
     #endregion
 
-    #region update
-    public async Task<ProfileResponse> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
+    #region Update Fleet Operator Type
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request)
     {
-        if (request == null || request.UserId == Guid.Empty)
-            throw new ArgumentException("UserId is required");
-
-        var result = await _dl.InsertFleetOperatorbyType(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
+            var message = await _dl.InsertFleetOperatorbyType(request);
+
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to update operator type", 404);
+
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Operator type updated successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
     }
     #endregion
 
-    public async Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request)
+    #region Insert Preferred Lane
+    public async Task<ApiResponse<ProfileResponse>> InsertPreferredLane(PreferredLaneRequest request)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
-
-        var result = await _dl.InsertPreferredLane(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertPreferredLane(request);
 
-    public async Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request)
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to add preferred lanes", 404);
+
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Preferred lanes added successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
+    }
+    #endregion
+
+    #region Insert Fleet Operator Document
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorDocument(UpdateDocumentRequest request)
     {
-
-
-        var result = await _dl.InsertFleetOperatorDocument(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertFleetOperatorDocument(request);
 
-    public async Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request)
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to upload document", 404);
+
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(
+                result,
+                "Documents uploaded successfully"
+            );
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
+    }
+    #endregion
+
+    #region Insert Truck Details
+    public async Task<ApiResponse<ProfileResponse>> InsertTruckDetails(TruckDetailsRequest request)
     {
-
-        var result = await _dl.InsertTruckDetails(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
-    }
+            var message = await _dl.InsertTruckDetails(request);
 
-    public async Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request)
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to add truck", 404);
+
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "Truck added successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
+    }
+    #endregion
+
+    #region Insert Fleet Operator KYC
+    public async Task<ApiResponse<ProfileResponse>> InsertFleetOperatorKYC(KYCRequest request)
     {
-        var result = await _dl.InsertFleetOperatorKYC(request);
-
-        return new ProfileResponse
+        try
         {
-            IsSuccess = result.IsSuccess,
-            Message = result.Message,
-            UserId = (Guid)request.UserId
-        };
+            var message = await _dl.InsertFleetOperatorKYC(request);
+
+            if (string.IsNullOrEmpty(message))
+                return ApiResponse<ProfileResponse>.FailResponse("Failed to save KYC", 404);
+
+            var result = new ProfileResponse
+            {
+                UserId = (Guid)request.UserId
+            };
+
+            return ApiResponse<ProfileResponse>.SuccessResponse(result, "KYC saved successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<ProfileResponse>.FailResponse(ex.Message);
+        }
     }
-    //public async Task<ProfileResponse> InsertFleetOperatorDocument(
-    //UpdateDocumentRequest request,
-    //IFormFile file)
-    //{
-    //    if (file == null)
-    //        throw new Exception("File is required");
+    #endregion
 
-    //    // 🔹 Convert file → Base64
-    //    using var ms = new MemoryStream();
-    //    await file.CopyToAsync(ms);
-    //    var base64 = Convert.ToBase64String(ms.ToArray());
-
-    //    // 🔹 Prepare Media API request
-    //    var mediaRequest = new
-    //    {
-    //        Data = new
-    //        {
-    //            File = base64,
-    //            FolderName = "KYC"
-    //        }
-    //    };
-
-    //    // 🔹 Call Media API
-    //    var response = await _httpService.PostAsync<object, ApiResponse<object>>(
-    //        "https://localhost:7235/api/Media/upload-base64", // 🔥 FIX PORT
-    //        mediaRequest
-    //    );
-
-    //    if (response == null || !response.Success)
-    //        throw new Exception(response?.Message ?? "Upload failed");
-
-    //    // 🔹 Extract documentKey
-    //    var json = JsonSerializer.Serialize(response.Data);
-    //    var doc = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-
-    //    if (doc == null || !doc.ContainsKey("documentKey"))
-    //        throw new Exception("Invalid response from Media API");
-
-    //    string documentKey = doc["documentKey"];
-
-    //    // 🔹 Save in DB
-    //    request.DocumentUrl = documentKey;
-
-    //    var result = await _dl.InsertFleetOperatorDocument(request);
-
-    //    if (!result.IsSuccess)
-    //        throw new Exception(result.Message);
-
-    //    return new ProfileResponse
-    //    {
-    //        IsSuccess = true,
-    //        Message = result.Message
-    //    };
-    //}
-
-
+    #region Get Complete KYC Data
     public async Task<ApiResponse<CompleteKYCResponse>> GetCompleteKYCDataAsync(Guid userId)
     {
-        var ds = await _dl.GetCompleteKYCDataAsync(userId);
-        var response = new CompleteKYCResponse();
-
-        if (ds != null && ds.Tables.Count > 0)
+        try
         {
-            //Operator & Address Details
+            var ds = await _dl.GetCompleteKYCDataAsync(userId);
+
+            if (ds == null || ds.Tables.Count == 0)
+                return ApiResponse<CompleteKYCResponse>.FailResponse("No data found", 404);
+
+            var response = new CompleteKYCResponse();
+
+            // Operator Details
             if (ds.Tables[0].Rows.Count > 0)
             {
                 var row = ds.Tables[0].Rows[0];
+
                 response.OperatorDetails = new OperatorDetails
                 {
-                    Id = row["id"] == DBNull.Value ? Guid.Empty : (row["id"] is Guid g0 ? g0 : Guid.Parse(row["id"].ToString())),
+                    Id = row["id"] == DBNull.Value
+                        ? Guid.Empty
+                        : (row["id"] is Guid g0
+                            ? g0
+                            : Guid.Parse(row["id"].ToString())),
+
                     OwnerName = row["owner_name"]?.ToString(),
                     OperatorType = row["operator_type"]?.ToString(),
                     ProfileImage = row["profile_image"]?.ToString(),
@@ -220,32 +203,43 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 };
             }
 
-            //Documents
+            // Documents
             if (ds.Tables.Count > 1)
             {
                 response.Documents = new List<RegistrationDocument>();
+
                 foreach (DataRow row in ds.Tables[1].Rows)
                 {
                     response.Documents.Add(new RegistrationDocument
                     {
-                        Id = row["id"] == DBNull.Value ? Guid.Empty : (row["id"] is Guid g2 ? g2 : Guid.Parse(row["id"].ToString())),
+                        Id = row["id"] == DBNull.Value
+                            ? Guid.Empty
+                            : (row["id"] is Guid g2
+                                ? g2
+                                : Guid.Parse(row["id"].ToString())),
+
                         DocumentType = row["document_type"]?.ToString(),
                         DocumentUrl = row["document_url"]?.ToString(),
                         DocumentNumber = row["document_number"]?.ToString(),
-                        IsVerified = row["is_verified"] != DBNull.Value && Convert.ToBoolean(row["is_verified"])
+                        IsVerified = row["is_verified"] != DBNull.Value &&
+                                     Convert.ToBoolean(row["is_verified"])
                     });
                 }
             }
 
-            //Truck Details
+            // Truck Details
             if (ds.Tables.Count > 2)
             {
                 response.TruckDetails = new List<TruckDetail>();
+
                 foreach (DataRow row in ds.Tables[2].Rows)
                 {
                     response.TruckDetails.Add(new TruckDetail
                     {
-                        Id = row["id"] != DBNull.Value ? (long.TryParse(row["id"].ToString(), out long val4) ? val4 : 0) : 0,
+                        Id = row["id"] != DBNull.Value
+                            ? (long.TryParse(row["id"].ToString(), out long val4) ? val4 : 0)
+                            : 0,
+
                         VehicleNo = row["vehicle_no"]?.ToString(),
                         OwnershipType = row["ownership_type"]?.ToString(),
                         BodyTypeId = row["body_type_id"] != DBNull.Value ? Convert.ToInt32(row["body_type_id"]) : 0,
@@ -256,15 +250,19 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 }
             }
 
-            //Preferred Lanes
+            // Preferred Lanes
             if (ds.Tables.Count > 3)
             {
                 response.PreferredLanes = new List<PreferredLane>();
+
                 foreach (DataRow row in ds.Tables[3].Rows)
                 {
                     response.PreferredLanes.Add(new PreferredLane
                     {
-                        Id = row["id"] != DBNull.Value ? (long.TryParse(row["id"].ToString(), out long val5) ? val5 : 0) : 0,
+                        Id = row["id"] != DBNull.Value
+                            ? (long.TryParse(row["id"].ToString(), out long val5) ? val5 : 0)
+                            : 0,
+
                         MobileNo = row["mobile_no"]?.ToString(),
                         FromLocation = row["from_location"]?.ToString(),
                         ToLocation = row["to_location"]?.ToString(),
@@ -274,25 +272,38 @@ public class ProfileDetailsBL : IprofileDetails_BL
                 }
             }
 
-            // Table 4: KYC Details
+            // KYC Details
             if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
             {
                 var row = ds.Tables[4].Rows[0];
+
                 response.KYCDetails = new KYCDetails
                 {
-                    Id = row["id"] != DBNull.Value ? (long.TryParse(row["id"].ToString(), out long valId) ? valId : 0) : 0,
+                    Id = row["id"] != DBNull.Value
+                        ? (long.TryParse(row["id"].ToString(), out long valId) ? valId : 0)
+                        : 0,
+
                     KYCType = row["kyc_type"]?.ToString(),
                     KYCNumber = row["kyc_number"]?.ToString(),
                     KYCProfileImage = row["kyc_profile_image"]?.ToString(),
                     KYCDocFront = row["kyc_doc_front"]?.ToString(),
                     KYCDocBack = row["kyc_doc_back"]?.ToString(),
-                    IsOTPVerified = row.Table.Columns.Contains("is_otp_verified") && row["is_otp_verified"] != DBNull.Value && Convert.ToBoolean(row["is_otp_verified"])
+                    IsOTPVerified = row.Table.Columns.Contains("is_otp_verified")
+                                    && row["is_otp_verified"] != DBNull.Value
+                                    && Convert.ToBoolean(row["is_otp_verified"])
                 };
             }
+
+            return ApiResponse<CompleteKYCResponse>.SuccessResponse(
+                response,
+                "Complete registration data fetched successfully",
+                200
+            );
         }
-
-        return ApiResponse<CompleteKYCResponse>.SuccessResponse(response, "Complete registration data fetched successfully", 200);
+        catch (Exception ex)
+        {
+            return ApiResponse<CompleteKYCResponse>.FailResponse(ex.Message);
+        }
     }
-
     #endregion
 }

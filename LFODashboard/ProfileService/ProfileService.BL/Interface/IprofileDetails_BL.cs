@@ -1,30 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using ProfileService_LFO.DAL.Interface;
+﻿using Common.Core;
 using ProfileService_LFO.Model.Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using Common.Core;
 
 namespace ProfileService_LFO.BL.Interface
 {
     public interface IprofileDetails_BL
     {
-        Task<ProfileResponse> UpdateFleetOperator(UpdateFleetOperatorRequest request);
-        Task<ProfileResponse> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
-        Task<ProfileResponse?> GetProfileDetailsByIdAsync(Guid userId);
-        Task<ProfileResponse> InsertFleetOperatorDocument(UpdateDocumentRequest request);
-        Task<ProfileResponse> InsertPreferredLane(PreferredLaneRequest request);
-        Task<ProfileResponse> InsertTruckDetails(TruckDetailsRequest request);
+        Task<ApiResponse<ProfileResponse>> UpdateFleetOperator(UpdateProfileRequest request);
 
-        Task<ProfileResponse> InsertFleetOperatorKYC(KYCRequest request);
+        Task<ApiResponse<ProfileResponse>> InsertFleetOperatorbyType(UpdateFleetOperatorRequest request);
 
 
+        Task<ApiResponse<ProfileResponse>> InsertFleetOperatorDocument(UpdateDocumentRequest request);
 
+        Task<ApiResponse<ProfileResponse>> InsertPreferredLane(PreferredLaneRequest request);
+
+        Task<ApiResponse<ProfileResponse>> InsertTruckDetails(TruckDetailsRequest request);
+
+        Task<ApiResponse<ProfileResponse>> InsertFleetOperatorKYC(KYCRequest request);
         Task<ApiResponse<CompleteKYCResponse>> GetCompleteKYCDataAsync(Guid userId);
-
-
 
     }
 }

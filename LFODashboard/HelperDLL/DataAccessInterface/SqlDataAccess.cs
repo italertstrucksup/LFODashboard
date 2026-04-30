@@ -76,29 +76,5 @@ namespace DataAccessInterface
             return dt;
         }
 
-        //public async Task<DataSet> ExecuteStoredProcedureDataSetAsync(string connectionString,string procedureName, IEnumerable<SqlParameter>? parameters = null)
-        //{
-        //    var ds = new DataSet();
-
-        //    await using var conn = new SqlConnection(connectionString);
-        //    await using var cmd = new SqlCommand(procedureName, conn)
-        //    {
-        //        CommandType = CommandType.StoredProcedure
-        //    };
-
-        //    if (parameters != null)
-        //    {
-        //        cmd.Parameters.AddRange(parameters.ToArray());
-        //    }
-
-        //    await conn.OpenAsync();
-
-        //    using (var adapter = new SqlDataAdapter(cmd))
-        //    {
-        //        adapter.Fill(ds);
-        //    }
-
-        //    return ds;
-        //}
     }
 }

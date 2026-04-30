@@ -8,8 +8,10 @@ namespace ManageAccessService.DAL.Interface
 {
     public interface IAccessDAL
     {
+        public Task<DataTable> GetRoleAsync();
         public Task<UserApiResponse> AddUserAsync(UserApiRequest request);
         public Task<UserApiResponse> EditUserAsync(UserApiRequest request);
+        public Task<UserApiResponse> DeleteUserAsync(UserApiRequest request);
         public Task<string> AssignVehicleAsync(AssignVehicleRequest request);
 
         public Task<DataTable> GetUserVehicleDataAsync(GetVehicleRequest request);

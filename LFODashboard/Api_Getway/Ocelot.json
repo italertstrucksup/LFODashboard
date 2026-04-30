@@ -121,6 +121,18 @@
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/logout"
     },
+    {
+      "DownstreamPathTemplate": "/api/v1/Auth/verify-reset-otp",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 700
+        }
+      ],
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/verify-reset-otp"
+    },
 
 
     // ProfilePhoto Service APIs Port 702
@@ -262,7 +274,7 @@
     //Media Service APIs 704
 
     {
-      "DownstreamPathTemplate": "/api/Media/upload",
+      "DownstreamPathTemplate": "/api/v1/Media/upload",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -275,7 +287,7 @@
     },
 
     {
-      "DownstreamPathTemplate": "/api/Media/upload-base64",
+      "DownstreamPathTemplate": "/api/v1/Media/upload-base64",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -288,7 +300,7 @@
     },
 
     {
-      "DownstreamPathTemplate": "/api/Media/get/{img}",
+      "DownstreamPathTemplate": "/api/v1/Media/get/{img}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -395,7 +407,7 @@
 
     //Profile Service APIs 705
     {
-      "DownstreamPathTemplate": "/api/v1/Profile/trucks",
+      "DownstreamPathTemplate": "/api/v1/profile/Addtrucks",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -407,7 +419,7 @@
       "UpstreamPathTemplate": "/add_trucks"
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Profile/lanes",
+      "DownstreamPathTemplate": "/api/v1/Profile/Addlanes",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -416,7 +428,7 @@
         }
       ],
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamPathTemplate": "/add_lanes"
+      "UpstreamPathTemplate": "/Addlanes"
     },
     {
       "DownstreamPathTemplate": "/api/v1/Profile/kyc",
@@ -431,7 +443,7 @@
       "UpstreamPathTemplate": "/add_kyc_doc"
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Profile/upload",
+      "DownstreamPathTemplate": "/api/v1/Profile/AddDocument",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -440,7 +452,7 @@
         }
       ],
       "UpstreamHttpMethod": [ "POST" ],
-      "UpstreamPathTemplate": "/add_doc_upload"
+      "UpstreamPathTemplate": "/AddDocument"
     },
     {
       "DownstreamPathTemplate": "/api/v1/Profile/update",
@@ -455,7 +467,7 @@
       "UpstreamPathTemplate": "/update_oprator_detail"
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Profile/update/type",
+      "DownstreamPathTemplate": "/api/v1/Profile/update/Profiletype",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -465,6 +477,81 @@
       ],
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/add_oprator_type"
+    },
+
+    //Master API Service APIs 706
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/location-by-pincode",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/location-by-pincode"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/operator/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/operator/{id}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/document/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/document/{id}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/vehicledetails/{actionType}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/vehicledetails/{actionType}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/citymaster",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/citymaster"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Master/kyc/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 706
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/kyc/{id}"
     }
 
   ],

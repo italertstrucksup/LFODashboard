@@ -19,7 +19,8 @@ namespace AuthServices_LFO.BL.Interface
         Task<ApiResponse<SignupResponse>> UserRegister(SignupRequest request);
         Task<ApiResponse<SignupResponse>> VerifySignupOTP(OTPVerifyRequest request);
 
-        Task<ApiResponse<SignupResponse>> SendResetOtp(ResetPasswordReq request);
+        Task<ApiResponse<SignupResponse>> SendResetOtp(ResetPasswordOTPRequest request);
+        Task<ApiResponse<object>> VerifyOTPResetPassword(VerifyOTPReq request);
 
         Task<ApiResponse<object>> ResetPassword(ResetPasswordReq request);
 

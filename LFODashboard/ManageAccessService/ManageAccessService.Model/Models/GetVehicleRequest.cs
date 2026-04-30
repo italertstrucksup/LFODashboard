@@ -9,6 +9,8 @@ namespace ManageAccessService.Model.Models
         public string? userId { get; set; }
         public string? subUserId { get; set; }
         public List<string>? Vehicles { get; set; } 
+        public List<string>? MobileNo { get; set; } 
+        public List<string>? UserNames { get; set; } 
         public int? accessType { get; set; } 
         public DateTime? fromDate { get; set; }
         public DateTime? toDate { get; set; }

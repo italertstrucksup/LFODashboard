@@ -79,9 +79,17 @@ namespace AuthServices_LFO.Controllers
 
         // POST api/auth/send-reset-otp
         [HttpPost("send-reset-otp")]
-        public async Task<IActionResult> SendResetOtp(ResetPasswordReq request)
+        public async Task<IActionResult> SendResetOtp(ResetPasswordOTPRequest request)
         {
             var result = await _authBL.SendResetOtp(request);
+            return result.Success ? Ok(result) : BadRequest(result);
+        }
+
+        // POST api/auth/verify-reset-otp
+        [HttpPost("verify-reset-otp")]
+        public async Task<IActionResult> VerifyOTPResetPassword(VerifyOTPReq request)
+        {
+            var result = await _authBL.VerifyOTPResetPassword(request);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 

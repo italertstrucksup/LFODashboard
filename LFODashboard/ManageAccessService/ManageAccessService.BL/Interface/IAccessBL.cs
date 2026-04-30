@@ -8,8 +8,10 @@ namespace ManageAccessService.BL.Interface
 {
     public interface IAccessBL
     {
+        Task<ApiResponse<string>> GetRole();
         Task<ApiResponse<UserApiResponse>> AddUserAsync(UserApiRequest request);
         Task<ApiResponse<UserApiResponse>> EditUserAsync(UserApiRequest request);
+        Task<ApiResponse<UserApiResponse>> DeleteUserAsync(UserApiRequest request);
         Task<ApiResponse<string>> AssignVehicleAsync(AssignVehicleRequest request);
         Task<ApiResponse<string>> GetUserVehicleDataAsync(GetVehicleRequest request);
         Task<ApiResponse<string>> GetVehicleListAsync(GetVehicleRequest request);

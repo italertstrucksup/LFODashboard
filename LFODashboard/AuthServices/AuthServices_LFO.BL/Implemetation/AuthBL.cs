@@ -609,7 +609,7 @@ namespace AuthServices_LFO.BL.Implemetation
 
         //----------------------RESET PASSWORD LOGIC-----------------------------
 
-        public async Task<ApiResponse<SignupResponse>> SendResetOtp(ResetPasswordReq request)
+        public async Task<ApiResponse<SignupResponse>> SendResetOtp(ResetPasswordOTPRequest request)
         {
             try
             {
@@ -695,13 +695,55 @@ namespace AuthServices_LFO.BL.Implemetation
             }
         }
 
+        public async Task<ApiResponse<object>> VerifyOTPResetPassword(VerifyOTPReq request)
+        {
+            try
+            {
+                var result = await _authDAL.VerifyOTPResetPassword(
+                    request.MobileNo,
+                    request.OTP
+                );
+
+                if (result.Rows.Count == 0)
+                {
+                    return ApiResponse<object>.FailResponse(
+                        "Something went wrong",
+                        statusCode: 500
+                    );
+                }
+
+                var row = result.Rows[0];
+                var statusCode = Convert.ToInt32(row["StatusCode"]);
+                var message = row["Message"]?.ToString();
+
+                if (statusCode == 1)
+                {
+                    return ApiResponse<object>.SuccessResponse(
+                        null,
+                        message: "OTP verified successfully"
+                    );
+                }
+
+                return ApiResponse<object>.FailResponse(
+                    message ?? "Invalid or expired OTP",
+                    statusCode: 400
+                );
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<object>.FailResponse(
+                    ex.Message,
+                    statusCode: 500
+                );
+            }
+        }
+
         public async Task<ApiResponse<object>> ResetPassword(ResetPasswordReq request)
         {
             try
             {
                 var result = await _authDAL.ResetPassword(
                     request.MobileNo,
-                    request.OTP,
                     Helper.HashPassword(request.NewPassword)
                 );
 
@@ -714,7 +756,6 @@ namespace AuthServices_LFO.BL.Implemetation
                 }
 
                 var row = result.Rows[0];
-
                 var statusCode = Convert.ToInt32(row["StatusCode"]);
                 var message = row["Message"]?.ToString();
 

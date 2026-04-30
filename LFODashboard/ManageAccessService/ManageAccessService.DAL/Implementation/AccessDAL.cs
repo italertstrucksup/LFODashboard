@@ -20,6 +20,20 @@ namespace ManageAccessService.DAL.Implementation
             _dataAccess = dataAccess;
         }
 
+        public async Task<DataTable> GetRoleAsync()
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@Action", "roles")
+            };
+
+            var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr, "usp_GetPermission",
+                parameters
+            );
+
+            return result;
+        }
+
         public async Task<UserApiResponse> AddUserAsync(UserApiRequest request)
         {
             var parameters = new List<SqlParameter>
@@ -58,39 +72,6 @@ namespace ManageAccessService.DAL.Implementation
 
             return response;
         }
-
-        public async Task<string> AssignVehicleAsync(AssignVehicleRequest request)
-        {
-            // ✅ Convert List<string> → DataTable (for TVP)
-            var vehicleTable = new DataTable();
-            vehicleTable.Columns.Add("vehicle_no", typeof(string));
-
-            foreach (var vehicle in request.Vehicles)
-            {
-                vehicleTable.Rows.Add(vehicle);
-            }
-
-            var parameters = new List<SqlParameter>
-            {
-                new SqlParameter("@UserId", request.UserId),
-                //new SqlParameter("@CreatedBy", request.CreatedBy),
-
-                new SqlParameter("@VehicleList", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.VehicleListType", // MUST match SQL type
-                    Value = vehicleTable
-                }
-            };
-
-            await _dataAccess.ExecuteStoredProcedureAsync(
-                _connStr,
-                "usp_SaveVehicleAssign",
-                parameters
-            );
-
-            return "Vehicle assigned successfully";
-        }
-
         public async Task<UserApiResponse> EditUserAsync(UserApiRequest request)
         {
             var parameters = new List<SqlParameter>
@@ -124,6 +105,66 @@ namespace ManageAccessService.DAL.Implementation
 
             return response;
         }
+        
+        public async Task<UserApiResponse> DeleteUserAsync(UserApiRequest request)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@id", (object?)request.UserId ?? DBNull.Value),
+                new SqlParameter("@is_active", 0),
+                new SqlParameter("@is_blocked", 1)
+            };
+
+            var dt = await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "usp_UpdateAuthUser",
+                parameters
+            );
+
+            // ✅ Map result
+            var response = new UserApiResponse();
+
+            if (dt.Rows.Count > 0)
+            {
+                response.UserId = dt.Rows[0]["id"] != DBNull.Value ? dt.Rows[0]["id"].ToString() : null;
+                response.Message = dt.Rows[0]["message"]?.ToString();
+            }
+
+            return response;
+        }
+
+        public async Task<string> AssignVehicleAsync(AssignVehicleRequest request)
+        {
+            // ✅ Convert List<string> → DataTable (for TVP)
+            var vehicleTable = new DataTable();
+            vehicleTable.Columns.Add("vehicle_no", typeof(string));
+
+            foreach (var vehicle in request.Vehicles)
+            {
+                vehicleTable.Rows.Add(vehicle);
+            }
+
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@UserId", request.UserId),
+                //new SqlParameter("@CreatedBy", request.CreatedBy),
+
+                new SqlParameter("@VehicleList", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.VehicleListType", // MUST match SQL type
+                    Value = vehicleTable
+                }
+            };
+
+            await _dataAccess.ExecuteStoredProcedureAsync(
+                _connStr,
+                "usp_SaveVehicleAssign",
+                parameters
+            );
+
+            return "Vehicle assigned successfully";
+        }
+
 
         public async Task<DataTable> GetUserVehicleDataAsync(GetVehicleRequest request)
         {
@@ -138,6 +179,29 @@ namespace ManageAccessService.DAL.Implementation
                     vehicleTable.Rows.Add(vehicle);
                 }
             }
+            // ✅ Convert List<string> → DataTable (for TVP)
+            var mobielTables = new DataTable();
+            mobielTables.Columns.Add("mobile_no", typeof(string));
+
+            if(request.MobileNo != null)
+            {
+                foreach (var mobile in request.MobileNo)
+                {
+                    mobielTables.Rows.Add(mobile);
+                }
+            }
+            // ✅ Convert List<string> → DataTable (for TVP)
+            var userNameTable = new DataTable();
+            userNameTable.Columns.Add("user_name", typeof(string));
+
+            if (request.UserNames != null)
+            {
+                foreach (var userName in request.UserNames)
+                {
+                    userNameTable.Rows.Add(userName);
+                }
+            }
+
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@UserId", (object?)request.userId ?? DBNull.Value),
@@ -146,9 +210,20 @@ namespace ManageAccessService.DAL.Implementation
                     TypeName = "dbo.VehicleListType", // MUST match SQL type
                     Value = vehicleTable
                 },
+                new SqlParameter("@MobileNos", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.MobileNoList", // MUST match SQL type
+                    Value = mobielTables
+                },
+                new SqlParameter("@UserNames", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.UserNameList", // MUST match SQL type
+                    Value = userNameTable
+                },
                 new SqlParameter("@SubUserId", (object?)request.subUserId ?? DBNull.Value),
                 new SqlParameter("@FromDate", (object?)request.fromDate ?? DBNull.Value),
-                new SqlParameter("@ToDate", (object?)request.toDate ?? DBNull.Value)
+                new SqlParameter("@ToDate", (object?)request.toDate ?? DBNull.Value),
+                new SqlParameter("@AccessType", (object?)request.accessType ?? DBNull.Value)
             };
 
             var result = await _dataAccess.ExecuteStoredProcedureAsync(_connStr,"usp_GetUserVehicleData",

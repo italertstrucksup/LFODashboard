@@ -16,6 +16,13 @@ namespace ManageAccessService.Controllers
             _accessBL = accessBL;
         }
 
+        [HttpGet("get_role")]
+        public async Task<IActionResult> GetRole()
+        {
+             return Ok(await _accessBL.GetRole());
+            
+        }
+
         [HttpPost("add_subuser")]
         public async Task<IActionResult> AddUser([FromBody] UserApiRequest user)
         {
@@ -27,6 +34,13 @@ namespace ManageAccessService.Controllers
         public async Task<IActionResult> EditUser([FromBody] UserApiRequest user)
         {
              return Ok(await _accessBL.EditUserAsync(user));
+            
+        }
+
+        [HttpPost("delete_subuser")]
+        public async Task<IActionResult> DeleteUser([FromBody] UserApiRequest user)
+        {
+             return Ok(await _accessBL.DeleteUserAsync(user));
             
         }
 

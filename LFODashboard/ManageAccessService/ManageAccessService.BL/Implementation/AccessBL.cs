@@ -19,6 +19,24 @@ namespace ManageAccessService.BL.Implementation
             _accessDAL = accessDAL;
         }
 
+        public async Task<ApiResponse<string>> GetRole()
+        {
+            try
+            {
+                  var  result = await _accessDAL.GetRoleAsync();
+
+                if (result == null || result.Rows.Count == 0)
+                    return ApiResponse<string>.FailResponse("No data found", 404);
+
+                return ApiResponse<string>.SuccessResponse(JsonConvert.SerializeObject(result), "Data fetched successfully");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<string>.FailResponse(ex.Message);
+            }
+
+        }
+
         public async Task<ApiResponse<UserApiResponse>> AddUserAsync(UserApiRequest request)
         {
             try
@@ -58,6 +76,22 @@ namespace ManageAccessService.BL.Implementation
                     await _accessDAL.AssignVehicleAsync(assignVehicleRequest);
                 }
                 return ApiResponse<UserApiResponse>.SuccessResponse(result, "User updated successfully");
+            }
+            catch (Exception ex) {
+                return ApiResponse<UserApiResponse>.FailResponse(ex.Message);
+            }
+            
+        }
+
+        public async Task<ApiResponse<UserApiResponse>> DeleteUserAsync(UserApiRequest request)
+        {
+            try
+            {
+                var result = await _accessDAL.DeleteUserAsync(request);
+                if (result == null || string.IsNullOrEmpty(result.UserId))
+                    return ApiResponse<UserApiResponse>.FailResponse(result.Message, 404);
+                
+                return ApiResponse<UserApiResponse>.SuccessResponse(result, "User Deleted Successfully");
             }
             catch (Exception ex) {
                 return ApiResponse<UserApiResponse>.FailResponse(ex.Message);
